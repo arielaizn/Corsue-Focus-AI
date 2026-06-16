@@ -2,15 +2,29 @@
 -- 0003_seed.sql — CourseFocus AI  |  Demo Seed Data (idempotent)
 -- Uses fixed UUIDs throughout. Safe to re-run (INSERT ... ON CONFLICT DO NOTHING).
 -- =============================================================================
--- NOTE: This seed does NOT insert into auth.users (Supabase Auth is managed
---       separately). Use Supabase Dashboard or a one-time SQL snippet to
---       create the auth user first, then this seed fills the app tables.
---
--- Demo owner auth.users UUID (create via Dashboard or auth hook):
---   '00000000-0000-0000-0000-000000000001'  →  demo-owner@coursefocus.ai
--- Demo student auth.users UUID:
---   '00000000-0000-0000-0000-000000000002'  →  demo-student@coursefocus.ai
+-- NOTE: For DEMO convenience this seed creates two auth.users rows below so the
+--       profiles FK resolves. REAL deployments create users via Supabase Auth
+--       signup (not SQL) and should delete the demo-auth block.
 -- =============================================================================
+
+-- ---------------------------------------------------------------------------
+-- DEMO AUTH USERS (demo-only — delete for production; real users sign up).
+--   '00000000-0000-0000-0000-000000000001' owner@demo.coursefocus.ai
+--   '00000000-0000-0000-0000-000000000002' student@demo.coursefocus.ai
+-- ---------------------------------------------------------------------------
+create extension if not exists pgcrypto;
+insert into auth.users
+  (instance_id, id, aud, role, email, encrypted_password, email_confirmed_at,
+   created_at, updated_at, raw_app_meta_data, raw_user_meta_data,
+   confirmation_token, recovery_token, email_change_token_new, email_change)
+values
+  ('00000000-0000-0000-0000-000000000000','00000000-0000-0000-0000-000000000001','authenticated','authenticated',
+   'owner@demo.coursefocus.ai', crypt('Demo!Passw0rd', gen_salt('bf')), now(), now(), now(),
+   '{"provider":"email","providers":["email"]}','{"full_name":"Demo Owner"}','','','',''),
+  ('00000000-0000-0000-0000-000000000000','00000000-0000-0000-0000-000000000002','authenticated','authenticated',
+   'student@demo.coursefocus.ai', crypt('Demo!Passw0rd', gen_salt('bf')), now(), now(), now(),
+   '{"provider":"email","providers":["email"]}','{"full_name":"Demo Student"}','','','','')
+on conflict (id) do nothing;
 
 -- ---------------------------------------------------------------------------
 -- LEVELS 1..100  (XP thresholds — simple quadratic curve)
@@ -522,7 +536,7 @@ ON CONFLICT (id) DO NOTHING;
 -- ---------------------------------------------------------------------------
 INSERT INTO user_badges (id, academy_id, user_id, badge_id)
 VALUES (
-  'ua000000-0000-0000-0000-000000000001',
+  'ea000000-0000-0000-0000-000000000001',
   'b0000000-0000-0000-0000-000000000001',
   '00000000-0000-0000-0000-000000000002',
   'ba000000-0000-0000-0000-000000000001'
@@ -537,7 +551,7 @@ ON CONFLICT (academy_id, user_id, badge_id) DO NOTHING;
 -- ---------------------------------------------------------------------------
 INSERT INTO xp_events (id, academy_id, user_id, source, amount, note, occurred_at)
 VALUES (
-  'xe000000-0000-0000-0000-000000000001',
+  '1e000000-0000-0000-0000-000000000001',
   'b0000000-0000-0000-0000-000000000001',
   '00000000-0000-0000-0000-000000000002',
   'lesson_complete',
@@ -577,7 +591,7 @@ ON CONFLICT (academy_id, user_id) DO NOTHING;
 -- ---------------------------------------------------------------------------
 INSERT INTO quizzes (id, academy_id, course_id, lesson_id, title, pass_score, ai_generated)
 VALUES (
-  'qz000000-0000-0000-0000-000000000001',
+  'a3000000-0000-0000-0000-000000000001',
   'b0000000-0000-0000-0000-000000000001',
   'e0000000-0000-0000-0000-000000000001',
   'aa000000-0000-0000-0000-000000000002',
@@ -590,27 +604,27 @@ ON CONFLICT (id) DO NOTHING;
 INSERT INTO questions (id, academy_id, quiz_id, question_type, body, explanation, points, position)
 VALUES
   (
-    'qq000000-0000-0000-0000-000000000001',
+    'aa000000-0000-0000-0000-000000000001',
     'b0000000-0000-0000-0000-000000000001',
-    'qz000000-0000-0000-0000-000000000001',
+    'a3000000-0000-0000-0000-000000000001',
     'multiple_choice',
     'מה ראשי התיבות של AI?',
     'AI = Artificial Intelligence = בינה מלאכותית.',
     1, 0
   ),
   (
-    'qq000000-0000-0000-0000-000000000002',
+    'aa000000-0000-0000-0000-000000000002',
     'b0000000-0000-0000-0000-000000000001',
-    'qz000000-0000-0000-0000-000000000001',
+    'a3000000-0000-0000-0000-000000000001',
     'true_false',
     'ChatGPT הוא דוגמה למודל שפה גדול (LLM).',
     'נכון. ChatGPT מבוסס על GPT-4, שהוא Large Language Model.',
     1, 1
   ),
   (
-    'qq000000-0000-0000-0000-000000000003',
+    'aa000000-0000-0000-0000-000000000003',
     'b0000000-0000-0000-0000-000000000001',
-    'qz000000-0000-0000-0000-000000000001',
+    'a3000000-0000-0000-0000-000000000001',
     'multiple_choice',
     'איזה מהמודלים הבאים אינו מודל AI של Google?',
     'Claude הוא של Anthropic, לא Google.',
@@ -621,18 +635,18 @@ ON CONFLICT (id) DO NOTHING;
 INSERT INTO question_options (id, question_id, body, is_correct, position)
 VALUES
   -- Q1 options
-  ('qo000000-0000-0000-0000-000000000001', 'qq000000-0000-0000-0000-000000000001', 'Artificial Intelligence',    true,  0),
-  ('qo000000-0000-0000-0000-000000000002', 'qq000000-0000-0000-0000-000000000001', 'Automated Integration',      false, 1),
-  ('qo000000-0000-0000-0000-000000000003', 'qq000000-0000-0000-0000-000000000001', 'Advanced Interface',         false, 2),
-  ('qo000000-0000-0000-0000-000000000004', 'qq000000-0000-0000-0000-000000000001', 'Applied Innovation',         false, 3),
+  ('a8000000-0000-0000-0000-000000000001', 'aa000000-0000-0000-0000-000000000001', 'Artificial Intelligence',    true,  0),
+  ('a8000000-0000-0000-0000-000000000002', 'aa000000-0000-0000-0000-000000000001', 'Automated Integration',      false, 1),
+  ('a8000000-0000-0000-0000-000000000003', 'aa000000-0000-0000-0000-000000000001', 'Advanced Interface',         false, 2),
+  ('a8000000-0000-0000-0000-000000000004', 'aa000000-0000-0000-0000-000000000001', 'Applied Innovation',         false, 3),
   -- Q2 options (true/false)
-  ('qo000000-0000-0000-0000-000000000005', 'qq000000-0000-0000-0000-000000000002', 'נכון',                       true,  0),
-  ('qo000000-0000-0000-0000-000000000006', 'qq000000-0000-0000-0000-000000000002', 'לא נכון',                    false, 1),
+  ('a8000000-0000-0000-0000-000000000005', 'aa000000-0000-0000-0000-000000000002', 'נכון',                       true,  0),
+  ('a8000000-0000-0000-0000-000000000006', 'aa000000-0000-0000-0000-000000000002', 'לא נכון',                    false, 1),
   -- Q3 options
-  ('qo000000-0000-0000-0000-000000000007', 'qq000000-0000-0000-0000-000000000003', 'Gemini',                     false, 0),
-  ('qo000000-0000-0000-0000-000000000008', 'qq000000-0000-0000-0000-000000000003', 'Bard',                       false, 1),
-  ('qo000000-0000-0000-0000-000000000009', 'qq000000-0000-0000-0000-000000000003', 'Claude',                     true,  2),
-  ('qo000000-0000-0000-0000-000000000010', 'qq000000-0000-0000-0000-000000000003', 'NotebookLM',                 false, 3)
+  ('a8000000-0000-0000-0000-000000000007', 'aa000000-0000-0000-0000-000000000003', 'Gemini',                     false, 0),
+  ('a8000000-0000-0000-0000-000000000008', 'aa000000-0000-0000-0000-000000000003', 'Bard',                       false, 1),
+  ('a8000000-0000-0000-0000-000000000009', 'aa000000-0000-0000-0000-000000000003', 'Claude',                     true,  2),
+  ('a8000000-0000-0000-0000-000000000010', 'aa000000-0000-0000-0000-000000000003', 'NotebookLM',                 false, 3)
 ON CONFLICT (id) DO NOTHING;
 
 -- ---------------------------------------------------------------------------
@@ -640,7 +654,7 @@ ON CONFLICT (id) DO NOTHING;
 -- ---------------------------------------------------------------------------
 INSERT INTO groups (id, academy_id, name, slug, description, visibility, created_by)
 VALUES (
-  'gr000000-0000-0000-0000-000000000001',
+  '0b000000-0000-0000-0000-000000000001',
   'b0000000-0000-0000-0000-000000000001',
   'בית AI',
   'ai-home',
@@ -652,8 +666,8 @@ ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO group_members (group_id, user_id, role)
 VALUES
-  ('gr000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'admin'),
-  ('gr000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000002', 'member')
+  ('0b000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'admin'),
+  ('0b000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000002', 'member')
 ON CONFLICT (group_id, user_id) DO NOTHING;
 
 -- ---------------------------------------------------------------------------
@@ -661,10 +675,10 @@ ON CONFLICT (group_id, user_id) DO NOTHING;
 -- ---------------------------------------------------------------------------
 INSERT INTO posts (id, academy_id, user_id, group_id, title, body, is_announcement)
 VALUES (
-  'po000000-0000-0000-0000-000000000001',
+  '98000000-0000-0000-0000-000000000001',
   'b0000000-0000-0000-0000-000000000001',
   '00000000-0000-0000-0000-000000000001',
-  'gr000000-0000-0000-0000-000000000001',
+  '0b000000-0000-0000-0000-000000000001',
   'ברוכים הבאים לאקדמיית ה-AI!',
   E'שלום וברוכים הבאים! 🎓\n\nאנחנו שמחים שהצטרפתם לאקדמיה. כאן תמצאו:\n- קורסים מתקדמים בבינה מלאכותית\n- קהילה תומכת ופעילה\n- AI אישי שמלווה אתכם לאורך כל הדרך\n\nהתחילו עם הקורס "מבוא לבינה מלאכותית" — חינם לחלוטין!',
   true
@@ -676,7 +690,7 @@ ON CONFLICT (id) DO NOTHING;
 -- ---------------------------------------------------------------------------
 INSERT INTO academy_listings (id, academy_id, tagline, categories, language, student_count, is_featured)
 VALUES (
-  'ml000000-0000-0000-0000-000000000001',
+  '65000000-0000-0000-0000-000000000001',
   'b0000000-0000-0000-0000-000000000001',
   'The AI-powered academy that runs itself — built on CourseFocus AI.',
   ARRAY['ai','technology','business'],
@@ -691,7 +705,7 @@ ON CONFLICT (id) DO NOTHING;
 -- ---------------------------------------------------------------------------
 INSERT INTO ai_mentors (id, academy_id, name, persona, model, is_active)
 VALUES (
-  'am000000-0000-0000-0000-000000000001',
+  'a6000000-0000-0000-0000-000000000001',
   'b0000000-0000-0000-0000-000000000001',
   'Maya — AI Learning Coach',
   'You are Maya, a warm and encouraging AI learning coach for the CourseFocus Demo Academy. You specialize in AI for business, speak Hebrew fluently, and always respond with practical, actionable advice. You are patient, clear, and never condescending.',
