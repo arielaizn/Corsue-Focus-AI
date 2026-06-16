@@ -1,0 +1,263 @@
+@import "tailwindcss";
+
+/* ============================================================
+   CourseFocus AI — design tokens
+   Drenched-dark planetarium: deep navy surfaces, blue→violet
+   the singing color, gold the spotlight rim. OKLCH, literal.
+   ============================================================ */
+
+@theme {
+  /* Surfaces (deep-space navy ramp) */
+  --color-bg: oklch(0.16 0.045 264);
+  --color-bg-deep: oklch(0.12 0.04 264);
+  --color-surface: oklch(0.21 0.05 265);
+  --color-surface-2: oklch(0.26 0.055 266);
+  --color-line: oklch(0.34 0.045 266);
+
+  /* Ink */
+  --color-ink: oklch(0.97 0.012 250);
+  --color-ink-soft: oklch(0.86 0.018 255);
+  --color-muted: oklch(0.74 0.03 260);
+
+  /* Brand — blue→violet (the "AI" gradient) */
+  --color-primary: oklch(0.62 0.2 264);
+  --color-primary-bright: oklch(0.7 0.18 262);
+  --color-violet: oklch(0.6 0.25 300);
+  --color-violet-bright: oklch(0.68 0.22 302);
+
+  /* Accent — gold (cap trim, star, tassel) */
+  --color-gold: oklch(0.82 0.135 84);
+  --color-gold-soft: oklch(0.88 0.09 88);
+  --color-gold-deep: oklch(0.7 0.14 70);
+
+  /* Fonts */
+  --font-display: "Clash Display", system-ui, sans-serif;
+  --font-en: "General Sans", system-ui, sans-serif;
+  --font-he: var(--font-rubik), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Brand gradients — used on fills/borders/glow, NEVER on text */
+  --grad-aurora: linear-gradient(
+    135deg,
+    oklch(0.62 0.2 264),
+    oklch(0.6 0.25 300)
+  );
+  --grad-gold: linear-gradient(
+    120deg,
+    oklch(0.7 0.14 70),
+    oklch(0.88 0.09 88)
+  );
+}
+
+/* Non-color CSS vars (z-scale, glows, gradients reused in raw CSS) */
+:root {
+  --grad-aurora: linear-gradient(
+    135deg,
+    oklch(0.62 0.2 264),
+    oklch(0.6 0.25 300)
+  );
+  --grad-gold: linear-gradient(120deg, oklch(0.7 0.14 70), oklch(0.88 0.09 88));
+  --grad-aurora-soft: linear-gradient(
+    135deg,
+    oklch(0.62 0.2 264 / 0.18),
+    oklch(0.6 0.25 300 / 0.18)
+  );
+
+  /* Semantic z-index scale — no 9999 */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 100;
+  --z-nav: 200;
+  --z-backdrop: 900;
+  --z-modal: 1000;
+  --z-toast: 1100;
+
+  color-scheme: dark;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-en);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body.font-he {
+  font-family: var(--font-he);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background-color: oklch(0.82 0.135 84 / 0.85);
+  color: oklch(0.16 0.045 264);
+}
+
+/* Focus ring — gold, smooth */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Thin custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 8px;
+  border: 2px solid var(--color-bg-deep);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface-2);
+}
+html {
+  scrollbar-color: var(--color-line) var(--color-bg-deep);
+  scrollbar-width: thin;
+}
+
+/* ============================================================
+   Reusable utility classes (escape hatch where v4 mapping fights)
+   ============================================================ */
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  /* aurora / gold fills for panels, rings, bars (NEVER text) */
+  .bg-aurora {
+    background-image: var(--grad-aurora);
+  }
+  .bg-gold-grad {
+    background-image: var(--grad-gold);
+  }
+  /* soft outer glow tokens */
+  .glow-aurora {
+    box-shadow: 0 0 0 1px oklch(0.62 0.2 264 / 0.4),
+      0 8px 40px -8px oklch(0.6 0.25 300 / 0.45);
+  }
+  .glow-gold {
+    box-shadow: 0 0 0 1px oklch(0.82 0.135 84 / 0.45),
+      0 8px 36px -10px oklch(0.82 0.135 84 / 0.4);
+  }
+  .ring-line {
+    box-shadow: inset 0 0 0 1px var(--color-line);
+  }
+}
+
+/* ============================================================
+   Keyframes (reused across components)
+   ============================================================ */
+
+@keyframes aurora-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate3d(2%, -2%, 0) scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-aurora {
+  animation: aurora-drift 14s ease-in-out infinite;
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ============================================================
+   Reduced motion — neutralize everything
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

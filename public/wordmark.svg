@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="48" viewBox="0 0 220 48" fill="none" role="img" aria-label="CourseFocus AI">
+  <g transform="translate(2,4)">
+    <path d="M20 4 2 13l18 9 18-9-18-9Z" fill="oklch(0.21 0.05 265)" stroke="oklch(0.82 0.135 84)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M10 19v8c0 0 4 4 10 4s10-4 10-4v-8" stroke="oklch(0.82 0.135 84)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M38 13v9" stroke="oklch(0.82 0.135 84)" stroke-width="2" stroke-linecap="round"/>
+    <path d="m38 24 1.4 3.2L42.8 28l-2.6 2.3.7 3.5-2.9-1.7-2.9 1.7.7-3.5L34 28l3.4-.8L38 24Z" fill="oklch(0.88 0.09 88)"/>
+  </g>
+  <text x="56" y="31" font-family="'Clash Display', system-ui, sans-serif" font-size="20" font-weight="600" fill="oklch(0.97 0.012 250)">CourseFocus</text>
+  <text x="184" y="31" font-family="'Clash Display', system-ui, sans-serif" font-size="20" font-weight="600" fill="oklch(0.82 0.135 84)">AI</text>
+</svg>
