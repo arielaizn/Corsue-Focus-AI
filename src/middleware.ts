@@ -1,5 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
+import type { User } from "@supabase/supabase-js";
+import type { Database } from "@/types/database.types";
 import { defaultLocale, isLocale } from "@/lib/i18n";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -9,6 +11,14 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const first = pathname.split("/")[1];
 
+  // 0) Auth route handlers (OAuth / magic-link callback) live at the locale-less
+  //    /auth/** path. They must NOT be locale-redirected (that would 404 the
+  //    callback and silently break the whole sign-in flow, dropping ?code=) and
+  //    they don't need session-refresh here — exchangeCodeForSession sets cookies.
+  if (pathname === "/auth/callback" || pathname.startsWith("/auth/")) {
+    return NextResponse.next();
+  }
+
   // 1) Locale routing: redirect any locale-less path to the default locale.
   if (!isLocale(first)) {
     const url = request.nextUrl.clone();
@@ -16,19 +26,29 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  // 2) Keep the Supabase auth session fresh so expired tokens refresh into
-  //    cookies. Ready for future authed/app routes. We only do the network
-  //    round-trip when a Supabase session cookie is actually present, so
-  //    anonymous marketing visitors stay fast.
-  let response = NextResponse.next({ request: { headers: request.headers } });
+  const locale = first;
+  const rest = pathname.slice(`/${locale}`.length); // "" | "/dashboard..." | "/login"
+  const isDashboard = rest === "/dashboard" || rest.startsWith("/dashboard/");
 
+  // Expose the current path to layouts (so the marketing chrome can opt out
+  // for the dashboard/auth app shell). Forwarded on the request headers.
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-pathname", pathname);
+
+  let response = NextResponse.next({ request: { headers: requestHeaders } });
+
+  // 2) Keep the Supabase auth session fresh + (when relevant) gate the
+  //    dashboard. We resolve the user when a session cookie is present OR when
+  //    the path is protected (so anonymous dashboard hits redirect correctly).
   if (supabaseUrl && supabaseKey) {
     const hasSession = request.cookies
       .getAll()
       .some((c) => c.name.startsWith("sb-"));
 
-    if (hasSession) {
-      const supabase = createServerClient(supabaseUrl, supabaseKey, {
+    let user: User | null = null;
+
+    if (hasSession || isDashboard) {
+      const supabase = createServerClient<Database>(supabaseUrl, supabaseKey, {
         cookies: {
           getAll() {
             return request.cookies.getAll();
@@ -37,14 +57,26 @@ export async function middleware(request: NextRequest) {
             cookiesToSet.forEach(({ name, value }) =>
               request.cookies.set(name, value),
             );
-            response = NextResponse.next({ request });
+            response = NextResponse.next({
+              request: { headers: requestHeaders },
+            });
             cookiesToSet.forEach(({ name, value, options }) =>
               response.cookies.set(name, value, options),
             );
           },
         },
       });
-      await supabase.auth.getUser();
+      const { data } = await supabase.auth.getUser();
+      user = data.user;
+    }
+
+    // 3) Protect the dashboard: no user -> /<locale>/login?next=<path>.
+    if (isDashboard && !user) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${locale}/login`;
+      url.search = "";
+      url.searchParams.set("next", pathname);
+      return NextResponse.redirect(url);
     }
   }
 

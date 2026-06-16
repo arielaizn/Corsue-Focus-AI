@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 import { Rubik, Geist_Mono } from "next/font/google";
 import { locales, dir, isLocale, type Locale } from "@/lib/i18n";
 import { SmoothScroll } from "@/components/shared/SmoothScroll";
@@ -79,6 +80,16 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
 
+  // The authenticated app (dashboard) and the auth screens render their own
+  // calm shell — they opt out of the marketing Nav/Footer/Nebula chrome.
+  const pathname = (await headers()).get("x-pathname") ?? "";
+  const rest = pathname.slice(`/${locale}`.length);
+  const isAppShell =
+    rest === "/dashboard" ||
+    rest.startsWith("/dashboard/") ||
+    rest === "/login" ||
+    rest === "/signup";
+
   return (
     <html
       lang={locale}
@@ -93,15 +104,19 @@ export default async function LocaleLayout({
         />
       </head>
       <body className={locale === "he" ? "font-he" : "font-en"}>
-        <SmoothScroll>
-          <NebulaBackground variant="global" />
-          <GrainOverlay />
-          <Nav locale={locale} />
-          <main className="relative z-[var(--z-raised)] pt-16">
-            {children}
-          </main>
-          <Footer locale={locale} />
-        </SmoothScroll>
+        {isAppShell ? (
+          children
+        ) : (
+          <SmoothScroll>
+            <NebulaBackground variant="global" />
+            <GrainOverlay />
+            <Nav locale={locale} />
+            <main className="relative z-[var(--z-raised)] pt-16">
+              {children}
+            </main>
+            <Footer locale={locale} />
+          </SmoothScroll>
+        )}
       </body>
     </html>
   );
