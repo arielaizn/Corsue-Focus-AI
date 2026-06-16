@@ -10,31 +10,31 @@ export function C4Certificates({ locale }: { locale: Locale }) {
   const t = content[locale].c4;
 
   return (
-    <Section tint className="py-20 sm:py-28">
+    <Section tint className="py-24 sm:py-32">
       <Reveal className="max-w-2xl">
         <SectionHeading title={t.title} subtitle={t.subtitle} />
       </Reveal>
 
-      <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-[1fr_1fr]">
+      <div className="mt-14 grid items-stretch gap-6 lg:grid-cols-[1fr_1fr]">
         {/* Quiz + AI reviewer */}
-        <Reveal y={26} className="flex flex-col gap-4 rounded-2xl bg-surface/40 p-6 ring-line sm:p-7">
+        <Reveal y={26} className="panel-premium flex flex-col gap-4 p-6 sm:p-8">
           <div className="flex items-center justify-between">
             <div className="text-sm font-semibold text-ink">{t.quizTitle}</div>
-            <div className="rounded-full bg-bg px-2.5 py-1 text-xs text-muted ring-line">
+            <div className="rounded-full bg-bg-deep px-2.5 py-1 text-xs font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35)]">
               {t.scoreLabel} 96%
             </div>
           </div>
 
-          <p className="text-base font-medium text-ink">{t.question}</p>
+          <p className="text-base font-semibold text-ink">{t.question}</p>
 
           <ul className="space-y-2.5">
             {t.options.map((o) => (
               <li
                 key={o.text}
-                className={`flex items-center justify-between rounded-lg px-3.5 py-3 text-sm ring-line ${
+                className={`flex items-center justify-between rounded-xl px-3.5 py-3 text-sm ${
                   o.correct
-                    ? "bg-[oklch(0.62_0.2_264_/_0.12)] text-ink [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.45)]"
-                    : "bg-bg text-ink-soft"
+                    ? "bg-[oklch(0.6_0.18_262_/_0.14)] text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.5)]"
+                    : "bg-bg-deep text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]"
                 }`}
               >
                 <span>{o.text}</span>
@@ -48,7 +48,7 @@ export function C4Certificates({ locale }: { locale: Locale }) {
           </ul>
 
           {/* AI reviewer line */}
-          <div className="mt-1 rounded-xl bg-bg/60 p-4 ring-line">
+          <div className="mt-1 rounded-xl bg-bg-deep/60 p-4 [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.22)]">
             <div className="flex items-center gap-2 text-xs font-semibold text-gold">
               <span className="grid h-5 w-5 place-items-center rounded-md bg-aurora text-ink">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -63,13 +63,13 @@ export function C4Certificates({ locale }: { locale: Locale }) {
 
         {/* Certificate */}
         <Reveal y={26} delay={0.08} className="flex">
-          <div className="relative flex w-full flex-col overflow-hidden rounded-2xl bg-bg-deep p-6 sm:p-7 [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.4),0_24px_70px_-30px_oklch(0.82_0.135_84_/_0.35)]">
+          <div className="relative flex w-full flex-col overflow-hidden rounded-[16px] bg-bg-deep p-6 sm:p-8 [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.45),inset_0_1px_0_oklch(1_0_0_/_0.05),0_36px_90px_-36px_oklch(0.83_0.13_88_/_0.32)]">
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(80% 60% at 50% 0%, oklch(0.82 0.135 84 / 0.1), transparent 60%)",
+                  "radial-gradient(80% 60% at 50% 0%, oklch(0.83 0.13 88 / 0.12), transparent 60%)",
               }}
             />
             {/* gold corner rules */}
@@ -79,11 +79,12 @@ export function C4Certificates({ locale }: { locale: Locale }) {
             <span aria-hidden className="pointer-events-none absolute bottom-4 right-4 h-6 w-6 border-e-2 border-b-2 border-gold/60" />
 
             <div className="relative flex flex-1 flex-col items-center text-center">
-              <div className="text-xs uppercase tracking-[0.2em] text-gold">{t.certSubtitle}</div>
-              <div className="mt-4 font-[family-name:var(--font-display)] text-xl font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+              <div className="text-gilt">{t.certSubtitle}</div>
+              <div className="mt-4 font-[family-name:var(--font-display)] text-xl font-bold text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
                 {t.certTitle}
               </div>
-              <div className="mt-5 text-2xl font-semibold text-gold [.font-he_&]:font-[family-name:var(--font-he)]">
+              <span aria-hidden className="gilt-rule mt-4 max-w-[120px] opacity-60" />
+              <div className="mt-5 font-[family-name:var(--font-display)] text-[1.6rem] font-bold text-gold [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
                 {t.certName}
               </div>
               <div className="mt-1.5 text-sm text-ink-soft">{t.certCourse}</div>
@@ -108,9 +109,13 @@ export function C4Certificates({ locale }: { locale: Locale }) {
       {/* two supporting points */}
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         {t.points.map((p, i) => (
-          <Reveal key={p.title} delay={0.04 * i} className="rounded-xl bg-surface/40 p-4 ring-line">
-            <div className="text-sm font-medium text-ink">{p.title}</div>
-            <p className="mt-1 text-xs text-ink-soft">{p.desc}</p>
+          <Reveal
+            key={p.title}
+            delay={0.04 * i}
+            className="rounded-[14px] bg-surface p-5 [box-shadow:inset_0_0_0_1px_oklch(0.4_0.04_268_/_0.6),inset_0_1px_0_oklch(1_0_0_/_0.05)]"
+          >
+            <div className="text-sm font-semibold text-ink">{p.title}</div>
+            <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">{p.desc}</p>
           </Reveal>
         ))}
       </div>

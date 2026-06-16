@@ -8,6 +8,11 @@ export interface RevealProps {
   children: ReactNode;
   /** vertical offset of the enter animation (px). */
   y?: number;
+  /** horizontal offset of the enter animation (px). Used to vary a few headings
+   *  off the uniform y-rise. Kept small so RTL mirroring stays imperceptible. */
+  x?: number;
+  /** override the enter duration (s) to break the uniform timing on a few sections. */
+  duration?: number;
   delay?: number;
   as?: ElementType;
   className?: string;
@@ -21,6 +26,8 @@ export interface RevealProps {
 export function Reveal({
   children,
   y = 22,
+  x = 0,
+  duration = 0.85,
   delay = 0,
   as,
   className,
@@ -31,11 +38,13 @@ export function Reveal({
   return (
     <MotionTag
       className={className}
-      initial={reduced ? { opacity: 1 } : { opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={reduced ? { opacity: 1 } : { opacity: 0, y, x }}
+      whileInView={{ opacity: 1, y: 0, x: 0 }}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
       transition={
-        reduced ? { duration: 0 } : { duration: 0.7, ease: easeOutExpo, delay }
+        reduced
+          ? { duration: 0 }
+          : { duration, ease: easeOutExpo, delay }
       }
       style={{ willChange: "transform, opacity" }}
     >

@@ -97,11 +97,11 @@ export function NebulaBackground({ variant = "global" }: NebulaBackgroundProps) 
           new THREE.BufferAttribute(goldPos, 3),
         );
         const goldMat = new THREE.PointsMaterial({
-          color: 0xe8c879,
+          color: 0xf2d489,
           size: 1.5,
           sizeAttenuation: true,
           transparent: true,
-          opacity: 0.7 * intensity,
+          opacity: 0.72 * intensity,
           depthWrite: false,
           blending: THREE.AdditiveBlending,
         });
@@ -146,8 +146,10 @@ export function NebulaBackground({ variant = "global" }: NebulaBackgroundProps) 
           return { sprite, tex, mat };
         };
 
-        const glowA = makeGlow(0x4a5cd6, -28, 14, 130, 0.5);
-        const glowB = makeGlow(0x8a4fd6, 30, -10, 150, 0.45);
+        // Aurora: blue → violet → magenta (the logo halo, from the brief)
+        const glowA = makeGlow(0x3b6fe0, -30, 16, 130, 0.5); // blue
+        const glowB = makeGlow(0x8b5cf6, 24, -6, 150, 0.45); // violet
+        const glowC = makeGlow(0xc44cd9, 40, -22, 110, 0.34); // magenta (warm end)
 
         // parallax pointer
         let px = 0;
@@ -183,10 +185,16 @@ export function NebulaBackground({ variant = "global" }: NebulaBackgroundProps) 
           stars.rotation.x = Math.sin(t * 0.04) * 0.02;
           gold.rotation.y = -t * 0.02;
           gold.position.y = Math.sin(t * 0.15) * 2;
+          // slow, calm breathing across the three aurora stops
           glowA.sprite.material.opacity =
-            (0.42 + Math.sin(t * 0.4) * 0.08) * intensity;
+            (0.42 + Math.sin(t * 0.32) * 0.08) * intensity;
           glowB.sprite.material.opacity =
-            (0.4 + Math.cos(t * 0.35) * 0.08) * intensity;
+            (0.4 + Math.cos(t * 0.28) * 0.08) * intensity;
+          glowC.sprite.material.opacity =
+            (0.3 + Math.sin(t * 0.22 + 1.2) * 0.07) * intensity;
+          // gentle depth parallax — glows drift on their own slow phase
+          glowA.sprite.position.x = -30 + Math.sin(t * 0.06) * 3;
+          glowC.sprite.position.x = 40 + Math.cos(t * 0.05) * 3;
           camera.position.x += (px * 6 - camera.position.x) * 0.03;
           camera.position.y += (-py * 4 - camera.position.y) * 0.03;
           camera.lookAt(scene.position);
@@ -208,6 +216,8 @@ export function NebulaBackground({ variant = "global" }: NebulaBackgroundProps) 
           glowA.mat.dispose();
           glowB.tex.dispose();
           glowB.mat.dispose();
+          glowC.tex.dispose();
+          glowC.mat.dispose();
           renderer.dispose();
           if (renderer.domElement.parentNode === mount)
             mount.removeChild(renderer.domElement);
@@ -233,7 +243,7 @@ export function NebulaBackground({ variant = "global" }: NebulaBackgroundProps) 
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(110% 80% at 50% -10%, oklch(0.24 0.08 280 / 0.55), transparent 55%), radial-gradient(80% 60% at 12% 18%, oklch(0.3 0.12 264 / 0.4), transparent 60%), radial-gradient(80% 60% at 88% 30%, oklch(0.3 0.14 300 / 0.35), transparent 60%), radial-gradient(60% 50% at 70% 90%, oklch(0.7 0.14 70 / 0.06), transparent 60%)",
+            "radial-gradient(110% 80% at 50% -10%, oklch(0.26 0.1 290 / 0.5), transparent 55%), radial-gradient(80% 60% at 14% 12%, oklch(0.28 0.12 262 / 0.42), transparent 58%), radial-gradient(78% 60% at 86% 34%, oklch(0.3 0.13 330 / 0.34), transparent 60%), radial-gradient(60% 50% at 70% 92%, oklch(0.72 0.13 78 / 0.06), transparent 60%)",
           opacity: staticOnly ? 1 : 0.6,
           transition: "opacity 0.6s ease",
         }}
@@ -244,7 +254,7 @@ export function NebulaBackground({ variant = "global" }: NebulaBackgroundProps) 
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(120% 120% at 50% 30%, transparent 55%, oklch(0.12 0.04 264 / 0.55) 100%)",
+            "radial-gradient(120% 120% at 50% 30%, transparent 55%, oklch(0.11 0.035 268 / 0.6) 100%)",
         }}
       />
     </div>

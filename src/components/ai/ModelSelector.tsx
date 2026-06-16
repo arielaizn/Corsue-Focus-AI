@@ -13,14 +13,14 @@ export interface ModelSelectorProps {
 }
 
 const TONE_FILL: Record<string, string> = {
-  violet: "oklch(0.6 0.25 300 / 0.16)",
-  primary: "oklch(0.62 0.2 264 / 0.16)",
-  gold: "oklch(0.82 0.135 84 / 0.14)",
+  violet: "oklch(0.62 0.215 294 / 0.16)",
+  primary: "oklch(0.6 0.18 262 / 0.16)",
+  gold: "oklch(0.83 0.13 88 / 0.13)",
 };
 const TONE_RIM: Record<string, string> = {
-  violet: "oklch(0.6 0.25 300 / 0.4)",
-  primary: "oklch(0.62 0.2 264 / 0.4)",
-  gold: "oklch(0.82 0.135 84 / 0.4)",
+  violet: "oklch(0.62 0.215 294 / 0.42)",
+  primary: "oklch(0.6 0.18 262 / 0.42)",
+  gold: "oklch(0.83 0.13 88 / 0.44)",
 };
 
 /**
@@ -35,7 +35,7 @@ export function ModelSelector({ locale }: ModelSelectorProps) {
   const model = data.models[active];
 
   return (
-    <div className="rounded-2xl bg-surface/30 p-5 [box-shadow:inset_0_0_0_1px_var(--color-line)] sm:p-6">
+    <div className="panel-premium glow-aurora p-5 sm:p-7">
       {/* engine picker */}
       <div className="flex flex-wrap gap-2" role="tablist" aria-label={data.tag}>
         {data.models.map((m, i) => {
@@ -67,11 +67,11 @@ export function ModelSelector({ locale }: ModelSelectorProps) {
           className="rounded-xl p-4"
           style={{
             backgroundColor: TONE_FILL[model.tone],
-            boxShadow: `inset 0 0 0 1px ${TONE_RIM[model.tone]}`,
+            boxShadow: `inset 0 0 0 1px ${TONE_RIM[model.tone]}, inset 0 1px 0 oklch(1 0 0 / 0.06)`,
           }}
         >
-          <div className="flex items-center gap-2 text-xs font-medium text-gold">
-            <IconSpark width={13} height={13} />
+          <div className="text-gilt flex items-center gap-2">
+            <IconSpark width={13} height={13} className="text-gold" />
             <span>{data.tag}</span>
           </div>
           <AnimatePresence mode="wait">
@@ -82,7 +82,7 @@ export function ModelSelector({ locale }: ModelSelectorProps) {
               exit={reduced ? { opacity: 1 } : { opacity: 0, y: -8 }}
               transition={reduced ? { duration: 0 } : { duration: 0.32, ease: easeOutExpo }}
             >
-              <p className="mt-3 font-[family-name:var(--font-display)] text-2xl font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+              <p className="mt-3 font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold tracking-[-0.02em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold [.font-he_&]:tracking-normal">
                 {model.name}
               </p>
               <p className="mt-1 text-sm text-ink-soft">{model.trait}</p>

@@ -12,7 +12,7 @@ const STATUS_STYLE = (status: string) => {
     };
   if (/מעבד|process/i.test(s))
     return {
-      cls: "text-gold bg-[oklch(0.82_0.135_84_/_0.14)] [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.3)]",
+      cls: "text-gold bg-[oklch(0.83_0.13_88_/_0.14)] [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.3)]",
       dot: true,
       done: false,
     };
@@ -33,10 +33,10 @@ export function KnowledgeBaseMock({
   data: AIContent["knowledge"];
 }) {
   return (
-    <div className="rounded-2xl bg-surface/30 p-5 [box-shadow:inset_0_0_0_1px_var(--color-line)] sm:p-6">
+    <div className="panel-premium p-5 sm:p-6">
       {/* dropzone */}
       <div className="flex items-center gap-3 rounded-xl border border-dashed border-line bg-bg-deep/40 px-4 py-4">
-        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[oklch(0.62_0.2_264_/_0.18)] text-ink-soft">
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[oklch(0.6_0.18_262_/_0.18)] text-ink-soft">
           <IconUpload width={17} height={17} />
         </span>
         <p className="text-sm text-ink-soft">PDF · Word · PowerPoint · Site</p>
@@ -76,8 +76,8 @@ export function KnowledgeBaseMock({
       </ul>
 
       {/* learned */}
-      <div className="mt-4 rounded-xl bg-[oklch(0.82_0.135_84_/_0.08)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.25)]">
-        <p className="mb-2.5 text-xs font-medium text-gold">{data.learnedLabel}</p>
+      <div className="mt-4 rounded-xl bg-[oklch(0.83_0.13_88_/_0.08)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.25)]">
+        <p className="text-gilt mb-3">{data.learnedLabel}</p>
         <ul className="flex flex-col gap-2">
           {data.learned.map((l) => (
             <li key={l} className="flex items-start gap-2 text-sm text-ink-soft">

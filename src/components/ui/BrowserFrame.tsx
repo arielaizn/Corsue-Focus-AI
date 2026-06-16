@@ -17,11 +17,11 @@ export function BrowserFrame({
     <div
       dir="ltr"
       className={cn(
-        "overflow-hidden rounded-2xl bg-bg-deep [box-shadow:inset_0_0_0_1px_var(--color-line),0_30px_80px_-30px_oklch(0.6_0.25_300_/_0.35)]",
+        "overflow-hidden rounded-[16px] bg-bg-deep [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05),0_40px_110px_-44px_oklch(0.6_0.2_290_/_0.5)]",
         className,
       )}
     >
-      <div className="flex items-center gap-3 border-b border-line bg-surface/40 px-4 py-3">
+      <div className="flex items-center gap-3 border-b border-line bg-surface/50 px-4 py-3">
         <div className="flex gap-1.5">
           <span className="h-3 w-3 rounded-full bg-[oklch(0.6_0.13_25)]" />
           <span className="h-3 w-3 rounded-full bg-[oklch(0.78_0.13_85)]" />

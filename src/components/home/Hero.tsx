@@ -54,30 +54,37 @@ export function Hero({ t, locale }: { t: HomeContent["hero"]; locale: Locale }) 
 
           <motion.div
             variants={item}
-            className="mb-7 inline-flex items-center gap-2 rounded-full bg-surface/40 px-4 py-1.5 text-xs font-medium text-ink-soft backdrop-blur [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.3)]"
+            className="mb-8 inline-flex items-center gap-2 rounded-full bg-surface/40 px-4 py-1.5 text-xs font-medium text-ink-soft backdrop-blur gilt-rim"
           >
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold" />
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold [box-shadow:0_0_8px_oklch(0.83_0.13_88_/_0.8)]" />
             {t.badge}
           </motion.div>
 
           <motion.h1
             variants={item}
-            className="font-[family-name:var(--font-display)] text-balance text-[clamp(2.5rem,7vw,5.75rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold"
+            className="font-[family-name:var(--font-display)] text-balance text-[length:var(--text-display)] font-bold leading-[1.04] tracking-[-0.035em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold"
           >
             {t.title}{" "}
-            <span className="text-gold">{t.titleAccent}</span>
+            <span className="relative inline-block text-gold">
+              {t.titleAccent}
+              {/* gilt underline swoosh echoing the logo */}
+              <span
+                aria-hidden
+                className="absolute -bottom-1 start-0 h-[3px] w-full rounded-full bg-gold-grad opacity-90"
+              />
+            </span>
           </motion.h1>
 
           <motion.p
             variants={item}
-            className="mt-6 max-w-[44ch] text-pretty text-lg text-ink-soft sm:text-xl"
+            className="mt-7 max-w-[46ch] text-pretty text-[length:var(--text-lead)] leading-relaxed text-ink-soft"
           >
             {t.sub}
           </motion.p>
 
           <motion.div
             variants={item}
-            className="mt-10 flex flex-wrap items-center justify-center gap-4"
+            className="mt-11 flex flex-wrap items-center justify-center gap-4"
           >
             <Button href={`/${locale}/pricing`} size="lg" magnetic>
               {t.ctaBuild}

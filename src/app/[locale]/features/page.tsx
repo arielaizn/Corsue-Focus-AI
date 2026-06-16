@@ -38,17 +38,27 @@ export default async function FeaturesPage({
   const { locale: raw } = await params;
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
 
+  // a thin gilt divider between movements (decorative, rare)
+  const divider = (
+    <div aria-hidden className="mx-auto max-w-[1240px] px-5">
+      <span className="gilt-rule block opacity-25" />
+    </div>
+  );
+
   return (
     <main>
       <Hero locale={locale} />
       <C1Academy locale={locale} />
       <C2AISuite locale={locale} />
+      {divider}
       <C3Video locale={locale} />
       <C4Certificates locale={locale} />
       <C5Community locale={locale} />
+      {divider}
       <C6Gamification locale={locale} />
       <C7Analytics locale={locale} />
       <C8Monetization locale={locale} />
+      {divider}
       <C9Operations locale={locale} />
       <C10Platform locale={locale} />
       <CTASection locale={locale} />

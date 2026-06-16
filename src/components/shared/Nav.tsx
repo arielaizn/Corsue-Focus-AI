@@ -79,12 +79,20 @@ export function Nav({ locale }: NavProps) {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-[var(--z-nav)] transition-[background-color,backdrop-filter,border-color,padding] duration-300",
+        "fixed inset-x-0 top-0 z-[var(--z-nav)] transition-[background-color,backdrop-filter,padding] duration-300",
         scrolled
-          ? "border-b border-line bg-bg/80 py-2 backdrop-blur-xl"
-          : "border-b border-transparent py-4",
+          ? "bg-bg-deep/72 py-2 backdrop-blur-xl"
+          : "py-4",
       )}
     >
+      {/* gilt hairline — only once scrolled, the gold edge of the floating bar */}
+      <span
+        aria-hidden
+        className={cn(
+          "gilt-rule pointer-events-none absolute inset-x-0 bottom-0 transition-opacity duration-300",
+          scrolled ? "opacity-60" : "opacity-0",
+        )}
+      />
       <nav className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 px-5">
         <Logo href={hrefFor("")} size={scrolled ? 30 : 34} />
 
@@ -156,7 +164,7 @@ export function Nav({ locale }: NavProps) {
         ref={panelRef}
         hidden={!open}
         className={cn(
-          "lg:hidden overflow-hidden border-t border-line bg-bg/95 backdrop-blur-xl transition-[max-height,opacity] duration-300",
+          "lg:hidden overflow-hidden border-t border-line bg-bg-deep/95 backdrop-blur-xl transition-[max-height,opacity] duration-300",
           open ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0",
         )}
       >

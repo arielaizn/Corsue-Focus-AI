@@ -35,14 +35,14 @@ function Agenda({
   tone?: "aurora" | "gold";
 }) {
   return (
-    <div className="rounded-2xl bg-surface/40 p-5 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+    <div className="panel-premium p-5">
       <div className="mb-4 flex items-center gap-2.5">
         <span
           className={
             "grid h-8 w-8 place-items-center rounded-lg " +
             (tone === "gold"
-              ? "bg-[oklch(0.82_0.135_84_/_0.14)] text-gold"
-              : "bg-[oklch(0.62_0.2_264_/_0.18)] text-ink-soft")
+              ? "bg-[oklch(0.83_0.13_88_/_0.14)] text-gold"
+              : "bg-[oklch(0.6_0.18_262_/_0.18)] text-ink-soft")
           }
         >
           {icon}

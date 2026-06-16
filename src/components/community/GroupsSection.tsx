@@ -14,11 +14,11 @@ const typeMeta = {
   },
   private: {
     Icon: LockIcon,
-    chip: "text-[oklch(0.82_0.12_264)] [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.45)]",
+    chip: "text-violet-bright [box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.45)]",
   },
   vip: {
     Icon: CrownIcon,
-    chip: "text-gold [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.45)] bg-[oklch(0.82_0.135_84_/_0.08)]",
+    chip: "text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.5)] bg-[oklch(0.83_0.13_88_/_0.1)]",
   },
 } as const;
 
@@ -29,14 +29,16 @@ function GroupTile({ card, t, featured }: { card: Card; t: T; featured?: boolean
 
   return (
     <div
-      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl bg-surface/50 p-5 [box-shadow:inset_0_0_0_1px_var(--color-line)] sm:p-6 ${
-        card.type === "vip" ? "[box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.25)]" : ""
-      }`}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-[16px] p-5 sm:p-6 ${
+        card.type === "vip"
+          ? "bg-surface glow-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.4),inset_0_1px_0_oklch(1_0_0_/_0.06),0_36px_110px_-42px_oklch(0.83_0.13_88_/_0.45)]"
+          : "panel-premium"
+      } ${featured && card.type !== "vip" ? "glow-aurora" : ""}`}
     >
       {card.type === "vip" && (
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[oklch(0.82_0.135_84_/_0.1)] blur-3xl"
+          className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[oklch(0.83_0.13_88_/_0.12)] blur-3xl"
         />
       )}
       <div className="relative flex items-center justify-between gap-3">
@@ -47,7 +49,7 @@ function GroupTile({ card, t, featured }: { card: Card; t: T; featured?: boolean
           {card.typeLabel}
         </span>
         <span className="inline-flex items-center gap-1.5 text-xs text-muted">
-          <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.72_0.15_150)]" />
+          <span className="h-1.5 w-1.5 rounded-full bg-status-online" />
           {card.online} {t.onlineLabel}
         </span>
       </div>
@@ -71,7 +73,7 @@ function GroupTile({ card, t, featured }: { card: Card; t: T; featured?: boolean
         <span
           className={`rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-colors ${
             card.type === "vip"
-              ? "bg-gold-grad text-bg-deep"
+              ? "bg-gold-grad text-bg-deep [box-shadow:inset_0_1px_0_oklch(1_0_0_/_0.25)]"
               : "text-ink [box-shadow:inset_0_0_0_1px_var(--color-line)] group-hover:bg-surface-2/70"
           }`}
         >
@@ -85,12 +87,12 @@ function GroupTile({ card, t, featured }: { card: Card; t: T; featured?: boolean
 export function GroupsSection({ t }: { t: T }) {
   const [first, ...rest] = t.cards;
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-20 sm:py-24">
+    <section className="mx-auto max-w-[1240px] px-5 py-20 sm:py-28">
       <Reveal>
         <SectionHeading title={t.title} subtitle={t.subtitle} />
       </Reveal>
 
-      <div className="mt-10 grid gap-4 md:grid-cols-2 md:gap-5">
+      <div className="mt-12 grid gap-4 md:grid-cols-2 md:gap-5">
         <Reveal className="md:row-span-2" y={26}>
           <GroupTile card={first} t={t} featured />
         </Reveal>

@@ -18,10 +18,10 @@ function ClassRow({ c, t }: { c: Cls; t: T }) {
   const pm = platformMark[c.platform];
   return (
     <div
-      className={`flex flex-col gap-4 rounded-xl p-4 sm:flex-row sm:items-center sm:p-5 ${
+      className={`flex flex-col gap-4 rounded-[14px] p-4 sm:flex-row sm:items-center sm:p-5 ${
         live
-          ? "bg-[oklch(0.62_0.2_264_/_0.1)] [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.4)]"
-          : "bg-surface/45 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+          ? "bg-[oklch(0.62_0.215_294_/_0.12)] [box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.42),inset_0_1px_0_oklch(1_0_0_/_0.06),0_24px_70px_-46px_oklch(0.6_0.2_290_/_0.5)]"
+          : "panel-premium"
       }`}
     >
       <div className="min-w-0 flex-1">
@@ -53,7 +53,7 @@ function ClassRow({ c, t }: { c: Cls; t: T }) {
       </div>
       <div className="shrink-0">
         {live ? (
-          <span className="bg-aurora inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-ink">
+          <span className="bg-aurora inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-ink [box-shadow:inset_0_0_0_1px_oklch(0.9_0.1_92_/_0.38),inset_0_1px_0_oklch(1_0_0_/_0.12)]">
             <VideoIcon size={16} />
             {t.joinLabel}
           </span>
@@ -78,7 +78,7 @@ function CalendarMock({ cal }: { cal: T["calendar"] }) {
   const eventByDay = new Map(cal.events.map((e) => [e.day, e]));
 
   return (
-    <div className="rounded-2xl bg-surface/50 p-5 [box-shadow:inset_0_0_0_1px_var(--color-line)] sm:p-6">
+    <div className="panel-premium p-5 sm:p-6">
       <div className="flex items-center justify-between gap-3">
         <h3 className="inline-flex items-center gap-2 text-base font-semibold text-ink">
           <CalendarIcon size={18} className="text-gold" />
@@ -101,7 +101,7 @@ function CalendarMock({ cal }: { cal: T["calendar"] }) {
               key={day}
               className={`relative aspect-square rounded-lg p-1 text-xs ${
                 isToday
-                  ? "bg-[oklch(0.62_0.2_264_/_0.16)] text-ink [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.45)]"
+                  ? "bg-[oklch(0.62_0.215_294_/_0.18)] text-ink [box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.45)]"
                   : ev
                     ? "text-ink-soft"
                     : "text-muted"
@@ -112,8 +112,8 @@ function CalendarMock({ cal }: { cal: T["calendar"] }) {
                 <span
                   className={`absolute inset-x-1 bottom-1 truncate rounded px-1 py-px text-[9px] font-semibold leading-tight ${
                     ev.tone === "gold"
-                      ? "bg-[oklch(0.82_0.135_84_/_0.16)] text-gold"
-                      : "bg-[oklch(0.6_0.25_300_/_0.22)] text-[oklch(0.84_0.13_300)]"
+                      ? "bg-[oklch(0.83_0.13_88_/_0.16)] text-gold"
+                      : "bg-[oklch(0.62_0.215_294_/_0.24)] text-violet-bright"
                   }`}
                 >
                   {ev.label}
@@ -126,7 +126,7 @@ function CalendarMock({ cal }: { cal: T["calendar"] }) {
 
       <div className="mt-4 flex flex-wrap gap-4 border-t border-line/70 pt-3 text-[11px] text-muted">
         <span className="inline-flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-[oklch(0.6_0.25_300)]" />
+          <span className="h-2 w-2 rounded-full bg-violet-bright" />
           {cal.legend.aurora}
         </span>
         <span className="inline-flex items-center gap-1.5">
@@ -140,12 +140,13 @@ function CalendarMock({ cal }: { cal: T["calendar"] }) {
 
 export function LiveSection({ t }: { t: T }) {
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-20 sm:py-24">
+    <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
       <Reveal>
         <SectionHeading title={t.title} subtitle={t.subtitle} />
+        <span aria-hidden className="gilt-rule mt-8 max-w-[8rem] opacity-50" />
       </Reveal>
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-8">
+      <div className="mt-12 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-8">
         <Reveal y={24} className="space-y-3.5">
           {t.classes.map((c) => (
             <ClassRow key={c.title} c={c} t={t} />

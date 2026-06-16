@@ -18,16 +18,17 @@ export function Platform({
   locale: Locale;
 }) {
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-28">
+    <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-36">
+      <span aria-hidden className="gilt-rule block mb-16 opacity-30" />
       <Reveal>
         <SectionHeading title={t.title} subtitle={t.sub} as="h2" />
       </Reveal>
 
-      <div className="mt-12 grid gap-5 lg:grid-cols-3">
+      <div className="mt-14 grid gap-5 lg:grid-cols-3">
         {/* Marketplace — a listing stack */}
         <Reveal y={24}>
-          <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-surface/35 p-6 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
-            <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+          <article className="panel-premium flex h-full flex-col overflow-hidden p-6">
+            <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold leading-[1.1] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
               {t.marketplace.title}
             </h3>
             <p className="mt-2 text-sm text-ink-soft">{t.marketplace.desc}</p>
@@ -56,7 +57,7 @@ export function Platform({
                       {locale === "he" ? "תלמידים" : "students"}
                     </span>
                   </span>
-                  <span className="rounded-full bg-bg px-2.5 py-1 text-[11px] font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.35)]">
+                  <span className="rounded-full bg-bg px-2.5 py-1 text-[11px] font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35)]">
                     {locale === "he" ? "מובל" : "Top"}
                   </span>
                 </li>
@@ -67,8 +68,8 @@ export function Platform({
 
         {/* Mobile — PhoneFrame student-app mock */}
         <Reveal y={24} delay={0.06}>
-          <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-surface/35 p-6 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
-            <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+          <article className="panel-premium flex h-full flex-col overflow-hidden p-6">
+            <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold leading-[1.1] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
               {t.mobile.title}
             </h3>
             <p className="mt-2 text-sm text-ink-soft">{t.mobile.desc}</p>
@@ -157,8 +158,8 @@ export function Platform({
 
         {/* API — the ONE mono block on Home */}
         <Reveal y={24} delay={0.12}>
-          <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-surface/35 p-6 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
-            <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+          <article className="panel-premium flex h-full flex-col overflow-hidden p-6">
+            <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold leading-[1.1] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
               {t.api.title}
             </h3>
             <p className="mt-2 text-sm text-ink-soft">{t.api.desc}</p>

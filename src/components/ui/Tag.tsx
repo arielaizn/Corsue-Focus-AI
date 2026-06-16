@@ -10,10 +10,12 @@ export interface TagProps {
 }
 
 const tones: Record<Tone, string> = {
-  default: "text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]",
-  gold: "text-gold [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.4)]",
+  default:
+    "text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.04)]",
+  // gilt pill — the precious label
+  gold: "text-gold bg-[oklch(0.83_0.13_88_/_0.06)] [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.45)]",
   aurora:
-    "text-ink [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.5)] bg-[oklch(0.62_0.2_264_/_0.1)]",
+    "text-ink bg-[oklch(0.62_0.215_294_/_0.1)] [box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.45)]",
 };
 
 export function Tag({ children, tone = "default", className }: TagProps) {

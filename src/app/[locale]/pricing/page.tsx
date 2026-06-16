@@ -36,16 +36,20 @@ export default async function PricingPage({
   return (
     <main className="overflow-clip">
       {/* ── Hero + live revenue panel (split, not centered template) ── */}
-      <section className="mx-auto max-w-[1240px] px-5 pb-16 pt-28 sm:pt-32">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+      <section className="mx-auto max-w-[1240px] px-5 pb-20 pt-28 sm:pt-36">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <Reveal>
-            <h1 className="font-[family-name:var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] text-ink sm:text-5xl lg:text-[3.75rem] [.font-he_&]:font-[family-name:var(--font-he)]">
+            <span className="text-gilt inline-flex items-center gap-2">
+              <span aria-hidden className="h-px w-6 bg-gold-grad opacity-70" />
+              {locale === "he" ? "תמחור" : "Pricing"}
+            </span>
+            <h1 className="mt-5 font-[family-name:var(--font-display)] text-balance text-[length:var(--text-h1)] font-bold leading-[1.06] tracking-[-0.03em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
               {t.hero.title}
             </h1>
-            <p className="mt-5 max-w-[54ch] text-pretty text-lg text-ink-soft">
+            <p className="mt-6 max-w-[60ch] text-pretty text-[length:var(--text-lead)] leading-relaxed text-ink-soft">
               {t.hero.subtitle}
             </p>
-            <ul className="mt-7 flex flex-wrap gap-2.5">
+            <ul className="mt-8 flex flex-wrap gap-2.5">
               {t.hero.chips.map((c) => (
                 <li key={c}>
                   <Tag tone="gold">{c}</Tag>
@@ -64,12 +68,13 @@ export default async function PricingPage({
       </section>
 
       {/* ── Plans + billing toggle ── */}
-      <section className="mx-auto max-w-[1240px] px-5 py-12">
+      <section className="mx-auto max-w-[1240px] px-5 py-16">
         <PricingPlans locale={locale} t={t} />
       </section>
 
       {/* ── Lifetime (single wide spotlight panel) ── */}
-      <section className="mx-auto max-w-[1240px] px-5 py-16">
+      <section className="mx-auto max-w-[1240px] px-5 py-20">
+        <span aria-hidden className="gilt-rule mb-20 opacity-40" />
         <LifetimePanel
           locale={locale}
           t={t.lifetime}
@@ -78,8 +83,8 @@ export default async function PricingPage({
       </section>
 
       {/* ── Growth: coupons + affiliate (two distinct cards) ── */}
-      <section className="mx-auto max-w-[1240px] px-5 py-16">
-        <Reveal className="mb-10">
+      <section className="mx-auto max-w-[1240px] px-5 py-24">
+        <Reveal className="mb-12">
           <SectionHeading
             title={locale === "he" ? "כלים שמגדילים הכנסה" : "Tools that grow revenue"}
             subtitle={
@@ -93,25 +98,30 @@ export default async function PricingPage({
       </section>
 
       {/* ── Full comparison table ── */}
-      <section className="mx-auto max-w-[1240px] px-5 py-16">
-        <Reveal className="mb-10">
-          <SectionHeading title={t.comparison.title} subtitle={t.comparison.subtitle} />
+      <section className="mx-auto max-w-[1240px] px-5 py-20">
+        <span aria-hidden className="gilt-rule mb-20 opacity-40" />
+        <Reveal className="mb-12">
+          <SectionHeading
+            kicker={locale === "he" ? "השוואה מלאה" : "Full comparison"}
+            title={t.comparison.title}
+            subtitle={t.comparison.subtitle}
+          />
         </Reveal>
         <Reveal y={14}>
           <ComparisonTable locale={locale} t={t.comparison} />
         </Reveal>
       </section>
 
-      {/* ── Payment provider strip ── */}
-      <section className="mx-auto max-w-[1240px] px-5 py-10">
-        <Reveal y={14}>
-          <PaymentStrip locale={locale} t={t.payments} />
-        </Reveal>
+      {/* ── Payment provider strip ── (no reveal: sits in place to break the
+           uniform fade-rise rhythm on the mid-page band) */}
+      <section className="mx-auto max-w-[1240px] px-5 py-12">
+        <PaymentStrip locale={locale} t={t.payments} />
       </section>
 
       {/* ── FAQ (two-column: heading left, accordion right) ── */}
-      <section className="mx-auto max-w-[1240px] px-5 py-16">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <section className="mx-auto max-w-[1240px] px-5 py-28">
+        <span aria-hidden className="gilt-rule mb-20 opacity-40" />
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <Reveal>
             <div className="lg:sticky lg:top-28">
               <SectionHeading

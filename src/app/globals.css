@@ -1,34 +1,47 @@
 @import "tailwindcss";
 
 /* ============================================================
-   CourseFocus AI — design tokens
-   Drenched-dark planetarium: deep navy surfaces, blue→violet
-   the singing color, gold the spotlight rim. OKLCH, literal.
+   CourseFocus AI — design tokens · "Midnight Atelier"
+   Drenched-dark planetarium elevated to luxury: deep-navy void
+   ramp (lightness = elevation), aurora blue→violet→magenta the
+   living signature, gold the rare jewel (~10%). OKLCH, literal.
    ============================================================ */
 
 @theme {
-  /* Surfaces (deep-space navy ramp) */
-  --color-bg: oklch(0.16 0.045 264);
-  --color-bg-deep: oklch(0.12 0.04 264);
-  --color-surface: oklch(0.21 0.05 265);
-  --color-surface-2: oklch(0.26 0.055 266);
-  --color-line: oklch(0.34 0.045 266);
+  /* Surfaces — deep-navy void ramp (lightness = elevation) */
+  --color-bg: oklch(0.15 0.04 268);
+  --color-bg-deep: oklch(0.11 0.035 268);
+  --color-surface: oklch(0.22 0.05 268);
+  --color-surface-2: oklch(0.28 0.058 268);
+  --color-surface-3: oklch(0.34 0.06 267);
+  --color-line: oklch(0.4 0.04 268);
 
-  /* Ink */
-  --color-ink: oklch(0.97 0.012 250);
-  --color-ink-soft: oklch(0.86 0.018 255);
-  --color-muted: oklch(0.74 0.03 260);
+  /* Ink — warm cream (matches logo lettering) */
+  --color-ink: oklch(0.96 0.012 92);
+  --color-ink-soft: oklch(0.88 0.016 250);
+  --color-muted: oklch(0.745 0.03 268);
 
-  /* Brand — blue→violet (the "AI" gradient) */
-  --color-primary: oklch(0.62 0.2 264);
-  --color-primary-bright: oklch(0.7 0.18 262);
-  --color-violet: oklch(0.6 0.25 300);
-  --color-violet-bright: oklch(0.68 0.22 302);
+  /* Aurora — the living signature (blue → violet → magenta) */
+  --color-primary: oklch(0.6 0.18 262);
+  --color-primary-bright: oklch(0.68 0.16 262);
+  --color-blue: oklch(0.6 0.18 262);
+  --color-blue-bright: oklch(0.68 0.16 262);
+  --color-violet: oklch(0.62 0.215 294);
+  --color-violet-bright: oklch(0.66 0.235 300);
+  --color-magenta: oklch(0.62 0.23 330);
 
-  /* Accent — gold (cap trim, star, tassel) */
-  --color-gold: oklch(0.82 0.135 84);
+  /* Gold — the precious accent (~10% max). The jewel. */
+  --color-gold: oklch(0.83 0.13 88);
+  --color-gold-bright: oklch(0.9 0.1 92);
   --color-gold-soft: oklch(0.88 0.09 88);
-  --color-gold-deep: oklch(0.7 0.14 70);
+  --color-gold-deep: oklch(0.72 0.13 78);
+
+  /* Status — tuned into the Midnight Atelier system (not raw web green/red).
+     pos biased toward the aurora's cool teal-green; neg toward the magenta end;
+     status-online a calm branded green pulse. Kept ≥0.72 L for AA on dark. */
+  --color-pos: oklch(0.78 0.13 165);
+  --color-neg: oklch(0.66 0.2 12);
+  --color-status-online: oklch(0.74 0.13 162);
 
   /* Fonts */
   --font-display: "Clash Display", system-ui, sans-serif;
@@ -36,32 +49,65 @@
   --font-he: var(--font-rubik), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* Brand gradients — used on fills/borders/glow, NEVER on text */
+  /* Brand gradients — MULTI-STOP & RICH (fills/borders/glow, NEVER text) */
   --grad-aurora: linear-gradient(
-    135deg,
-    oklch(0.62 0.2 264),
-    oklch(0.6 0.25 300)
+    125deg,
+    oklch(0.6 0.18 262),
+    oklch(0.62 0.215 294) 52%,
+    oklch(0.62 0.23 330)
   );
   --grad-gold: linear-gradient(
-    120deg,
-    oklch(0.7 0.14 70),
-    oklch(0.88 0.09 88)
+    100deg,
+    oklch(0.72 0.13 78),
+    oklch(0.83 0.13 88) 38%,
+    oklch(0.92 0.09 93) 60%,
+    oklch(0.74 0.13 80)
   );
+
+  /* Fluid type scale — dramatic clamp jumps (display ceiling ≤ 6rem) */
+  --text-display: clamp(2.75rem, 1.6rem + 5.75vw, 6rem);
+  --text-h1: clamp(2.25rem, 1.45rem + 4vw, 4rem);
+  --text-h2: clamp(1.75rem, 1.2rem + 2.75vw, 3rem);
+  --text-h3: clamp(1.35rem, 1.05rem + 1.5vw, 2rem);
+  --text-lead: clamp(1.05rem, 0.95rem + 0.5vw, 1.375rem);
 }
 
-/* Non-color CSS vars (z-scale, glows, gradients reused in raw CSS) */
+/* Non-color CSS vars (z-scale, gradients, glows reused in raw CSS) */
 :root {
   --grad-aurora: linear-gradient(
-    135deg,
-    oklch(0.62 0.2 264),
-    oklch(0.6 0.25 300)
+    125deg,
+    oklch(0.6 0.18 262),
+    oklch(0.62 0.215 294) 52%,
+    oklch(0.62 0.23 330)
   );
-  --grad-gold: linear-gradient(120deg, oklch(0.7 0.14 70), oklch(0.88 0.09 88));
+  --grad-gold: linear-gradient(
+    100deg,
+    oklch(0.72 0.13 78),
+    oklch(0.83 0.13 88) 38%,
+    oklch(0.92 0.09 93) 60%,
+    oklch(0.74 0.13 80)
+  );
   --grad-aurora-soft: linear-gradient(
-    135deg,
-    oklch(0.62 0.2 264 / 0.18),
-    oklch(0.6 0.25 300 / 0.18)
+    125deg,
+    oklch(0.6 0.18 262 / 0.16),
+    oklch(0.62 0.215 294 / 0.16) 52%,
+    oklch(0.62 0.23 330 / 0.16)
   );
+  --grad-nebula: radial-gradient(
+      120% 90% at 70% 18%,
+      oklch(0.3 0.12 300 / 0.55),
+      transparent 60%
+    ),
+    radial-gradient(
+      90% 80% at 18% 8%,
+      oklch(0.28 0.12 262 / 0.45),
+      transparent 55%
+    ),
+    radial-gradient(
+      80% 70% at 88% 38%,
+      oklch(0.3 0.13 330 / 0.3),
+      transparent 58%
+    );
 
   /* Semantic z-index scale — no 9999 */
   --z-base: 0;
@@ -94,7 +140,8 @@ body {
   font-family: var(--font-en);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
+  /* +0.06 line-height for light-on-dark legibility */
+  line-height: 1.66;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
@@ -108,8 +155,9 @@ h2,
 h3,
 h4 {
   text-wrap: balance;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
+  line-height: 1.08;
+  /* display tracking floor −0.04em; tight grotesque default */
+  letter-spacing: -0.03em;
 }
 
 p {
@@ -117,15 +165,15 @@ p {
 }
 
 ::selection {
-  background-color: oklch(0.82 0.135 84 / 0.85);
-  color: oklch(0.16 0.045 264);
+  background-color: oklch(0.83 0.13 88 / 0.85);
+  color: oklch(0.15 0.04 268);
 }
 
-/* Focus ring — gold, smooth */
+/* Focus ring — refined gold, smooth */
 :focus-visible {
   outline: 2px solid var(--color-gold);
-  outline-offset: 2px;
-  border-radius: 4px;
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
 /* Thin custom scrollbar */
@@ -150,7 +198,7 @@ html {
 }
 
 /* ============================================================
-   Reusable utility classes (escape hatch where v4 mapping fights)
+   Premium utility classes — the luxury material layer
    ============================================================ */
 
 @layer utilities {
@@ -160,6 +208,7 @@ html {
   .text-pretty {
     text-wrap: pretty;
   }
+
   /* aurora / gold fills for panels, rings, bars (NEVER text) */
   .bg-aurora {
     background-image: var(--grad-aurora);
@@ -167,15 +216,67 @@ html {
   .bg-gold-grad {
     background-image: var(--grad-gold);
   }
-  /* soft outer glow tokens */
+
+  /* gilt-rule — 1px solid gold gradient divider (the gilt edge) */
+  .gilt-rule {
+    height: 1px;
+    width: 100%;
+    border: 0;
+    background-image: linear-gradient(
+      to right,
+      transparent,
+      oklch(0.83 0.13 88 / 0.55) 18%,
+      oklch(0.92 0.09 93 / 0.8) 50%,
+      oklch(0.83 0.13 88 / 0.55) 82%,
+      transparent
+    );
+  }
+
+  /* text-gilt — SOLID gold small-caps label (NOT gradient text) */
+  .text-gilt {
+    color: var(--color-gold);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .font-he .text-gilt {
+    letter-spacing: 0.08em;
+  }
+
+  /* glow-aurora — large soft colored depth shadow (single material) */
   .glow-aurora {
-    box-shadow: 0 0 0 1px oklch(0.62 0.2 264 / 0.4),
-      0 8px 40px -8px oklch(0.6 0.25 300 / 0.45);
+    box-shadow: 0 40px 120px -40px oklch(0.6 0.2 290 / 0.5);
   }
+  /* glow-gold — rare precious depth glow */
   .glow-gold {
-    box-shadow: 0 0 0 1px oklch(0.82 0.135 84 / 0.45),
-      0 8px 36px -10px oklch(0.82 0.135 84 / 0.4);
+    box-shadow: 0 36px 110px -42px oklch(0.83 0.13 88 / 0.45);
   }
+
+  /* lit-edge — top inner hairline highlight on raised panels */
+  .lit-edge {
+    box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.06);
+  }
+
+  /* panel-premium — the DEFAULT premium card:
+     surface + indigo hairline + soft depth + lit edge (no ghost-card) */
+  .panel-premium {
+    background-color: var(--color-surface);
+    border-radius: 16px;
+    box-shadow:
+      inset 0 0 0 1px oklch(0.4 0.04 268 / 0.7),
+      inset 0 1px 0 oklch(1 0 0 / 0.05),
+      0 28px 80px -48px oklch(0.08 0.03 268 / 0.9);
+  }
+
+  /* gilt-rim — a thin gold rim-light (1px) for precious panels */
+  .gilt-rim {
+    box-shadow:
+      inset 0 0 0 1px oklch(0.83 0.13 88 / 0.4),
+      inset 0 1px 0 oklch(1 0 0 / 0.06);
+  }
+
   .ring-line {
     box-shadow: inset 0 0 0 1px var(--color-line);
   }
@@ -219,6 +320,16 @@ html {
   }
 }
 
+/* gilt shimmer sweep — restrained gold gleam across primary CTAs */
+@keyframes gilt-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
 @keyframes orbit-spin {
   from {
     transform: rotate(0deg);
@@ -238,7 +349,7 @@ html {
 }
 
 .animate-aurora {
-  animation: aurora-drift 14s ease-in-out infinite;
+  animation: aurora-drift 16s ease-in-out infinite;
 }
 .animate-float {
   animation: float 6s ease-in-out infinite;

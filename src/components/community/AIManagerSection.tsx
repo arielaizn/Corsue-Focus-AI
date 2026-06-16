@@ -7,21 +7,21 @@ type T = (typeof content)[Locale]["aiManager"];
 
 export function AIManagerSection({ t }: { t: T }) {
   return (
-    <section className="relative mx-auto max-w-[1240px] px-5 py-20 sm:py-24">
+    <section className="relative mx-auto max-w-[1240px] px-5 py-24 sm:py-36">
       <Reveal>
         <SectionHeading kicker={t.botName} title={t.title} subtitle={t.subtitle} />
       </Reveal>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_0.92fr] lg:items-stretch lg:gap-8">
+      <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_0.92fr] lg:items-stretch lg:gap-8">
         {/* duties — staggered list, not a card grid */}
         <Reveal y={26}>
           <ol className="flex h-full flex-col gap-3">
             {t.duties.map((d, i) => (
               <li
                 key={d.title}
-                className="flex gap-4 rounded-xl bg-surface/45 p-5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+                className="panel-premium flex gap-4 p-5"
               >
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[oklch(0.6_0.25_300_/_0.18)] text-sm font-semibold tabular-nums text-[oklch(0.82_0.15_300)]">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[oklch(0.62_0.215_294_/_0.2)] text-sm font-bold tabular-nums text-violet-bright [box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.3)]">
                   {i + 1}
                 </span>
                 <div>
@@ -43,7 +43,7 @@ export function AIManagerSection({ t }: { t: T }) {
               <div>
                 <p className="text-sm font-semibold text-ink">{t.botName}</p>
                 <p className="flex items-center gap-1.5 text-xs text-muted">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.72_0.15_150)]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-status-online" />
                   24/7
                 </p>
               </div>

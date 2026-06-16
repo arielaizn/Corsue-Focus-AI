@@ -23,14 +23,14 @@ export function OrbitSection({
   }));
 
   return (
-    <section className="relative overflow-hidden py-24 sm:py-28">
-      {/* radial spotlight behind the orbit */}
+    <section className="relative overflow-hidden py-28 sm:py-40">
+      {/* radial spotlight behind the orbit — aurora into magenta */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(48% 55% at 50% 52%, oklch(0.6 0.25 300 / 0.16), transparent 70%)",
+            "radial-gradient(46% 52% at 50% 50%, oklch(0.62 0.215 294 / 0.18), transparent 68%), radial-gradient(34% 40% at 62% 42%, oklch(0.62 0.23 330 / 0.12), transparent 70%)",
         }}
       />
       <div className="mx-auto max-w-[1240px] px-5">

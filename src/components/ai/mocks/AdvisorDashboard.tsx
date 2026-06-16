@@ -24,7 +24,7 @@ export function AdvisorDashboard({ data }: { data: AIContent["advisor"] }) {
               className="rounded-xl bg-bg-deep/50 px-3.5 py-3 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
             >
               <p className="text-[11px] text-muted">{m.label}</p>
-              <p className="mt-1 font-[family-name:var(--font-display)] text-xl font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+              <p className="mt-1 font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold tracking-[-0.02em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
                 {m.value}
               </p>
               <p
@@ -50,16 +50,16 @@ export function AdvisorDashboard({ data }: { data: AIContent["advisor"] }) {
         </div>
 
         {/* AI insight */}
-        <div className="mt-4 rounded-xl bg-[oklch(0.62_0.2_264_/_0.1)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.3)]">
-          <p className="mb-1.5 flex items-center gap-1.5 text-xs font-medium text-gold">
-            <IconSpark width={12} height={12} />
+        <div className="mt-4 rounded-xl bg-[oklch(0.6_0.18_262_/_0.1)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.6_0.18_262_/_0.32),inset_0_1px_0_oklch(1_0_0_/_0.05)]">
+          <p className="text-gilt mb-2 flex items-center gap-1.5">
+            <IconSpark width={12} height={12} className="text-gold" />
             {data.tag}
           </p>
           <p className="text-sm text-ink-soft">{data.insight}</p>
         </div>
 
         {/* growth coach */}
-        <div className="mt-2.5 rounded-xl bg-[oklch(0.82_0.135_84_/_0.1)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.3)]">
+        <div className="mt-2.5 rounded-xl bg-[oklch(0.83_0.13_88_/_0.1)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.3)]">
           <p className="mb-1.5 text-xs font-medium text-gold">{data.coachLabel}</p>
           <p className="text-sm text-ink-soft">{data.coachLine}</p>
         </div>
@@ -83,15 +83,15 @@ function Sparkline() {
     <svg viewBox={`0 0 ${w} ${h}`} className="h-16 w-full" preserveAspectRatio="none" aria-hidden>
       <defs>
         <linearGradient id="advArea" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="oklch(0.6 0.25 300 / 0.35)" />
-          <stop offset="100%" stopColor="oklch(0.6 0.25 300 / 0)" />
+          <stop offset="0%" stopColor="oklch(0.62 0.215 294 / 0.35)" />
+          <stop offset="100%" stopColor="oklch(0.62 0.215 294 / 0)" />
         </linearGradient>
       </defs>
       <path d={area} fill="url(#advArea)" />
       <path
         d={d}
         fill="none"
-        stroke="oklch(0.7 0.18 262)"
+        stroke="oklch(0.7 0.16 262)"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"

@@ -41,7 +41,7 @@ export function RevenueMock({ locale, t, currency }: Props) {
   )}`;
 
   return (
-    <div className="rounded-2xl bg-surface/50 p-5 ring-line">
+    <div className="panel-premium glow-aurora p-6">
       <div className="flex items-center justify-between gap-3">
         <div>
           <h3 className="text-sm font-semibold text-ink">{t.title}</h3>
@@ -67,12 +67,13 @@ export function RevenueMock({ locale, t, currency }: Props) {
         >
           <defs>
             <linearGradient id={`area-${gid}`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="oklch(0.6 0.25 300 / 0.35)" />
-              <stop offset="100%" stopColor="oklch(0.6 0.25 300 / 0)" />
+              <stop offset="0%" stopColor="oklch(0.62 0.215 294 / 0.32)" />
+              <stop offset="100%" stopColor="oklch(0.62 0.215 294 / 0)" />
             </linearGradient>
             <linearGradient id={`line-${gid}`} x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="oklch(0.62 0.2 264)" />
-              <stop offset="100%" stopColor="oklch(0.6 0.25 300)" />
+              <stop offset="0%" stopColor="oklch(0.6 0.18 262)" />
+              <stop offset="52%" stopColor="oklch(0.62 0.215 294)" />
+              <stop offset="100%" stopColor="oklch(0.62 0.23 330)" />
             </linearGradient>
           </defs>
           {[0.25, 0.5, 0.75].map((g) => (
@@ -103,8 +104,8 @@ export function RevenueMock({ locale, t, currency }: Props) {
               r={i === points.length - 1 ? 4 : 2.5}
               fill={
                 i === points.length - 1
-                  ? "oklch(0.82 0.135 84)"
-                  : "oklch(0.6 0.25 300)"
+                  ? "oklch(0.83 0.13 88)"
+                  : "oklch(0.62 0.215 294)"
               }
             />
           ))}
@@ -117,7 +118,8 @@ export function RevenueMock({ locale, t, currency }: Props) {
       </div>
 
       {/* metrics */}
-      <div className="mt-4 grid grid-cols-3 gap-2 border-t border-line pt-4">
+      <span aria-hidden className="gilt-rule mt-5 opacity-30" />
+      <div className="mt-5 grid grid-cols-3 gap-2">
         <div>
           <p className="text-[11px] text-muted">{t.mrrLabel}</p>
           <p className="mt-1 font-[family-name:var(--font-display)] text-lg font-semibold text-gold [.font-he_&]:font-[family-name:var(--font-he)]">

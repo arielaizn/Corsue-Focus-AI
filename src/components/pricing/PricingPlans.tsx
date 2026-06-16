@@ -25,16 +25,18 @@ function PriceDisplay({
   cycle,
   currency,
   locale,
+  emphasis,
 }: {
   tier: TierCopy;
   cycle: BillingCycle;
   currency: string;
   locale: Locale;
+  emphasis?: boolean;
 }) {
   const reduced = useReducedMotion();
   if (tier.priceMonthly === null) {
     return (
-      <span className="font-[family-name:var(--font-display)] text-4xl font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+      <span className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold tracking-[-0.03em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
         {tier.customLabel}
       </span>
     );
@@ -50,7 +52,10 @@ function PriceDisplay({
           animate={{ opacity: 1, y: 0 }}
           exit={reduced ? { opacity: 0 } : { opacity: 0, y: -8 }}
           transition={{ duration: 0.28, ease: easeOutExpo }}
-          className="font-[family-name:var(--font-display)] text-5xl font-semibold leading-none text-ink [.font-he_&]:font-[family-name:var(--font-he)]"
+          className={cn(
+            "font-[family-name:var(--font-display)] text-[length:var(--text-h2)] font-bold leading-none tracking-[-0.03em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold",
+            emphasis && "text-[calc(var(--text-h2)*1.12)]",
+          )}
         >
           {formatPrice(value, currency, locale)}
         </motion.span>
@@ -88,7 +93,7 @@ export function PricingPlans({ locale, t }: Props) {
           role="radiogroup"
           aria-label={locale === "he" ? "מחזור חיוב" : "Billing cycle"}
           onKeyDown={onRadioKeyDown}
-          className="relative inline-flex items-center rounded-full bg-surface/70 p-1 ring-line"
+          className="relative inline-flex items-center rounded-full bg-surface p-1 [box-shadow:inset_0_0_0_1px_oklch(0.4_0.04_268_/_0.7),inset_0_1px_0_oklch(1_0_0_/_0.05)]"
         >
           {(["monthly", "annual"] as const).map((c, ci) => {
             const selected = cycle === c;
@@ -146,17 +151,23 @@ export function PricingPlans({ locale, t }: Props) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "0px 0px -8% 0px" }}
               transition={{
-                duration: 0.6,
+                duration: 0.8,
                 ease: easeOutExpo,
-                delay: reduced ? 0 : i * 0.07,
+                delay: reduced ? 0 : i * 0.08,
               }}
               className={cn(
-                "relative flex flex-col rounded-2xl p-6",
+                "relative flex flex-col rounded-[16px] p-7",
                 isPro
-                  ? "bg-surface/80 [box-shadow:inset_0_0_0_1.5px_oklch(0.82_0.135_84_/_0.55),0_24px_70px_-30px_oklch(0.82_0.135_84_/_0.5)] xl:-translate-y-3"
-                  : "bg-surface/40 ring-line",
+                  ? "bg-surface gilt-rim glow-gold xl:-translate-y-4"
+                  : "panel-premium",
               )}
             >
+              {isPro && (
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-6 -bottom-2 h-24 rounded-full bg-[oklch(0.62_0.215_294_/_0.18)] blur-3xl"
+                />
+              )}
               {tier.ribbon && (
                 <span className="absolute -top-3 start-6 inline-flex items-center rounded-full bg-gold-grad px-3 py-1 text-xs font-semibold text-bg-deep shadow-[0_6px_20px_-6px_oklch(0.82_0.135_84_/_0.6)]">
                   {tier.ribbon}
@@ -164,7 +175,7 @@ export function PricingPlans({ locale, t }: Props) {
               )}
 
               <div className="flex items-baseline justify-between gap-2">
-                <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+                <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold tracking-[-0.02em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
                   {tier.name}
                 </h3>
               </div>
@@ -178,6 +189,7 @@ export function PricingPlans({ locale, t }: Props) {
                   cycle={cycle}
                   currency={t.toggle.currency}
                   locale={locale}
+                  emphasis={isPro}
                 />
                 <p className="mt-1.5 text-xs text-muted">
                   {cycle === "annual" || tier.priceMonthly === null
@@ -190,9 +202,9 @@ export function PricingPlans({ locale, t }: Props) {
                 </p>
               </div>
 
-              <p className="mt-4 border-t border-line pt-4 text-xs font-medium uppercase tracking-wide text-gold/90">
-                {tier.meta}
-              </p>
+              <div className="mt-5 pt-5 [border-top:1px_solid_oklch(0.4_0.04_268_/_0.6)]">
+                <p className="text-gilt">{tier.meta}</p>
+              </div>
 
               <ul className="mt-4 flex flex-1 flex-col gap-2.5">
                 {tier.features.map((f) => (

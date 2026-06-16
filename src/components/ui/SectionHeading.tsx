@@ -28,15 +28,23 @@ export function SectionHeading({
       )}
     >
       {kicker && (
-        <span className="text-sm font-semibold text-gold">{kicker}</span>
+        <span
+          className={cn(
+            "text-gilt inline-flex items-center gap-2",
+            align === "center" && "justify-center",
+          )}
+        >
+          <span aria-hidden className="h-px w-6 bg-gold-grad opacity-70" />
+          {kicker}
+        </span>
       )}
-      <Tag className="font-[family-name:var(--font-display)] text-balance text-3xl font-semibold text-ink sm:text-4xl lg:text-5xl [.font-he_&]:font-[family-name:var(--font-he)]">
+      <Tag className="font-[family-name:var(--font-display)] text-balance text-[length:var(--text-h2)] font-bold leading-[1.06] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
         {title}
       </Tag>
       {subtitle && (
         <p
           className={cn(
-            "max-w-[60ch] text-pretty text-base text-ink-soft sm:text-lg",
+            "max-w-[62ch] text-pretty text-[length:var(--text-lead)] leading-relaxed text-ink-soft",
             align === "center" && "mx-auto",
           )}
         >

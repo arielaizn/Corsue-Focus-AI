@@ -34,7 +34,7 @@ export function LocaleToggle({ current, className }: LocaleToggleProps) {
             className={cn(
               "rounded-full px-2.5 py-1 text-xs font-semibold uppercase transition-colors",
               active
-                ? "bg-surface-2 text-ink"
+                ? "bg-surface-2 text-ink [box-shadow:inset_0_1px_0_oklch(1_0_0_/_0.06)]"
                 : "text-muted hover:text-ink-soft",
             )}
           >

@@ -20,12 +20,13 @@ function RevenueChart() {
     <svg viewBox={`0 0 ${w} ${h}`} className="w-full" preserveAspectRatio="none" aria-hidden role="img">
       <defs>
         <linearGradient id="cf-rev" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="oklch(0.6 0.25 300 / 0.45)" />
-          <stop offset="100%" stopColor="oklch(0.62 0.2 264 / 0)" />
+          <stop offset="0%" stopColor="oklch(0.62 0.215 294 / 0.5)" />
+          <stop offset="100%" stopColor="oklch(0.6 0.18 262 / 0)" />
         </linearGradient>
         <linearGradient id="cf-rev-line" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="oklch(0.62 0.2 264)" />
-          <stop offset="100%" stopColor="oklch(0.6 0.25 300)" />
+          <stop offset="0%" stopColor="oklch(0.6 0.18 262)" />
+          <stop offset="52%" stopColor="oklch(0.62 0.215 294)" />
+          <stop offset="100%" stopColor="oklch(0.62 0.23 330)" />
         </linearGradient>
       </defs>
       <path d={area} fill="url(#cf-rev)" />
@@ -39,15 +40,15 @@ export function C7Analytics({ locale }: { locale: Locale }) {
   const t = content[locale].c7;
 
   return (
-    <Section className="py-20 sm:py-28">
+    <Section className="py-24 sm:py-32">
       <Reveal className="max-w-2xl">
         <SectionHeading title={t.title} subtitle={t.subtitle} />
       </Reveal>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
+      <div className="mt-14 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
         {/* Owner dashboard */}
         <Reveal y={26}>
-          <div className="rounded-2xl bg-surface/40 p-6 ring-line sm:p-7">
+          <div className="panel-premium p-6 sm:p-8">
             <div className="flex items-center gap-2 text-sm font-semibold text-ink">
               <span className="text-gold">
                 <IconChart size={16} />
@@ -57,14 +58,14 @@ export function C7Analytics({ locale }: { locale: Locale }) {
 
             <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {t.ownerMetrics.map((m) => (
-                <div key={m.label} className="rounded-xl bg-bg/60 p-3.5 ring-line">
+                <div key={m.label} className="rounded-xl bg-bg-deep/70 p-3.5 [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.04)]">
                   <div className="text-xs text-muted">{m.label}</div>
                   <div className="mt-1 font-[family-name:var(--font-display)] text-lg font-semibold text-ink">
                     {m.value}
                   </div>
                   <div
                     className={`mt-0.5 inline-flex items-center gap-1 text-[11px] font-medium ${
-                      m.up ? "text-[oklch(0.78_0.15_150)]" : "text-[oklch(0.7_0.16_25)]"
+                      m.up ? "text-pos" : "text-neg"
                     }`}
                   >
                     <span aria-hidden>{m.up ? "▲" : "▼"}</span>
@@ -75,13 +76,13 @@ export function C7Analytics({ locale }: { locale: Locale }) {
             </div>
 
             {/* revenue chart */}
-            <div className="mt-5 rounded-xl bg-bg/60 p-4 ring-line">
+            <div className="mt-5 rounded-xl bg-bg-deep/70 p-4 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
               <div className="mb-3 text-xs font-semibold text-muted">{t.revenueLabel}</div>
               <RevenueChart />
             </div>
 
             {/* AI advisor */}
-            <div className="mt-5 rounded-xl bg-[oklch(0.62_0.2_264_/_0.1)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.35)]">
+            <div className="mt-5 rounded-xl bg-[oklch(0.6_0.18_262_/_0.1)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35)]">
               <div className="flex items-center gap-2 text-xs font-semibold text-gold">
                 <span className="grid h-5 w-5 place-items-center rounded-md bg-aurora text-ink">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -97,12 +98,12 @@ export function C7Analytics({ locale }: { locale: Locale }) {
 
         {/* Student dashboard */}
         <Reveal y={26} delay={0.08}>
-          <div className="flex h-full flex-col rounded-2xl bg-surface/40 p-6 ring-line sm:p-7">
+          <div className="panel-premium flex h-full flex-col p-6 sm:p-8">
             <div className="text-sm font-semibold text-ink">{t.studentLabel}</div>
 
             <div className="mt-5 grid grid-cols-2 gap-3">
               {t.studentMetrics.map((m) => (
-                <div key={m.label} className="rounded-xl bg-bg/60 p-3.5 ring-line">
+                <div key={m.label} className="rounded-xl bg-bg-deep/70 p-3.5 [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.04)]">
                   <div className="text-xs text-muted">{m.label}</div>
                   <div className="mt-1 font-[family-name:var(--font-display)] text-xl font-semibold text-gold">
                     {m.value}

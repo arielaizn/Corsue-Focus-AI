@@ -27,7 +27,7 @@ export function CourseOutlineMock({
         </div>
 
         {/* generated outline */}
-        <div className="mt-5 flex items-center gap-2 text-xs font-medium text-gold">
+        <div className="text-gilt mt-6 flex items-center gap-2">
           <IconSpark width={13} height={13} />
           <span>{data.tag}</span>
         </div>
@@ -39,7 +39,7 @@ export function CourseOutlineMock({
               className="rounded-xl bg-bg-deep/50 p-3.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
             >
               <div className="flex items-center gap-2.5">
-                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-[oklch(0.62_0.2_264_/_0.18)] text-xs font-semibold text-ink-soft">
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-[oklch(0.6_0.18_262_/_0.18)] text-xs font-semibold text-ink-soft">
                   {i + 1}
                 </span>
                 <p className="min-w-0 flex-1 truncate text-sm font-medium text-ink">
@@ -64,7 +64,7 @@ export function CourseOutlineMock({
           ))}
         </ol>
 
-        <div className="mt-4 flex items-center gap-2 rounded-xl bg-[oklch(0.82_0.135_84_/_0.1)] px-3.5 py-2.5 text-sm text-gold [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.3)]">
+        <div className="mt-4 flex items-center gap-2 rounded-xl bg-[oklch(0.83_0.13_88_/_0.1)] px-3.5 py-2.5 text-sm text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.3)]">
           <IconCheck width={15} height={15} />
           <span className="font-medium">{data.quizLabel}</span>
         </div>

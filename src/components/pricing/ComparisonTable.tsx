@@ -39,7 +39,7 @@ function Cell({
       <span className="inline-grid place-items-center">
         <span className="sr-only">{yes}</span>
         <CheckIcon
-          className={cn("size-4", highlight ? "text-gold" : "text-primary-bright")}
+          className={cn("size-4", highlight ? "text-gold-bright" : "text-primary-bright")}
         />
       </span>
     );
@@ -55,7 +55,14 @@ function Cell({
 export function ComparisonTable({ locale, t }: Props) {
   const proIndex = 1; // Pro column highlighted
   return (
-    <div className="overflow-x-auto rounded-2xl bg-surface/30 ring-line">
+    <div
+      className="panel-premium overflow-x-auto overflow-y-clip [mask-image:linear-gradient(to_right,#000_calc(100%-2.5rem),transparent)] sm:[mask-image:none]"
+      tabIndex={0}
+      role="region"
+      aria-label={
+        locale === "he" ? "השוואת תוכניות — ניתן לגלול לצדדים" : "Plan comparison — scroll for more"
+      }
+    >
       <table className="w-full min-w-[640px] border-collapse text-start">
         <caption className="sr-only">
           {locale === "he"
@@ -66,7 +73,7 @@ export function ComparisonTable({ locale, t }: Props) {
           <tr>
             <th
               scope="col"
-              className="bg-surface/80 px-5 py-4 text-start text-sm font-semibold text-ink-soft"
+              className="bg-surface-2 px-6 py-5 text-start text-sm font-semibold text-ink"
             >
               {locale === "he" ? "יכולת" : "Capability"}
             </th>
@@ -75,10 +82,10 @@ export function ComparisonTable({ locale, t }: Props) {
                 key={c}
                 scope="col"
                 className={cn(
-                  "px-4 py-4 text-center font-[family-name:var(--font-display)] text-sm font-semibold [.font-he_&]:font-[family-name:var(--font-he)]",
+                  "px-5 py-5 text-center font-[family-name:var(--font-display)] text-base font-bold tracking-[-0.02em] [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold",
                   i === proIndex
-                    ? "text-gold [box-shadow:inset_0_1px_0_0_oklch(0.82_0.135_84_/_0.4)]"
-                    : "text-ink",
+                    ? "text-gold bg-[oklch(0.83_0.13_88_/_0.07)] [box-shadow:inset_0_1px_0_0_oklch(0.83_0.13_88_/_0.5)]"
+                    : "bg-surface-2 text-ink",
                 )}
               >
                 {c}
@@ -93,7 +100,7 @@ export function ComparisonTable({ locale, t }: Props) {
                 <th
                   scope="colgroup"
                   colSpan={t.columns.length + 1}
-                  className="bg-bg-deep/40 px-5 pb-2 pt-5 text-start text-xs font-semibold uppercase tracking-wider text-gold/80"
+                  className="text-gilt bg-bg-deep/50 px-6 pb-3 pt-6 text-start"
                 >
                   {g.group}
                 </th>
@@ -101,11 +108,11 @@ export function ComparisonTable({ locale, t }: Props) {
               {g.rows.map((row) => (
                 <tr
                   key={row.label}
-                  className="border-t border-line/60 transition-colors hover:bg-surface/40"
+                  className="[border-top:1px_solid_oklch(0.4_0.04_268_/_0.45)] transition-colors hover:bg-surface/50"
                 >
                   <th
                     scope="row"
-                    className="px-5 py-3 text-start text-sm font-normal text-ink-soft"
+                    className="px-6 py-4 text-start text-sm font-normal text-ink-soft"
                   >
                     {row.label}
                   </th>
@@ -113,8 +120,8 @@ export function ComparisonTable({ locale, t }: Props) {
                     <td
                       key={i}
                       className={cn(
-                        "px-4 py-3 text-center",
-                        i === proIndex && "bg-[oklch(0.82_0.135_84_/_0.05)]",
+                        "px-5 py-4 text-center",
+                        i === proIndex && "bg-[oklch(0.83_0.13_88_/_0.06)]",
                       )}
                     >
                       <Cell

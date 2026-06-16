@@ -32,13 +32,13 @@ export function ChatPanel({
   return (
     <div
       className={cn(
-        "flex flex-col overflow-hidden rounded-2xl bg-surface/40 [box-shadow:inset_0_0_0_1px_var(--color-line),0_24px_70px_-34px_oklch(0.6_0.25_300_/_0.5)]",
+        "panel-premium flex flex-col overflow-hidden",
         className,
       )}
     >
       {/* header */}
-      <div className="flex items-center gap-3 border-b border-line bg-bg-deep/60 px-4 py-3">
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-aurora text-ink [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.5)]">
+      <div className="flex items-center gap-3 border-b border-line/70 bg-bg-deep/50 px-4 py-3.5">
+        <span className="grid h-8 w-8 place-items-center rounded-lg bg-aurora text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.5),inset_0_1px_0_oklch(1_0_0_/_0.2)]">
           <IconSpark width={16} height={16} />
         </span>
         <div className="min-w-0 flex-1">
@@ -63,12 +63,12 @@ export function ChatPanel({
             <div key={i} className="flex justify-start">
               <div className="max-w-[88%]">
                 {turn.note && (
-                  <span className="mb-1.5 inline-flex items-center gap-1.5 rounded-full bg-bg-deep/70 px-2 py-0.5 text-[11px] font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.3)]">
+                  <span className="mb-1.5 inline-flex items-center gap-1.5 rounded-full bg-bg-deep/70 px-2 py-0.5 text-[11px] font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.34)]">
                     <IconSpark width={11} height={11} />
                     {turn.note}
                   </span>
                 )}
-                <p className="rounded-2xl rounded-ss-md bg-[oklch(0.62_0.2_264_/_0.14)] px-3.5 py-2.5 text-sm text-ink-soft [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.35)]">
+                <p className="rounded-2xl rounded-ss-md bg-[oklch(0.6_0.18_262_/_0.14)] px-3.5 py-2.5 text-sm text-ink [box-shadow:inset_0_0_0_1px_oklch(0.6_0.18_262_/_0.34)]">
                   {turn.text}
                 </p>
               </div>

@@ -7,7 +7,7 @@ import { IconCommunity, IconSpark } from "../icons";
  */
 export function CommunityActivity({ data }: { data: AIContent["community"] }) {
   return (
-    <div className="overflow-hidden rounded-2xl bg-surface/40 [box-shadow:inset_0_0_0_1px_var(--color-line),0_24px_70px_-36px_oklch(0.6_0.25_300_/_0.5)]">
+    <div className="panel-premium overflow-hidden">
       <div className="flex items-center gap-3 border-b border-line bg-bg-deep/60 px-5 py-3.5">
         <span className="grid h-8 w-8 place-items-center rounded-lg bg-aurora text-ink">
           <IconCommunity width={16} height={16} />
@@ -28,7 +28,7 @@ export function CommunityActivity({ data }: { data: AIContent["community"] }) {
             key={i}
             className="flex items-start gap-3 border-b border-line/60 px-5 py-3.5 last:border-b-0"
           >
-            <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-[oklch(0.82_0.135_84_/_0.12)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.25)]">
+            <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-[oklch(0.83_0.13_88_/_0.12)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.25)]">
               <IconSpark width={13} height={13} />
             </span>
             <div className="min-w-0">

@@ -8,9 +8,9 @@ import { IconCheck, IconReview, IconSpark } from "../icons";
  */
 export function ReviewerCard({ data }: { data: AIContent["reviewer"] }) {
   return (
-    <div className="overflow-hidden rounded-2xl bg-surface/40 [box-shadow:inset_0_0_0_1px_var(--color-line),0_24px_70px_-36px_oklch(0.6_0.25_300_/_0.5)]">
+    <div className="panel-premium overflow-hidden">
       <div className="flex items-center gap-3 border-b border-line bg-bg-deep/60 px-5 py-3.5">
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-[oklch(0.62_0.2_264_/_0.18)] text-ink-soft">
+        <span className="grid h-8 w-8 place-items-center rounded-lg bg-[oklch(0.6_0.18_262_/_0.18)] text-ink-soft">
           <IconReview width={16} height={16} />
         </span>
         <p className="min-w-0 flex-1 truncate text-sm font-medium text-ink">
@@ -24,7 +24,7 @@ export function ReviewerCard({ data }: { data: AIContent["reviewer"] }) {
           <div>
             <p className="text-xs text-muted">{data.tag}</p>
             <p className="mt-1">
-              <span className="font-[family-name:var(--font-display)] text-5xl font-semibold text-gold [.font-he_&]:font-[family-name:var(--font-he)]">
+              <span className="font-[family-name:var(--font-display)] text-[length:var(--text-h2)] font-bold leading-none tracking-[-0.02em] text-gold [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
                 {data.grade}
               </span>
               <span className="text-lg text-muted"> / 100</span>
@@ -69,8 +69,8 @@ export function ReviewerCard({ data }: { data: AIContent["reviewer"] }) {
         </ul>
 
         {/* feedback */}
-        <div className="mt-5 rounded-xl bg-[oklch(0.62_0.2_264_/_0.1)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.3)]">
-          <p className="mb-1.5 flex items-center gap-1.5 text-xs font-medium text-gold">
+        <div className="mt-5 rounded-xl bg-[oklch(0.6_0.18_262_/_0.1)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.6_0.18_262_/_0.3)]">
+          <p className="text-gilt mb-2 flex items-center gap-1.5">
             <IconSpark width={12} height={12} />
             {data.tag}
           </p>

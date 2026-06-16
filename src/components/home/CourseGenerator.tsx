@@ -39,7 +39,8 @@ export function CourseGenerator({
   const done = step >= t.steps.length;
 
   return (
-    <section ref={ref} className="mx-auto max-w-[1240px] px-5 py-24 sm:py-28">
+    <section ref={ref} className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
+      <span aria-hidden className="gilt-rule block mb-16 opacity-30" />
       <Reveal>
         <SectionHeading
           title={t.title}
@@ -62,7 +63,7 @@ export function CourseGenerator({
                 <div className="mt-2 rounded-lg bg-surface/50 p-3.5 text-sm text-ink [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.35)]">
                   {t.prompt}
                 </div>
-                <div className="mt-3 inline-flex items-center gap-2 rounded-lg bg-aurora px-3.5 py-2 text-sm font-semibold text-ink">
+                <div className="mt-3 inline-flex items-center gap-2 rounded-lg bg-aurora px-3.5 py-2 text-sm font-semibold text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35),inset_0_1px_0_oklch(1_0_0_/_0.18)]">
                   {!done && started ? (
                     <>
                       <span className="h-3.5 w-3.5 animate-[orbit-spin_0.9s_linear_infinite] rounded-full border-2 border-ink/40 border-t-ink" />
@@ -89,7 +90,7 @@ export function CourseGenerator({
                             (complete
                               ? "bg-aurora text-ink"
                               : active
-                                ? "bg-bg text-gold [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.5)]"
+                                ? "bg-bg text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.5)]"
                                 : "bg-bg text-muted [box-shadow:inset_0_0_0_1px_var(--color-line)]")
                           }
                         >
@@ -131,7 +132,7 @@ export function CourseGenerator({
                   <h3 className="font-[family-name:var(--font-display)] text-base font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
                     {t.outlineTitle}
                   </h3>
-                  <span className="rounded-full bg-surface/60 px-2.5 py-1 text-[11px] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.35)]">
+                  <span className="rounded-full bg-surface/60 px-2.5 py-1 text-[11px] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35)]">
                     AI
                   </span>
                 </div>
@@ -174,7 +175,7 @@ export function CourseGenerator({
                     initial={reduced ? { opacity: 1 } : { opacity: 0, y: 10 }}
                     animate={done ? { opacity: 1, y: 0 } : { opacity: 0.25 }}
                     transition={{ duration: 0.45, ease: easeOutExpo, delay: 0.1 }}
-                    className="rounded-lg bg-surface/40 p-3 [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.3)]"
+                    className="rounded-lg bg-surface/40 p-3 [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.3)]"
                   >
                     <span className="text-sm font-medium text-gold">
                       {t.quizLabel}

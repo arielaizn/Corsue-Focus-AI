@@ -124,21 +124,22 @@ export default async function AIPage({
       />
 
       {/* 12 — Daily AI Tasks: full-width two-pane agenda */}
-      <section className="mx-auto max-w-[1240px] px-5 py-16 sm:py-20">
+      <section className="mx-auto max-w-[1240px] px-5 py-20 sm:py-24">
         <Reveal className="mx-auto max-w-[44rem] text-center">
           <CapabilityIntro section={t.dailyTasks} align="center" />
         </Reveal>
-        <Reveal y={26} delay={0.05} className="mt-10">
+        <Reveal y={26} delay={0.05} className="mt-12">
           <DailyTasksMock data={t.dailyTasks} />
         </Reveal>
       </section>
 
-      {/* 13 — Multi-AI Layer: full-width interactive selector */}
-      <section className="mx-auto max-w-[1240px] px-5 py-16 sm:py-20">
+      {/* 13 — Multi-AI Layer: full-width interactive selector — a key movement */}
+      <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
+        <span aria-hidden className="gilt-rule mx-auto mb-16 max-w-[20rem] opacity-40" />
         <Reveal className="mx-auto max-w-[44rem] text-center">
-          <CapabilityIntro section={t.multiAI} align="center" />
+          <CapabilityIntro section={t.multiAI} align="center" gilt />
         </Reveal>
-        <Reveal y={26} delay={0.05} className="mt-10">
+        <Reveal y={26} delay={0.05} className="mt-12">
           <ModelSelector locale={locale} />
         </Reveal>
       </section>
@@ -157,11 +158,12 @@ export default async function AIPage({
       />
 
       {/* 16 — Mentor Network: full-width roster */}
-      <section className="mx-auto max-w-[1240px] px-5 py-16 sm:py-20">
+      <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
+        <span aria-hidden className="gilt-rule mx-auto mb-16 max-w-[20rem] opacity-40" />
         <Reveal className="mx-auto max-w-[44rem] text-center">
-          <CapabilityIntro section={t.mentors} align="center" />
+          <CapabilityIntro section={t.mentors} align="center" gilt />
         </Reveal>
-        <Reveal y={26} delay={0.05} className="mt-10">
+        <Reveal y={26} delay={0.05} className="mt-12">
           <MentorNetwork data={t.mentors} />
         </Reveal>
       </section>

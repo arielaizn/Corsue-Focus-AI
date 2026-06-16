@@ -7,5 +7,6 @@ export {
   NebulaBackground,
   type NebulaBackgroundProps,
 } from "./NebulaBackground";
+export { GrainOverlay } from "./GrainOverlay";
 export { Footer, type FooterProps } from "./Footer";
 export { CTASection, type CTASectionProps } from "./CTASection";

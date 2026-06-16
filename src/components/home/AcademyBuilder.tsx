@@ -53,7 +53,7 @@ export function AcademyBuilder({
   const swatches = [
     "oklch(0.62 0.2 264)",
     "oklch(0.6 0.25 300)",
-    "oklch(0.82 0.135 84)",
+    "oklch(0.83 0.13 88)",
     "oklch(0.7 0.16 160)",
   ];
   const [brand, setBrand] = useState(0);
@@ -69,12 +69,11 @@ export function AcademyBuilder({
   }
 
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-28">
-      <div className="grid items-center gap-12 lg:grid-cols-2">
+    <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
+      <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         {/* copy */}
         <Reveal>
           <SectionHeading
-            kicker={locale === "he" ? "יצירת אקדמיה בלחיצה" : "One-click academy"}
             title={t.title}
             subtitle={t.sub}
             as="h2"
@@ -93,7 +92,7 @@ export function AcademyBuilder({
 
         {/* live create panel — a real mock UI */}
         <Reveal y={28} delay={0.05}>
-          <div className="relative overflow-hidden rounded-2xl bg-surface/40 p-5 backdrop-blur-md [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.35),0_24px_70px_-30px_oklch(0.6_0.25_300_/_0.55)] sm:p-6">
+          <div className="panel-premium glow-aurora relative overflow-hidden p-5 sm:p-6">
             <div className="mb-5 flex items-center justify-between">
               <span className="text-sm font-semibold text-ink">{p.title}</span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-bg px-2.5 py-1 text-[11px] text-muted [box-shadow:inset_0_0_0_1px_var(--color-line)]">
@@ -107,7 +106,7 @@ export function AcademyBuilder({
                 <div className={inputCls}>{p.nameValue}</div>
               </Field>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <Field label={p.subdomainLabel}>
                   <div className={inputCls}>
                     <span className="text-ink">{p.subdomainValue}</span>
@@ -128,7 +127,7 @@ export function AcademyBuilder({
                           backgroundColor: c,
                           boxShadow:
                             brand === i
-                              ? "0 0 0 2px var(--color-bg), 0 0 0 4px oklch(0.82 0.135 84)"
+                              ? "0 0 0 2px var(--color-bg), 0 0 0 4px oklch(0.83 0.13 88)"
                               : "inset 0 0 0 1px oklch(1 0 0 / 0.15)",
                         }}
                       />
@@ -137,7 +136,7 @@ export function AcademyBuilder({
                 </Field>
               </div>
 
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                 <Field label={p.langLabel}>
                   <div className={inputCls}>{p.langValue}</div>
                 </Field>
@@ -165,7 +164,7 @@ export function AcademyBuilder({
                 type="button"
                 onClick={run}
                 disabled={state === "building"}
-                className="relative mt-1 flex h-11 items-center justify-center gap-2 overflow-hidden rounded-lg bg-aurora text-sm font-semibold text-ink transition-[box-shadow,transform] hover:-translate-y-0.5 hover:[box-shadow:0_0_0_1px_oklch(0.82_0.135_84_/_0.7),0_12px_40px_-8px_oklch(0.6_0.25_300_/_0.6)] disabled:opacity-80"
+                className="relative mt-1 flex h-11 items-center justify-center gap-2 overflow-hidden rounded-xl bg-aurora text-sm font-semibold text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35),inset_0_1px_0_oklch(1_0_0_/_0.18)] transition-[box-shadow,transform] hover:-translate-y-0.5 hover:[box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.7),0_12px_40px_-8px_oklch(0.6_0.2_290_/_0.6)] disabled:opacity-80"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {state === "idle" && (
@@ -213,7 +212,7 @@ export function AcademyBuilder({
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.6, ease: easeOutExpo }}
-                  className="pointer-events-none absolute inset-0 rounded-2xl [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.6),0_0_60px_-10px_oklch(0.82_0.135_84_/_0.45)]"
+                  className="pointer-events-none absolute inset-0 rounded-[16px] [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.6),0_0_60px_-10px_oklch(0.83_0.13_88_/_0.45)]"
                 />
               )}
             </AnimatePresence>

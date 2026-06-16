@@ -59,7 +59,7 @@ export function Logo({
 
 function Wordtext() {
   return (
-    <span className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-ink">
+    <span className="font-[family-name:var(--font-display)] text-lg font-bold tracking-[-0.03em] text-ink">
       CourseFocus<span className="text-gold"> AI</span>
     </span>
   );

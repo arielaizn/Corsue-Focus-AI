@@ -35,14 +35,14 @@ export function Gamification({
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden py-24 sm:py-28"
+      className="relative overflow-hidden py-24 sm:py-32"
     >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(55% 50% at 80% 30%, oklch(0.82 0.135 84 / 0.08), transparent 70%)",
+            "radial-gradient(55% 50% at 80% 30%, oklch(0.83 0.13 88 / 0.08), transparent 70%)",
         }}
       />
       <div className="mx-auto max-w-[1240px] px-5">
@@ -53,7 +53,7 @@ export function Gamification({
         <div className="mt-12 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Level + XP ring panel */}
           <Reveal y={26}>
-            <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl bg-surface/35 p-6 [box-shadow:inset_0_0_0_1px_var(--color-line)] sm:p-7">
+            <div className="panel-premium relative flex h-full flex-col justify-between overflow-hidden p-6 sm:p-7">
               <div
                 aria-hidden
                 className="pointer-events-none absolute -top-20 -end-16 h-48 w-48 rounded-full bg-[oklch(0.6_0.25_300_/_0.18)] blur-3xl"
@@ -94,8 +94,9 @@ export function Gamification({
                     />
                     <defs>
                       <linearGradient id="xpgrad" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stopColor="oklch(0.62 0.2 264)" />
-                        <stop offset="100%" stopColor="oklch(0.6 0.25 300)" />
+                        <stop offset="0%" stopColor="oklch(0.6 0.18 262)" />
+                        <stop offset="52%" stopColor="oklch(0.62 0.215 294)" />
+                        <stop offset="100%" stopColor="oklch(0.62 0.23 330)" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -125,7 +126,7 @@ export function Gamification({
                   </p>
 
                   {/* streak chip */}
-                  <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-bg px-3 py-1.5 text-xs font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.35)]">
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-bg px-3 py-1.5 text-xs font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35)]">
                     <span aria-hidden>✦</span>
                     <span className="text-muted">{t.streakLabel}:</span>
                     <span className="text-ink">{t.streakValue}</span>
@@ -189,7 +190,7 @@ export function Gamification({
 
           {/* Leaderboard panel */}
           <Reveal y={26} delay={0.08}>
-            <div className="h-full overflow-hidden rounded-2xl bg-surface/35 p-6 [box-shadow:inset_0_0_0_1px_var(--color-line)] sm:p-7">
+            <div className="panel-premium h-full overflow-hidden p-6 sm:p-7">
               <div className="mb-5 flex items-center justify-between">
                 <h3 className="font-[family-name:var(--font-display)] text-base font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
                   {t.leaderboardLabel}

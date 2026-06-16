@@ -7,9 +7,9 @@ import { IconExam } from "../icons";
  */
 export function ExamCard({ data }: { data: AIContent["exam"] }) {
   return (
-    <div className="overflow-hidden rounded-2xl bg-surface/40 [box-shadow:inset_0_0_0_1px_var(--color-line),0_24px_70px_-36px_oklch(0.6_0.25_300_/_0.5)]">
+    <div className="panel-premium overflow-hidden">
       <div className="flex items-center gap-3 border-b border-line bg-bg-deep/60 px-5 py-3.5">
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-[oklch(0.62_0.2_264_/_0.18)] text-ink-soft">
+        <span className="grid h-8 w-8 place-items-center rounded-lg bg-[oklch(0.6_0.18_262_/_0.18)] text-ink-soft">
           <IconExam width={16} height={16} />
         </span>
         <p className="text-sm font-semibold text-ink">{data.settingsTitle}</p>
@@ -36,7 +36,7 @@ export function ExamCard({ data }: { data: AIContent["exam"] }) {
               key={q.q}
               className="flex items-start gap-3 rounded-xl bg-surface/40 px-3.5 py-3 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
             >
-              <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-md bg-[oklch(0.82_0.135_84_/_0.14)] text-xs font-semibold text-gold">
+              <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-md bg-[oklch(0.83_0.13_88_/_0.14)] text-xs font-semibold text-gold">
                 {i + 1}
               </span>
               <div className="min-w-0 flex-1">

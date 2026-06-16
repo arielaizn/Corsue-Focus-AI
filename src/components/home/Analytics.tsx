@@ -42,7 +42,8 @@ export function Analytics({
   const area = `${line} L${W - 4},${H - 4} L4,${H - 4} Z`;
 
   return (
-    <section ref={ref} className="mx-auto max-w-[1240px] px-5 py-24 sm:py-28">
+    <section ref={ref} className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
+      <span aria-hidden className="gilt-rule block mb-16 opacity-30" />
       <Reveal>
         <SectionHeading
           kicker={
@@ -57,7 +58,7 @@ export function Analytics({
       <Reveal y={28} delay={0.08}>
         <div className="mt-12 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
           {/* dashboard: stats + chart */}
-          <div className="overflow-hidden rounded-2xl bg-surface/35 p-5 [box-shadow:inset_0_0_0_1px_var(--color-line)] sm:p-6">
+          <div className="panel-premium overflow-hidden p-5 sm:p-6">
             {/* stat tiles */}
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {t.metrics.map((m, i) => (
@@ -85,7 +86,7 @@ export function Analytics({
                   <p
                     className={
                       "mt-1 inline-flex items-center gap-1 text-xs font-medium " +
-                      (m.up ? "text-[oklch(0.78_0.15_150)]" : "text-gold")
+                      (m.up ? "text-pos" : "text-gold")
                     }
                   >
                     <span aria-hidden>{m.up ? "▲" : "▼"}</span>
@@ -173,7 +174,7 @@ export function Analytics({
                       (H - 8)
                   }
                   r="4"
-                  fill="oklch(0.82 0.135 84)"
+                  fill="oklch(0.83 0.13 88)"
                   initial={{ opacity: reduced ? 1 : 0 }}
                   animate={{ opacity: inView ? 1 : 0 }}
                   transition={{ duration: 0.4, delay: reduced ? 0 : 1.5 }}
@@ -183,10 +184,10 @@ export function Analytics({
           </div>
 
           {/* AI Business Advisor panel */}
-          <div className="relative flex flex-col overflow-hidden rounded-2xl bg-surface/40 p-6 backdrop-blur-md [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.3),0_24px_70px_-34px_oklch(0.82_0.135_84_/_0.4)] sm:p-7">
+          <div className="gilt-rim glow-gold relative flex flex-col overflow-hidden rounded-[16px] bg-surface p-6 sm:p-7">
             <div
               aria-hidden
-              className="pointer-events-none absolute -top-20 -end-16 h-48 w-48 rounded-full bg-[oklch(0.82_0.135_84_/_0.12)] blur-3xl"
+              className="pointer-events-none absolute -top-20 -end-16 h-48 w-48 rounded-full bg-[oklch(0.83_0.13_88_/_0.12)] blur-3xl"
             />
             <div className="relative flex items-center gap-3">
               <span
@@ -219,7 +220,7 @@ export function Analytics({
               initial={reduced ? { opacity: 1 } : { opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
               transition={{ duration: 0.6, ease: easeOutExpo, delay: 0.7 }}
-              className="relative mt-4 inline-flex h-10 w-fit items-center gap-2 self-start rounded-lg bg-aurora px-4 text-sm font-semibold text-ink transition-[transform,box-shadow] hover:-translate-y-0.5 hover:[box-shadow:0_0_0_1px_oklch(0.82_0.135_84_/_0.7),0_12px_40px_-8px_oklch(0.6_0.25_300_/_0.6)]"
+              className="relative mt-4 inline-flex h-10 w-fit items-center gap-2 self-start rounded-xl bg-aurora px-4 text-sm font-semibold text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35),inset_0_1px_0_oklch(1_0_0_/_0.18)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:[box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.7),0_12px_40px_-8px_oklch(0.6_0.2_290_/_0.6)]"
             >
               {t.advisorAction}
               <svg

@@ -14,12 +14,14 @@ export function Footer({ locale }: FooterProps) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line bg-bg-deep">
+    <footer className="relative z-[var(--z-raised)] bg-bg-deep">
+      {/* gilt top-rule — the gold edge seating the footer */}
+      <span aria-hidden className="gilt-rule absolute inset-x-0 top-0 opacity-45" />
       <div className="mx-auto max-w-[1240px] px-5 py-16">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr]">
           <div className="max-w-sm">
             <Logo href={hrefFor("")} size={34} />
-            <p className="mt-5 text-pretty text-sm leading-relaxed text-muted">
+            <p className="mt-5 text-pretty text-sm leading-relaxed text-ink-soft">
               {t.mission}
             </p>
             <div className="mt-6">
@@ -48,7 +50,8 @@ export function Footer({ locale }: FooterProps) {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-6 border-t border-line pt-8 sm:grid-cols-2">
+        <span aria-hidden className="gilt-rule mt-14 opacity-30" />
+        <div className="mt-8 grid gap-6 pt-2 sm:grid-cols-2">
           <ChipRow label={t.paymentsLabel} chips={paymentChips} />
           <ChipRow label={t.aiLabel} chips={aiChips} />
         </div>

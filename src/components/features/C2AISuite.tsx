@@ -14,8 +14,8 @@ export function C2AISuite({ locale }: { locale: Locale }) {
     .map((it) => ({ label: it.label, icon: <IconSpark size={12} /> }));
 
   return (
-    <Section tint className="py-20 sm:py-28">
-      <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+    <Section tint className="py-24 sm:py-36">
+      <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <Reveal y={28}>
           <OrbitDiagram centerLabel={t.coreLabel} items={orbitItems} />
         </Reveal>
@@ -25,11 +25,11 @@ export function C2AISuite({ locale }: { locale: Locale }) {
             <SectionHeading kicker={t.kicker} title={t.title} subtitle={t.subtitle} />
           </Reveal>
 
-          <Reveal delay={0.08} className="mt-7 flex flex-wrap gap-2">
+          <Reveal delay={0.08} className="mt-8 flex flex-wrap gap-2">
             {t.items.map((it) => (
               <span
                 key={it.n}
-                className="inline-flex items-center gap-1.5 rounded-full bg-surface/60 px-3 py-1.5 text-xs font-medium text-ink-soft ring-line"
+                className="inline-flex items-center gap-1.5 rounded-full bg-surface-2 px-3 py-1.5 text-xs font-medium text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05)]"
               >
                 <span className="text-gold">
                   <IconSpark size={12} />

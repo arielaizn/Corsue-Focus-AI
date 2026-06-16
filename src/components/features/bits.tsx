@@ -26,10 +26,10 @@ export function Avatar({
   // deterministic hue pick from char codes
   const sum = name.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
   const tints = [
-    "bg-[oklch(0.62_0.2_264_/_0.9)]",
-    "bg-[oklch(0.6_0.25_300_/_0.9)]",
-    "bg-[oklch(0.7_0.14_70_/_0.9)]",
-    "bg-[oklch(0.68_0.22_302_/_0.9)]",
+    "bg-[oklch(0.6_0.18_262_/_0.9)]",
+    "bg-[oklch(0.62_0.215_294_/_0.9)]",
+    "bg-[oklch(0.72_0.13_78_/_0.9)]",
+    "bg-[oklch(0.62_0.23_330_/_0.9)]",
   ];
   const tint = tints[sum % tints.length];
 
@@ -86,7 +86,7 @@ export function ProgressBar({
   return (
     <div
       className={cn(
-        "h-2 w-full overflow-hidden rounded-full bg-[oklch(0.34_0.045_266_/_0.6)]",
+        "h-2 w-full overflow-hidden rounded-full bg-[oklch(0.34_0.06_267_/_0.6)]",
         className,
       )}
       role="progressbar"

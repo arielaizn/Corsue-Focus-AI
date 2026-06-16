@@ -11,20 +11,20 @@ export function C6Gamification({ locale }: { locale: Locale }) {
   const xpPct = Math.round((t.xpCurrent / t.xpNext) * 100);
 
   return (
-    <Section tint className="py-20 sm:py-28">
+    <Section tint className="py-24 sm:py-36">
       <Reveal className="max-w-2xl">
         <SectionHeading title={t.title} subtitle={t.subtitle} />
       </Reveal>
 
-      <Reveal y={26} delay={0.05} className="mt-12">
+      <Reveal y={26} delay={0.05} className="mt-14">
         <div className="grid gap-5 lg:grid-cols-[1.15fr_1fr]">
           {/* Left column — level, XP, streak, badges */}
           <div className="flex flex-col gap-5">
-            {/* Level + XP */}
-            <div className="rounded-2xl bg-surface/40 p-6 ring-line">
+            {/* Level + XP — the hero panel */}
+            <div className="panel-premium glow-aurora p-6">
               <div className="flex items-center gap-4">
-                <div className="relative grid h-16 w-16 shrink-0 place-items-center rounded-full bg-aurora glow-gold">
-                  <span className="font-[family-name:var(--font-display)] text-xl font-semibold text-ink">
+                <div className="relative grid h-16 w-16 shrink-0 place-items-center rounded-full bg-aurora gilt-rim">
+                  <span className="font-[family-name:var(--font-display)] text-xl font-bold text-ink">
                     {t.level}
                   </span>
                 </div>
@@ -44,8 +44,8 @@ export function C6Gamification({ locale }: { locale: Locale }) {
             </div>
 
             {/* Streak */}
-            <div className="flex items-center gap-4 rounded-2xl bg-surface/40 p-6 ring-line">
-              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-[oklch(0.7_0.14_70_/_0.2)] text-gold ring-line">
+            <div className="flex items-center gap-4 rounded-[16px] bg-surface p-6 [box-shadow:inset_0_0_0_1px_oklch(0.4_0.04_268_/_0.6),inset_0_1px_0_oklch(1_0_0_/_0.05)]">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-[oklch(0.72_0.13_78_/_0.18)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.3)]">
                 <IconFlame size={22} />
               </span>
               <div>
@@ -61,7 +61,7 @@ export function C6Gamification({ locale }: { locale: Locale }) {
                     key={i}
                     aria-hidden
                     className={`w-2.5 rounded-full ${
-                      on ? "h-7 bg-aurora" : "h-3.5 bg-[oklch(0.34_0.045_266_/_0.6)]"
+                      on ? "h-7 bg-aurora" : "h-3.5 bg-[oklch(0.34_0.06_267_/_0.6)]"
                     }`}
                   />
                 ))}
@@ -69,15 +69,15 @@ export function C6Gamification({ locale }: { locale: Locale }) {
             </div>
 
             {/* Badges */}
-            <div className="rounded-2xl bg-surface/40 p-6 ring-line">
+            <div className="rounded-[16px] bg-surface p-6 [box-shadow:inset_0_0_0_1px_oklch(0.4_0.04_268_/_0.6),inset_0_1px_0_oklch(1_0_0_/_0.05)]">
               <div className="text-sm font-semibold text-ink">{t.badgesLabel}</div>
               <div className="mt-4 flex flex-wrap gap-2.5">
                 {t.badges.map((b, i) => (
                   <span
                     key={b}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-bg px-3 py-1.5 text-xs font-medium text-ink-soft ring-line"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-bg-deep px-3 py-1.5 text-xs font-medium text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]"
                   >
-                    <span className={i % 2 === 0 ? "text-gold" : "text-primary-bright"}>
+                    <span className={i % 2 === 0 ? "text-gold" : "text-violet-bright"}>
                       <IconTrophy size={13} />
                     </span>
                     {b}
@@ -90,7 +90,7 @@ export function C6Gamification({ locale }: { locale: Locale }) {
           {/* Right column — leaderboard, challenge, daily AI tasks */}
           <div className="flex flex-col gap-5">
             {/* Leaderboard */}
-            <div className="rounded-2xl bg-surface/40 p-6 ring-line">
+            <div className="rounded-[16px] bg-surface p-6 [box-shadow:inset_0_0_0_1px_oklch(0.4_0.04_268_/_0.6),inset_0_1px_0_oklch(1_0_0_/_0.05)]">
               <div className="text-sm font-semibold text-ink">{t.leaderboardLabel}</div>
               <ul className="mt-4 space-y-1.5">
                 {t.leaderboard.map((row) => (
@@ -98,15 +98,15 @@ export function C6Gamification({ locale }: { locale: Locale }) {
                     key={row.rank}
                     className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm ${
                       row.me
-                        ? "bg-[oklch(0.62_0.2_264_/_0.12)] text-ink [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.45)]"
+                        ? "bg-[oklch(0.6_0.18_262_/_0.14)] text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.5)]"
                         : "text-ink-soft"
                     }`}
                   >
                     <span
                       className={`grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-semibold tabular-nums ${
                         row.rank === 1
-                          ? "bg-gold-grad text-bg"
-                          : "bg-bg text-muted ring-line"
+                          ? "bg-gold-grad text-bg-deep"
+                          : "bg-bg-deep text-muted ring-line"
                       }`}
                     >
                       {row.rank}
@@ -121,10 +121,10 @@ export function C6Gamification({ locale }: { locale: Locale }) {
             </div>
 
             {/* Weekly challenge */}
-            <div className="rounded-2xl bg-surface/40 p-6 ring-line">
+            <div className="rounded-[16px] bg-surface p-6 [box-shadow:inset_0_0_0_1px_oklch(0.4_0.04_268_/_0.6),inset_0_1px_0_oklch(1_0_0_/_0.05)]">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-semibold text-ink">{t.challengeLabel}</span>
-                <span className="rounded-full bg-bg px-2.5 py-0.5 text-xs text-gold ring-line">
+                <span className="rounded-full bg-bg-deep px-2.5 py-0.5 text-xs font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.3)]">
                   3/5
                 </span>
               </div>
@@ -133,7 +133,7 @@ export function C6Gamification({ locale }: { locale: Locale }) {
             </div>
 
             {/* Daily AI tasks */}
-            <div className="rounded-2xl bg-surface/40 p-6 ring-line">
+            <div className="rounded-[16px] bg-surface p-6 [box-shadow:inset_0_0_0_1px_oklch(0.4_0.04_268_/_0.6),inset_0_1px_0_oklch(1_0_0_/_0.05)]">
               <div className="flex items-center gap-2 text-sm font-semibold text-ink">
                 <span className="text-gold">AI</span>
                 {t.dailyLabel}
@@ -143,7 +143,7 @@ export function C6Gamification({ locale }: { locale: Locale }) {
                   <li key={task} className="flex items-center gap-3 text-sm text-ink-soft">
                     <span
                       className={`grid h-5 w-5 shrink-0 place-items-center rounded-md ${
-                        i === 0 ? "bg-aurora text-ink" : "bg-bg text-muted ring-line"
+                        i === 0 ? "bg-aurora text-ink" : "bg-bg-deep text-muted ring-line"
                       }`}
                     >
                       {i === 0 && <IconCheck size={12} />}

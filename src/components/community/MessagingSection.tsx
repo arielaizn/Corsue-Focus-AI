@@ -34,7 +34,7 @@ function Bubble({ m }: { m: Msg }) {
     if (m.kind === "voice") {
       return (
         <span className="flex items-center gap-2.5">
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-[oklch(0.6_0.25_300_/_0.25)] text-ink">
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-[oklch(0.62_0.23_330_/_0.28)] text-ink">
             <MicIcon size={16} />
           </span>
           <span aria-hidden className="flex items-end gap-[3px]">
@@ -63,8 +63,8 @@ function Bubble({ m }: { m: Msg }) {
         <div
           className={
             self
-              ? "rounded-2xl rounded-ee-md bg-[oklch(0.62_0.2_264_/_0.28)] px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.45)]"
-              : "rounded-2xl rounded-es-md bg-surface/70 px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+              ? "rounded-[14px] rounded-ee-md bg-[oklch(0.62_0.215_294_/_0.26)] px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.45),inset_0_1px_0_oklch(1_0_0_/_0.08)]"
+              : "rounded-[14px] rounded-es-md bg-surface-2/70 px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05)]"
           }
         >
           {body}
@@ -79,18 +79,18 @@ function Bubble({ m }: { m: Msg }) {
 
 export function MessagingSection({ t }: { t: T }) {
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-20 sm:py-24">
-      <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14">
+    <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
+      <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
         {/* chat mock */}
         <Reveal y={28} className="lg:order-2">
-          <div className="mx-auto w-full max-w-[460px] overflow-hidden rounded-2xl bg-bg-deep [box-shadow:inset_0_0_0_1px_var(--color-line),0_30px_80px_-30px_oklch(0.6_0.25_300_/_0.4)]">
+          <div className="glow-aurora mx-auto w-full max-w-[460px] overflow-hidden rounded-[16px] bg-bg-deep [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05),0_40px_110px_-44px_oklch(0.6_0.2_290_/_0.5)]">
             {/* thread header */}
             <div className="flex items-center gap-3 border-b border-line bg-surface/40 px-4 py-3">
               <Avatar initials="MM" size={38} />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-semibold text-ink">{t.threadName}</p>
                 <p className="flex items-center gap-1.5 truncate text-xs text-muted">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.72_0.15_150)]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-status-online" />
                   {t.threadMeta}
                 </p>
               </div>
@@ -136,7 +136,7 @@ export function MessagingSection({ t }: { t: T }) {
               >
                 <MicIcon size={18} />
               </button>
-              <span className="bg-aurora grid h-9 w-9 place-items-center rounded-full text-ink">
+              <span className="bg-aurora grid h-9 w-9 place-items-center rounded-full text-ink [box-shadow:inset_0_0_0_1px_oklch(0.9_0.1_92_/_0.4),inset_0_1px_0_oklch(1_0_0_/_0.12)]">
                 <SendIcon size={17} />
               </span>
             </div>
@@ -146,11 +146,12 @@ export function MessagingSection({ t }: { t: T }) {
         {/* copy */}
         <Reveal className="lg:order-1">
           <SectionHeading title={t.title} subtitle={t.subtitle} />
+          <span aria-hidden className="gilt-rule mt-8 max-w-[8rem] opacity-50" />
           <ul className="mt-6 flex flex-wrap gap-2.5">
             {t.capabilities.map((c) => (
               <li
                 key={c}
-                className="rounded-full bg-surface/50 px-3.5 py-1.5 text-sm font-medium text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+                className="rounded-full bg-surface px-3.5 py-1.5 text-sm font-medium text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05)]"
               >
                 {c}
               </li>

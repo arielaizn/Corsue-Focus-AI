@@ -63,22 +63,23 @@ export function AIHero({ locale }: AIHeroProps) {
           </motion.div>
 
           <motion.h1
-            className="font-[family-name:var(--font-display)] text-balance text-[2.2rem] font-semibold leading-[1.08] text-ink sm:text-5xl lg:text-[3.5rem] lg:leading-[1.05] [.font-he_&]:font-[family-name:var(--font-he)]"
+            className="font-[family-name:var(--font-display)] text-balance text-[length:var(--text-h1)] font-bold leading-[1.06] tracking-[-0.03em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold [.font-he_&]:tracking-normal"
             initial={reduced ? { opacity: 1 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={
-              reduced ? { duration: 0 } : { duration: 0.7, ease: easeOutExpo, delay: 0.05 }
+              reduced ? { duration: 0 } : { duration: 0.85, ease: easeOutExpo, delay: 0.05 }
             }
           >
             {t.title}
+            <span aria-hidden className="mt-5 block h-px w-24 bg-gold-grad opacity-80" />
           </motion.h1>
 
           <motion.p
-            className="max-w-[56ch] text-pretty text-base text-ink-soft sm:text-lg"
+            className="max-w-[60ch] text-pretty text-[length:var(--text-lead)] leading-relaxed text-ink-soft"
             initial={reduced ? { opacity: 1 } : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={
-              reduced ? { duration: 0 } : { duration: 0.7, ease: easeOutExpo, delay: 0.12 }
+              reduced ? { duration: 0 } : { duration: 0.8, ease: easeOutExpo, delay: 0.14 }
             }
           >
             {t.subtitle}
@@ -101,13 +102,13 @@ export function AIHero({ locale }: AIHeroProps) {
           </motion.div>
         </div>
 
-        {/* live chat panel */}
+        {/* live chat panel — sits on a soft aurora glow */}
         <motion.div
-          className="relative"
+          className="glow-aurora relative rounded-2xl"
           initial={reduced ? { opacity: 1 } : { opacity: 0, y: 26, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={
-            reduced ? { duration: 0 } : { duration: 0.8, ease: easeOutExpo, delay: 0.15 }
+            reduced ? { duration: 0 } : { duration: 0.9, ease: easeOutExpo, delay: 0.18 }
           }
         >
           <ChatPanel
@@ -121,12 +122,13 @@ export function AIHero({ locale }: AIHeroProps) {
       </div>
 
       {/* orbit — the signature central-AI motif */}
-      <div className="relative mt-16 sm:mt-24">
+      <div className="relative mt-20 sm:mt-32">
+        <span aria-hidden className="gilt-rule mx-auto mb-16 max-w-[22rem] opacity-40" />
         <motion.div
           initial={reduced ? { opacity: 1 } : { opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={reduced ? { duration: 0 } : { duration: 0.9, ease: easeOutExpo }}
+          transition={reduced ? { duration: 0 } : { duration: 1, ease: easeOutExpo }}
         >
           <OrbitDiagram centerLabel={t.orbitCenter} items={orbitItems} />
         </motion.div>

@@ -26,11 +26,11 @@ function CouponCard({ t, locale }: { t: PricingContent["growth"]["coupons"]; loc
   }
 
   return (
-    <div className="flex flex-col rounded-2xl bg-surface/40 p-6 ring-line">
-      <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+    <div className="panel-premium flex flex-col p-7">
+      <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold tracking-[-0.02em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
         {t.title}
       </h3>
-      <p className="mt-2 max-w-[48ch] text-sm text-ink-soft">{t.body}</p>
+      <p className="mt-3 max-w-[48ch] text-pretty text-[0.95rem] leading-relaxed text-ink-soft">{t.body}</p>
 
       {/* coupon mock */}
       <div className="mt-5 flex items-center gap-3">
@@ -76,13 +76,13 @@ function CouponCard({ t, locale }: { t: PricingContent["growth"]["coupons"]; loc
 function AffiliateCard({ t }: { t: PricingContent["growth"]["affiliate"] }) {
   const reduced = useReducedMotion();
   return (
-    <div className="flex flex-col rounded-2xl bg-surface/40 p-6 ring-line">
-      <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+    <div className="panel-premium flex flex-col p-7">
+      <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold tracking-[-0.02em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
         {t.title}
       </h3>
-      <p className="mt-2 max-w-[48ch] text-sm text-ink-soft">{t.body}</p>
+      <p className="mt-3 max-w-[48ch] text-pretty text-[0.95rem] leading-relaxed text-ink-soft">{t.body}</p>
 
-      <div className="mt-5 grid grid-cols-3 gap-3">
+      <div className="mt-6 grid grid-cols-3 gap-3">
         {t.stats.map((s, i) => (
           <motion.div
             key={s.label}
@@ -91,11 +91,13 @@ function AffiliateCard({ t }: { t: PricingContent["growth"]["affiliate"] }) {
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: easeOutExpo, delay: i * 0.08 }}
             className={cn(
-              "rounded-xl bg-bg-deep/50 px-3 py-4 text-center",
-              i === 2 ? "[box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.4)]" : "ring-line",
+              "rounded-xl bg-bg-deep/50 px-3 py-5 text-center",
+              i === 2
+                ? "[box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.45),inset_0_1px_0_oklch(1_0_0_/_0.05)]"
+                : "ring-line",
             )}
           >
-            <p className="font-[family-name:var(--font-display)] text-xl font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+            <p className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-[-0.02em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
               {s.value}
             </p>
             <p className="mt-1 text-[11px] leading-tight text-muted">{s.label}</p>

@@ -18,14 +18,23 @@ export function CTASection({ locale }: CTASectionProps) {
   return (
     <section className="mx-auto max-w-[1240px] px-5 py-20 sm:py-28">
       <Reveal>
-        <div className="relative overflow-hidden rounded-2xl bg-surface/40 px-6 py-16 text-center [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.4),0_30px_90px_-30px_oklch(0.6_0.25_300_/_0.5)] sm:px-12 sm:py-20">
-          {/* aurora rim glow */}
+        <div className="glow-aurora relative overflow-hidden rounded-[16px] bg-surface px-6 py-16 text-center [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.32),inset_0_1px_0_oklch(1_0_0_/_0.06),0_44px_120px_-44px_oklch(0.6_0.2_290_/_0.55)] sm:px-12 sm:py-20">
+          {/* aurora wash — blue → violet → magenta, the closing crescendo */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(60% 80% at 50% 0%, oklch(0.6 0.25 300 / 0.22), transparent 60%), radial-gradient(50% 60% at 50% 110%, oklch(0.62 0.2 264 / 0.2), transparent 60%)",
+                "radial-gradient(60% 80% at 50% 0%, oklch(0.62 0.215 294 / 0.24), transparent 60%), radial-gradient(46% 60% at 86% 18%, oklch(0.62 0.23 330 / 0.18), transparent 62%), radial-gradient(50% 60% at 14% 108%, oklch(0.6 0.18 262 / 0.2), transparent 62%)",
+            }}
+          />
+          {/* film-grain texture on the panel itself */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
             }}
           />
           <div className="pointer-events-none absolute inset-x-0 -top-6 flex justify-center opacity-80">
@@ -33,7 +42,7 @@ export function CTASection({ locale }: CTASectionProps) {
           </div>
 
           <div className="relative mx-auto max-w-2xl">
-            <h2 className="font-[family-name:var(--font-display)] text-balance text-3xl font-semibold text-ink sm:text-4xl lg:text-5xl [.font-he_&]:font-[family-name:var(--font-he)]">
+            <h2 className="font-[family-name:var(--font-display)] text-balance text-[length:var(--text-h1)] font-bold leading-[1.05] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
               {t.heading}
             </h2>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

@@ -9,9 +9,9 @@ import { IconMic } from "../icons";
 export function VoiceCoachMock({ data }: { data: AIContent["voice"] }) {
   const bars = [10, 22, 14, 30, 18, 36, 24, 16, 28, 12, 32, 20, 26, 14, 22];
   return (
-    <div className="overflow-hidden rounded-2xl bg-surface/40 [box-shadow:inset_0_0_0_1px_var(--color-line),0_24px_70px_-36px_oklch(0.6_0.25_300_/_0.5)]">
+    <div className="panel-premium overflow-hidden">
       <div className="flex items-center gap-3 border-b border-line bg-bg-deep/60 px-5 py-3.5">
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-aurora text-ink [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.5)]">
+        <span className="grid h-8 w-8 place-items-center rounded-lg bg-aurora text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.5)]">
           <IconMic width={16} height={16} />
         </span>
         <p className="text-sm font-semibold text-ink">{data.tag}</p>
@@ -23,7 +23,7 @@ export function VoiceCoachMock({ data }: { data: AIContent["voice"] }) {
           {bars.map((b, i) => (
             <span
               key={i}
-              className="w-1.5 rounded-full bg-gradient-to-t from-[oklch(0.62_0.2_264)] to-[oklch(0.6_0.25_300)] motion-safe:animate-[float_1.6s_ease-in-out_infinite]"
+              className="w-1.5 rounded-full bg-gradient-to-t from-[oklch(0.6_0.18_262)] to-[oklch(0.62_0.215_294)] motion-safe:animate-[float_1.6s_ease-in-out_infinite]"
               style={{ height: `${b + 8}px`, animationDelay: `${(i % 6) * 0.12}s` }}
             />
           ))}
@@ -31,7 +31,7 @@ export function VoiceCoachMock({ data }: { data: AIContent["voice"] }) {
 
         {/* transcript */}
         <div className="mt-4">
-          <p className="text-xs font-medium text-gold">{data.captionLabel}</p>
+          <p className="text-gilt">{data.captionLabel}</p>
           <p className="mt-2 text-lg text-ink">{data.caption}</p>
         </div>
 

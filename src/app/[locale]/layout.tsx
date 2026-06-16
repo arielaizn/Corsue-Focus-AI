@@ -4,6 +4,7 @@ import { Rubik, Geist_Mono } from "next/font/google";
 import { locales, dir, isLocale, type Locale } from "@/lib/i18n";
 import { SmoothScroll } from "@/components/shared/SmoothScroll";
 import { NebulaBackground } from "@/components/shared/NebulaBackground";
+import { GrainOverlay } from "@/components/shared/GrainOverlay";
 import { Nav } from "@/components/shared/Nav";
 import { Footer } from "@/components/shared/Footer";
 
@@ -94,8 +95,11 @@ export default async function LocaleLayout({
       <body className={locale === "he" ? "font-he" : "font-en"}>
         <SmoothScroll>
           <NebulaBackground variant="global" />
+          <GrainOverlay />
           <Nav locale={locale} />
-          <main className="relative pt-16">{children}</main>
+          <main className="relative z-[var(--z-raised)] pt-16">
+            {children}
+          </main>
           <Footer locale={locale} />
         </SmoothScroll>
       </body>

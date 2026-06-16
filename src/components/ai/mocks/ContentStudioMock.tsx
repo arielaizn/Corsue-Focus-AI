@@ -12,7 +12,7 @@ export function ContentStudioMock({
   data: AIContent["contentStudio"];
 }) {
   return (
-    <div className="rounded-2xl bg-surface/30 p-5 [box-shadow:inset_0_0_0_1px_var(--color-line)] sm:p-6">
+    <div className="panel-premium p-5 sm:p-6">
       {/* request */}
       <div className="flex items-center gap-2.5 rounded-xl bg-bg-deep/60 px-3.5 py-3 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
         <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-aurora text-ink">
