@@ -46,7 +46,7 @@ export function AuthShell({
           className="absolute inset-0 -z-10 bg-bg-deep/60"
           style={{ background: "var(--grad-nebula)" }}
         />
-        <Logo href={`/${locale}`} size={34} />
+        <Logo href={`/${locale}`} size={34} draw />
 
         <div className="max-w-md">
           <p className="text-gilt mb-5">{t.brandKicker}</p>
