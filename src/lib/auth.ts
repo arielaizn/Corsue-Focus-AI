@@ -156,3 +156,82 @@ export async function requireUser(
   }
   return user;
 }
+
+// ---------------------------------------------------------------------------
+// Platform super-admin + role-based landing (added 2026-06, migration 0007).
+// The platform admin tier sits ABOVE the academy-scoped role_enum: a single
+// `profiles.is_platform_admin` flag gated by RLS `is_platform_admin()`.
+// ---------------------------------------------------------------------------
+
+/** True if the current user is a platform super-admin. RLS-safe single read. */
+export async function isPlatformAdmin(): Promise<boolean> {
+  const supabase = createClient(await cookies());
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return false;
+  const { data } = await supabase
+    .from("profiles")
+    .select("is_platform_admin")
+    .eq("id", user.id)
+    .maybeSingle();
+  return data?.is_platform_admin === true;
+}
+
+export type LandingSurface = "admin" | "dashboard" | "learn";
+
+/**
+ * Decide where a freshly-authenticated user lands, highest privilege first:
+ * platform-admin → /admin, academy manager (owner/admin/instructor) → /dashboard,
+ * everyone else (students, or brand-new users) → /learn.
+ */
+export async function resolveLandingSurface(): Promise<LandingSurface> {
+  const supabase = createClient(await cookies());
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return "dashboard"; // caller redirects to login anyway
+
+  const { data: prof } = await supabase
+    .from("profiles")
+    .select("is_platform_admin")
+    .eq("id", user.id)
+    .maybeSingle();
+  if (prof?.is_platform_admin) return "admin";
+
+  const { data: mems } = await supabase
+    .from("memberships")
+    .select("role")
+    .eq("user_id", user.id);
+  const roles = (mems ?? []).map((m) => m.role);
+  if (roles.some((r) => r === "owner" || r === "admin" || r === "instructor")) {
+    return "dashboard";
+  }
+  if (roles.includes("student")) return "learn";
+  // No memberships yet → treat as an academy creator (the dashboard shows the
+  // "create your academy" CTA). Learners reach /learn via an explicit `next`
+  // from the storefront enroll flow, or once they hold a student membership.
+  return "dashboard";
+}
+
+/** Absolute path for a landing surface in the given locale. */
+export function landingPath(surface: LandingSurface, locale: Locale): string {
+  return `/${locale}/${surface}`;
+}
+
+/** Guard a platform-admin route: redirects non-admins (logged-out → login). */
+export async function requirePlatformAdmin(locale: string): Promise<User> {
+  const loc: Locale = isLocale(locale) ? locale : defaultLocale;
+  const user = await getUser();
+  if (!user) redirect(`/${loc}/login?next=/${loc}/admin`);
+  if (!(await isPlatformAdmin())) redirect(`/${loc}/dashboard`);
+  return user;
+}
+
+/** Guard a learner route — any authenticated user (students land here). */
+export async function requireStudent(
+  locale: string,
+  next?: string,
+): Promise<User> {
+  return requireUser(locale, next);
+}

@@ -24,7 +24,8 @@ export async function GET(request: NextRequest) {
   const { searchParams, origin } = request.nextUrl;
   const code = searchParams.get("code");
   const next = searchParams.get("next");
-  const fallback = `/${defaultLocale}/dashboard`;
+  // No explicit deep-link → /postlogin role-routes the user (admin/dashboard/learn).
+  const fallback = `/${defaultLocale}/postlogin`;
   const dest =
     next && next.startsWith("/") && !next.startsWith("//") ? next : fallback;
   const loginUrl = `${origin}/${defaultLocale}/login`;

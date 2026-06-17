@@ -1313,6 +1313,57 @@ export type Database = {
           },
         ]
       }
+      content_reports: {
+        Row: {
+          academy_id: string
+          created_at: string
+          entity_id: string
+          entity_type: string
+          id: string
+          reason: string
+          reporter_id: string
+          status: Database["public"]["Enums"]["report_status_enum"]
+          updated_at: string
+        }
+        Insert: {
+          academy_id: string
+          created_at?: string
+          entity_id: string
+          entity_type: string
+          id?: string
+          reason: string
+          reporter_id: string
+          status?: Database["public"]["Enums"]["report_status_enum"]
+          updated_at?: string
+        }
+        Update: {
+          academy_id?: string
+          created_at?: string
+          entity_id?: string
+          entity_type?: string
+          id?: string
+          reason?: string
+          reporter_id?: string
+          status?: Database["public"]["Enums"]["report_status_enum"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_reports_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "content_reports_reporter_id_fkey"
+            columns: ["reporter_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       conversation_members: {
         Row: {
           conversation_id: string
@@ -1499,6 +1550,61 @@ export type Database = {
             columns: ["course_id"]
             isOneToOne: false
             referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      course_reviews: {
+        Row: {
+          academy_id: string
+          body: string | null
+          course_id: string
+          created_at: string
+          id: string
+          rating: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          academy_id: string
+          body?: string | null
+          course_id: string
+          created_at?: string
+          id?: string
+          rating: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          academy_id?: string
+          body?: string | null
+          course_id?: string
+          created_at?: string
+          id?: string
+          rating?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "course_reviews_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "course_reviews_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "course_reviews_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
@@ -2911,6 +3017,124 @@ export type Database = {
           },
         ]
       }
+      pipeline_artifacts: {
+        Row: {
+          academy_id: string
+          created_at: string
+          id: string
+          job_id: string
+          kind: string
+          mime_type: string | null
+          size_bytes: number | null
+          url: string
+        }
+        Insert: {
+          academy_id: string
+          created_at?: string
+          id?: string
+          job_id: string
+          kind: string
+          mime_type?: string | null
+          size_bytes?: number | null
+          url: string
+        }
+        Update: {
+          academy_id?: string
+          created_at?: string
+          id?: string
+          job_id?: string
+          kind?: string
+          mime_type?: string | null
+          size_bytes?: number | null
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pipeline_artifacts_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pipeline_artifacts_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "pipeline_jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pipeline_jobs: {
+        Row: {
+          academy_id: string
+          brief: Json
+          course_id: string | null
+          created_at: string
+          created_by: string | null
+          engine_job_id: string | null
+          error: string | null
+          id: string
+          lesson_id: string | null
+          outline: Json | null
+          output_url: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          academy_id: string
+          brief?: Json
+          course_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          engine_job_id?: string | null
+          error?: string | null
+          id?: string
+          lesson_id?: string | null
+          outline?: Json | null
+          output_url?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          academy_id?: string
+          brief?: Json
+          course_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          engine_job_id?: string | null
+          error?: string | null
+          id?: string
+          lesson_id?: string | null
+          outline?: Json | null
+          output_url?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pipeline_jobs_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pipeline_jobs_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pipeline_jobs_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       plans: {
         Row: {
           created_at: string
@@ -3105,6 +3329,7 @@ export type Database = {
           created_at: string
           display_name: string
           id: string
+          is_platform_admin: boolean
           is_public: boolean
           locale: string
           social_links: Json
@@ -3118,6 +3343,7 @@ export type Database = {
           created_at?: string
           display_name?: string
           id: string
+          is_platform_admin?: boolean
           is_public?: boolean
           locale?: string
           social_links?: Json
@@ -3131,6 +3357,7 @@ export type Database = {
           created_at?: string
           display_name?: string
           id?: string
+          is_platform_admin?: boolean
           is_public?: boolean
           locale?: string
           social_links?: Json
@@ -3829,8 +4056,12 @@ export type Database = {
         Returns: boolean
       }
       is_enrolled_in: { Args: { p_course_id: string }; Returns: boolean }
+      is_listed_academy: { Args: { p_academy_id: string }; Returns: boolean }
       is_member_of: { Args: { p_academy_id: string }; Returns: boolean }
       is_owner_of: { Args: { p_academy_id: string }; Returns: boolean }
+      is_platform_admin:
+        | { Args: never; Returns: boolean }
+        | { Args: { p_user_id: string }; Returns: boolean }
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
     }
@@ -3907,6 +4138,7 @@ export type Database = {
         | "true_false"
         | "match"
         | "fill_blank"
+      report_status_enum: "open" | "reviewing" | "actioned" | "dismissed"
       role_enum: "owner" | "admin" | "instructor" | "student"
       submission_type_enum: "text" | "file" | "video" | "url"
       subscription_status_enum:
@@ -4128,6 +4360,7 @@ export const Constants = {
         "match",
         "fill_blank",
       ],
+      report_status_enum: ["open", "reviewing", "actioned", "dismissed"],
       role_enum: ["owner", "admin", "instructor", "student"],
       submission_type_enum: ["text", "file", "video", "url"],
       subscription_status_enum: [

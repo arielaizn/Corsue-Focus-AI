@@ -120,6 +120,12 @@ export default async function LocaleLayout({
   const isAppShell =
     rest === "/dashboard" ||
     rest.startsWith("/dashboard/") ||
+    rest === "/admin" ||
+    rest.startsWith("/admin/") ||
+    rest === "/learn" ||
+    rest.startsWith("/learn/") ||
+    rest === "/a" ||
+    rest.startsWith("/a/") ||
     rest === "/login" ||
     rest === "/signup";
 

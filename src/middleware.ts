@@ -29,6 +29,12 @@ export async function middleware(request: NextRequest) {
   const locale = first;
   const rest = pathname.slice(`/${locale}`.length); // "" | "/dashboard..." | "/login"
   const isDashboard = rest === "/dashboard" || rest.startsWith("/dashboard/");
+  const isAdmin = rest === "/admin" || rest.startsWith("/admin/");
+  const isLearn = rest === "/learn" || rest.startsWith("/learn/");
+  // All authenticated app surfaces. The public storefront (/a/[slug]) is NOT
+  // here — it stays reachable anonymously. Platform-admin ROLE enforcement
+  // lives in /admin/layout.tsx (requirePlatformAdmin), not in middleware.
+  const isProtected = isDashboard || isAdmin || isLearn;
 
   // Expose the current path to layouts (so the marketing chrome can opt out
   // for the dashboard/auth app shell). Forwarded on the request headers.
@@ -47,7 +53,7 @@ export async function middleware(request: NextRequest) {
 
     let user: User | null = null;
 
-    if (hasSession || isDashboard) {
+    if (hasSession || isProtected) {
       const supabase = createServerClient<Database>(supabaseUrl, supabaseKey, {
         cookies: {
           getAll() {
@@ -70,8 +76,8 @@ export async function middleware(request: NextRequest) {
       user = data.user;
     }
 
-    // 3) Protect the dashboard: no user -> /<locale>/login?next=<path>.
-    if (isDashboard && !user) {
+    // 3) Protect the dashboard + learner area: no user -> login?next=<path>.
+    if (isProtected && !user) {
       const url = request.nextUrl.clone();
       url.pathname = `/${locale}/login`;
       url.search = "";
