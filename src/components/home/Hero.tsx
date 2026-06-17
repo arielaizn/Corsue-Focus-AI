@@ -37,7 +37,7 @@ export function Hero({ t, locale }: { t: HomeContent["hero"]; locale: Locale }) 
         >
           {/* wordmark with a thin gold accent */}
           <motion.div variants={item} className="mb-12 flex items-center gap-4">
-            <Logo href={`/${locale}`} size={40} showWordmark={false} />
+            <Logo href={`/${locale}`} size={40} showWordmark={false} draw />
             <span aria-hidden className="h-9 w-px bg-gold-grad opacity-70" />
             <span className="text-gilt">{t.badge}</span>
           </motion.div>
