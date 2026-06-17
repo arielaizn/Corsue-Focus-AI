@@ -40,6 +40,28 @@ export function CoursesIcon(p: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function AnalyticsIcon(p: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M4 4v15a1 1 0 0 0 1 1h15" />
+      <rect x="7.5" y="12" width="2.6" height="5" rx="0.6" />
+      <rect x="12.7" y="8.5" width="2.6" height="8.5" rx="0.6" />
+      <rect x="17.9" y="5" width="2.6" height="12" rx="0.6" />
+    </svg>
+  );
+}
+
+export function GradingIcon(p: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1Z" />
+      <path d="M8 5H6.5A1.5 1.5 0 0 0 5 6.5v13A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 17.5 5H16" />
+      <path d="m8.5 12 1.6 1.6L13 10.7" />
+      <path d="M9 17h6" />
+    </svg>
+  );
+}
+
 export function CommunityIcon(p: SVGProps<SVGSVGElement>) {
   return (
     <svg {...base} {...p}>

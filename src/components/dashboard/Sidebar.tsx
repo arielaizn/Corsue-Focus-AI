@@ -6,34 +6,23 @@ import type { Locale } from "@/lib/i18n";
 import type { AppDict } from "@/lib/app-dictionary";
 import { cn } from "@/lib/cn";
 import { Logo } from "@/components/shared/Logo";
-import {
-  OverviewIcon,
-  AcademyIcon,
-  CoursesIcon,
-  CommunityIcon,
-  StudentsIcon,
-  SettingsIcon,
-} from "./icons";
+import type { Role } from "@/lib/auth";
+import { dashboardNavItems } from "./navItems";
 
 export interface SidebarProps {
   locale: Locale;
   nav: AppDict["nav"];
+  /** Active membership role — filters owner/admin-only nav items. */
+  role: Role;
   /** Marketing-site label for the footer link. */
   backToSite: string;
 }
 
-export function Sidebar({ locale, nav, backToSite }: SidebarProps) {
+export function Sidebar({ locale, nav, role, backToSite }: SidebarProps) {
   const pathname = usePathname();
   const base = `/${locale}/dashboard`;
 
-  const items = [
-    { href: base, label: nav.overview, Icon: OverviewIcon, exact: true },
-    { href: `${base}/academy`, label: nav.academy, Icon: AcademyIcon },
-    { href: `${base}/courses`, label: nav.courses, Icon: CoursesIcon },
-    { href: `${base}/community`, label: nav.community, Icon: CommunityIcon },
-    { href: `${base}/students`, label: nav.students, Icon: StudentsIcon },
-    { href: `${base}/settings`, label: nav.settings, Icon: SettingsIcon },
-  ];
+  const items = dashboardNavItems(base, nav, role);
 
   return (
     <nav

@@ -20,7 +20,9 @@ function safeNext(value: FormDataEntryValue | null, locale: Locale): string {
   const v = typeof value === "string" ? value : "";
   // only allow same-origin app paths
   if (v.startsWith("/") && !v.startsWith("//")) return v;
-  return `/${locale}/dashboard`;
+  // No explicit deep-link → route through /postlogin, which lands the user on
+  // the right surface for their role (admin / dashboard / learn).
+  return `/${locale}/postlogin`;
 }
 
 /** Canonical production origin — the ONLY trusted host for emailed/OAuth
@@ -163,6 +165,92 @@ export async function signInWithGoogle(
     return { error: t.googleUnconfigured };
   }
   redirect(data.url);
+}
+
+export async function signInWithApple(
+  _prev: AuthState,
+  formData: FormData,
+): Promise<AuthState> {
+  const locale = resolveLocale(formData.get("locale"));
+  const t = appDictionary[locale].auth.errors;
+  const next = safeNext(formData.get("next"), locale);
+
+  const origin = await getOrigin();
+  const supabase = createClient(await cookies());
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "apple",
+    options: {
+      redirectTo: `${origin}/auth/callback?next=${encodeURIComponent(next)}`,
+    },
+  });
+
+  if (error || !data?.url) {
+    // Provider not enabled in Supabase yet -> friendly, non-leaking message.
+    return { error: t.appleUnconfigured };
+  }
+  redirect(data.url);
+}
+
+/** Send a password-reset email. The link routes through the callback into the
+ *  locale /reset page where the user sets a new password. */
+export async function requestPasswordReset(
+  _prev: AuthState,
+  formData: FormData,
+): Promise<AuthState> {
+  const locale = resolveLocale(formData.get("locale"));
+  const t = appDictionary[locale].auth.errors;
+  const email = String(formData.get("email") ?? "").trim();
+  if (!email) return { error: t.emailRequired };
+
+  const origin = await getOrigin();
+  const supabase = createClient(await cookies());
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${origin}/auth/callback?next=${encodeURIComponent(
+      `/${locale}/reset`,
+    )}`,
+  });
+
+  // Always report success-shaped to avoid leaking which emails exist.
+  if (error && !/rate|limit/i.test(error.message)) {
+    return { notice: appDictionary[locale].auth.magicLinkSent };
+  }
+  return { notice: appDictionary[locale].auth.magicLinkSent };
+}
+
+/** Set a new password for the currently-authenticated (recovery) session. */
+export async function updatePassword(
+  _prev: AuthState,
+  formData: FormData,
+): Promise<AuthState> {
+  const locale = resolveLocale(formData.get("locale"));
+  const t = appDictionary[locale].auth.errors;
+  const password = String(formData.get("password") ?? "");
+
+  if (password.length < 8) {
+    return {
+      error:
+        locale === "he"
+          ? "הסיסמה חייבת להכיל לפחות 8 תווים."
+          : "Password must be at least 8 characters.",
+    };
+  }
+
+  const supabase = createClient(await cookies());
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) {
+    return {
+      error:
+        locale === "he"
+          ? "פג תוקף קישור האיפוס. בקש קישור חדש."
+          : "Reset link expired. Request a new one.",
+    };
+  }
+
+  const { error } = await supabase.auth.updateUser({ password });
+  if (error) return { error: t.generic };
+  redirect(`/${locale}/dashboard`);
 }
 
 export async function signOut(formData: FormData): Promise<void> {

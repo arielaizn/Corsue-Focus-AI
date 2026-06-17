@@ -44,7 +44,12 @@ export function Topbar({
   return (
     <header className="sticky top-0 z-[var(--z-sticky)] flex items-center justify-between gap-3 border-line/60 bg-bg/80 px-4 py-3 backdrop-blur-xl [border-block-end:1px_solid_var(--color-line)] sm:px-6">
       <div className="flex min-w-0 items-center gap-2">
-        <MobileNav locale={locale} nav={nav} shell={shell} />
+        <MobileNav
+          locale={locale}
+          nav={nav}
+          shell={shell}
+          role={memberships[0]?.role ?? "student"}
+        />
         {memberships.length > 1 ? (
           <AcademySwitcher
             shell={shell}

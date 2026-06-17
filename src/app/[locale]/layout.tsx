@@ -88,7 +88,7 @@ export async function generateMetadata({
     openGraph: {
       title: m.title,
       description: m.description,
-      images: ["/logo-bg.png"],
+      // og:image is supplied by ./opengraph-image.tsx (branded 1200×630 card)
       locale: locale === "he" ? "he_IL" : "en_US",
       type: "website",
     },
@@ -120,6 +120,12 @@ export default async function LocaleLayout({
   const isAppShell =
     rest === "/dashboard" ||
     rest.startsWith("/dashboard/") ||
+    rest === "/admin" ||
+    rest.startsWith("/admin/") ||
+    rest === "/learn" ||
+    rest.startsWith("/learn/") ||
+    rest === "/a" ||
+    rest.startsWith("/a/") ||
     rest === "/login" ||
     rest === "/signup";
 
