@@ -211,12 +211,12 @@ export function Analytics({
               {t.advisorMessage}
             </motion.div>
 
-            <motion.button
-              type="button"
+            <motion.a
+              href={`/${locale}/ai`}
               initial={reduced ? { opacity: 1 } : { opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
               transition={{ duration: 0.6, ease: easeOutExpo, delay: 0.7 }}
-              className="relative mt-4 inline-flex h-10 w-fit items-center gap-2 self-start rounded-[6px] bg-ink px-4 text-sm font-semibold text-bg-deep transition-transform hover:-translate-y-0.5"
+              className="relative mt-4 inline-flex h-10 w-fit items-center gap-2 self-start rounded-[6px] bg-ink px-4 text-sm font-semibold text-bg-deep transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               {t.advisorAction}
               <svg
@@ -235,7 +235,7 @@ export function Analytics({
                   strokeLinejoin="round"
                 />
               </svg>
-            </motion.button>
+            </motion.a>
 
             <p className="relative mt-auto pt-6 text-[11px] text-muted">
               {locale === "he"

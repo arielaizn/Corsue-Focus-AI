@@ -94,20 +94,18 @@ export function MessagingSection({ t }: { t: T }) {
                   {t.threadMeta}
                 </p>
               </div>
-              <button
-                type="button"
-                aria-label={t.callLabels.voice}
-                className="grid h-9 w-9 place-items-center rounded-lg text-ink-soft transition-colors hover:bg-surface-2/60 hover:text-ink focus-visible:outline-2"
+              <span
+                aria-hidden
+                className="grid h-9 w-9 place-items-center rounded-lg text-ink-soft"
               >
                 <PhoneCallIcon size={18} />
-              </button>
-              <button
-                type="button"
-                aria-label={t.callLabels.video}
-                className="grid h-9 w-9 place-items-center rounded-lg text-ink-soft transition-colors hover:bg-surface-2/60 hover:text-ink focus-visible:outline-2"
+              </span>
+              <span
+                aria-hidden
+                className="grid h-9 w-9 place-items-center rounded-lg text-ink-soft"
               >
                 <VideoIcon size={19} />
-              </button>
+              </span>
             </div>
 
             {/* messages */}
@@ -119,23 +117,21 @@ export function MessagingSection({ t }: { t: T }) {
 
             {/* composer */}
             <div className="flex items-center gap-2 border-t border-line bg-surface/40 px-3 py-3">
-              <button
-                type="button"
-                aria-label={t.capabilities[2]}
-                className="grid h-9 w-9 place-items-center rounded-lg text-muted transition-colors hover:text-ink focus-visible:outline-2"
+              <span
+                aria-hidden
+                className="grid h-9 w-9 place-items-center rounded-lg text-muted"
               >
                 <PaperclipIcon size={18} />
-              </button>
+              </span>
               <div className="flex-1 rounded-full bg-bg px-4 py-2 text-sm text-muted [box-shadow:inset_0_0_0_1px_var(--color-line)]">
                 {t.inputPlaceholder}
               </div>
-              <button
-                type="button"
-                aria-label={t.capabilities[3]}
-                className="grid h-9 w-9 place-items-center rounded-lg text-muted transition-colors hover:text-ink focus-visible:outline-2"
+              <span
+                aria-hidden
+                className="grid h-9 w-9 place-items-center rounded-lg text-muted"
               >
                 <MicIcon size={18} />
-              </button>
+              </span>
               <span className="grid h-9 w-9 place-items-center rounded-full bg-ink text-bg-deep">
                 <SendIcon size={17} />
               </span>

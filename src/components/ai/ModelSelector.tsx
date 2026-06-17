@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, type KeyboardEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { AIContent } from "@/content/ai";
 import type { Locale } from "@/lib/i18n";
@@ -35,19 +35,44 @@ export function ModelSelector({ locale }: ModelSelectorProps) {
   const reduced = useReducedMotion();
   const [active, setActive] = useState(0);
   const model = data.models[active];
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+
+  const onTabKey = (e: KeyboardEvent<HTMLDivElement>) => {
+    const len = data.models.length;
+    let next = active;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (active + 1) % len;
+    else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (active - 1 + len) % len;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = len - 1;
+    else return;
+    e.preventDefault();
+    setActive(next);
+    tabRefs.current[next]?.focus();
+  };
 
   return (
     <div className="panel-couture grain p-6 sm:p-9">
       {/* engine picker */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label={data.tag}>
+      <div
+        className="flex flex-wrap gap-2"
+        role="tablist"
+        aria-label={data.tag}
+        onKeyDown={onTabKey}
+      >
         {data.models.map((m, i) => {
           const selected = i === active;
           return (
             <button
               key={m.name}
+              ref={(el) => {
+                tabRefs.current[i] = el;
+              }}
               role="tab"
               type="button"
+              id={`model-tab-${i}`}
               aria-selected={selected}
+              aria-controls="model-panel"
+              tabIndex={selected ? 0 : -1}
               onClick={() => setActive(i)}
               className="rounded-md px-3.5 py-2 text-sm font-medium transition-[background-color,color,box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{
@@ -63,7 +88,12 @@ export function ModelSelector({ locale }: ModelSelectorProps) {
       </div>
 
       {/* routed interface preview */}
-      <div className="mt-6 grid gap-4 md:grid-cols-[1fr_1.1fr]">
+      <div
+        className="mt-6 grid gap-4 md:grid-cols-[1fr_1.1fr]"
+        role="tabpanel"
+        id="model-panel"
+        aria-labelledby={`model-tab-${active}`}
+      >
         {/* active model detail */}
         <div
           className="rounded-lg p-5"
@@ -112,7 +142,19 @@ export function ModelSelector({ locale }: ModelSelectorProps) {
               </motion.span>
             </AnimatePresence>
           </div>
-          <p className="mt-3 text-xs leading-relaxed text-ink-soft">{data.routeNote}</p>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={model.name}
+              initial={reduced ? { opacity: 1 } : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={reduced ? { opacity: 1 } : { opacity: 0 }}
+              transition={reduced ? { duration: 0 } : { duration: 0.25 }}
+              className="mt-3 text-xs leading-relaxed text-ink-soft"
+            >
+              <span className="font-medium text-ink">{model.name}</span>
+              <span className="text-muted"> · {model.trait}</span> — {data.routeNote}
+            </motion.p>
+          </AnimatePresence>
         </div>
       </div>
     </div>

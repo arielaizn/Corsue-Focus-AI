@@ -33,7 +33,7 @@ export function Hero({ t, locale }: { t: HomeContent["hero"]; locale: Locale }) 
           variants={container}
           initial="hidden"
           animate="show"
-          className="flex max-w-[20ch] flex-col items-start text-start"
+          className="flex max-w-[46rem] flex-col items-start text-start"
         >
           {/* wordmark with a thin gold accent */}
           <motion.div variants={item} className="mb-12 flex items-center gap-4">

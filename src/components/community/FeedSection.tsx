@@ -13,7 +13,22 @@ type T = (typeof content)[Locale]["feed"];
 function FeedPostCard({ post, t }: { post: T["posts"][number]; t: T }) {
   const reduced = useReducedMotion();
   const [liked, setLiked] = useState(false);
+  const [shared, setShared] = useState(false);
   const likeCount = post.likes + (liked ? 1 : 0);
+
+  const onShare = async () => {
+    try {
+      if (typeof navigator !== "undefined" && navigator.share) {
+        await navigator.share({ title: "CourseFocus", text: post.body });
+      } else if (typeof navigator !== "undefined" && navigator.clipboard) {
+        await navigator.clipboard.writeText(post.body);
+      }
+    } catch {
+      /* share sheet dismissed or API unavailable — still flash confirmation */
+    }
+    setShared(true);
+    window.setTimeout(() => setShared(false), 1600);
+  };
 
   return (
     <article className="panel-couture p-4 sm:p-5">
@@ -68,10 +83,25 @@ function FeedPostCard({ post, t }: { post: T["posts"][number]; t: T }) {
         </span>
         <button
           type="button"
+          onClick={onShare}
           aria-label={t.shareLabel}
+          aria-pressed={shared}
           className="ms-auto inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-surface-2/60 hover:text-ink-soft focus-visible:outline-2"
+          style={{ color: shared ? "var(--color-gold)" : undefined }}
         >
-          <ShareIcon size={16} />
+          {shared ? (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path
+                d="M20 6 9 17l-5-5"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          ) : (
+            <ShareIcon size={16} />
+          )}
           <span className="hidden sm:inline">{t.shareLabel}</span>
         </button>
       </div>

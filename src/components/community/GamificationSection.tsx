@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, type KeyboardEvent } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Reveal, SectionHeading } from "@/components/ui";
 import type { content } from "@/content/community";
@@ -192,6 +192,21 @@ function BadgesCard({ badges }: { badges: T["badges"] }) {
 /* ---------- Leaderboard with tabs (interactive) ---------- */
 function LeaderboardCard({ lb }: { lb: T["leaderboard"] }) {
   const [tab, setTab] = useState(lb.activeTab);
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+
+  const onTabKey = (e: KeyboardEvent<HTMLDivElement>) => {
+    const len = lb.tabs.length;
+    const cur = lb.tabs.findIndex((tb) => tb.id === tab);
+    let next = cur;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (cur + 1) % len;
+    else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (cur - 1 + len) % len;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = len - 1;
+    else return;
+    e.preventDefault();
+    setTab(lb.tabs[next].id);
+    tabRefs.current[next]?.focus();
+  };
   // Deterministic cumulative XP per tab so switching feels alive without fake data files.
   // Weekly = 1 (the anchor); daily is a single-day slice, monthly/all accumulate upward.
   // All bands stay positive integers and read as plausible: daily < weekly < monthly < all.
@@ -208,15 +223,22 @@ function LeaderboardCard({ lb }: { lb: T["leaderboard"] }) {
         <div
           role="tablist"
           aria-label={lb.title}
+          onKeyDown={onTabKey}
           className="flex flex-wrap gap-1 rounded-lg bg-bg p-1 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
         >
-          {lb.tabs.map((tb) => {
+          {lb.tabs.map((tb, i) => {
             const active = tb.id === tab;
             return (
               <button
                 key={tb.id}
+                ref={(el) => {
+                  tabRefs.current[i] = el;
+                }}
                 role="tab"
+                id={`lb-tab-${tb.id}`}
                 aria-selected={active}
+                aria-controls="lb-panel"
+                tabIndex={active ? 0 : -1}
                 type="button"
                 onClick={() => setTab(tb.id)}
                 className={`rounded-md px-3 py-1 text-xs font-medium transition-colors focus-visible:outline-2 ${
@@ -232,7 +254,12 @@ function LeaderboardCard({ lb }: { lb: T["leaderboard"] }) {
         </div>
       </div>
 
-      <ul className="mt-5 space-y-1.5">
+      <ul
+        className="mt-5 space-y-1.5"
+        role="tabpanel"
+        id="lb-panel"
+        aria-labelledby={`lb-tab-${tab}`}
+      >
         {rows.map((r) => {
           const podium = r.rank <= 3;
           return (
