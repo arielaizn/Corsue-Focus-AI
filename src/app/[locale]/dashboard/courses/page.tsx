@@ -6,6 +6,7 @@ import { coursesDict } from "@/components/dashboard/courses/dictionary";
 import { PageHeader, EmptyState, Pill } from "@/components/dashboard/ui";
 import { CoursesIcon, AcademyIcon, ChevronIcon } from "@/components/dashboard/icons";
 import { CreateCourseDialog } from "@/components/dashboard/courses/CreateCourseDialog";
+import { GenerateCourseDialog } from "@/components/dashboard/courses/GenerateCourseDialog";
 
 export const dynamic = "force-dynamic";
 
@@ -56,7 +57,10 @@ export default async function CoursesPage({
         subtitle={t.index.subtitle}
         actions={
           canWrite ? (
-            <CreateCourseDialog locale={locale} academyId={academyId} />
+            <>
+              <GenerateCourseDialog locale={locale} academyId={academyId} />
+              <CreateCourseDialog locale={locale} academyId={academyId} />
+            </>
           ) : undefined
         }
       />

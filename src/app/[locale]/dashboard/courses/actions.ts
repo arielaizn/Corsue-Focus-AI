@@ -150,6 +150,7 @@ export async function updateCourse(
   const courseType = asCourseType(formData.get("courseType"));
   const price = courseType === "free" ? null : asPrice(formData.get("price"));
   const isPublished = formData.get("isPublished") === "on";
+  const coverUrl = str(formData.get("coverUrl"));
 
   if (!title) return { error: t.titleRequired };
   if (!academyId || !courseId) return { error: t.generic };
@@ -166,6 +167,7 @@ export async function updateCourse(
       course_type: courseType,
       price,
       is_published: isPublished,
+      cover_url: coverUrl || null,
     })
     .eq("id", courseId)
     .eq("academy_id", academyId);

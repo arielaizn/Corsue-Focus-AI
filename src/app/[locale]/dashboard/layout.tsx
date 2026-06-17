@@ -55,6 +55,7 @@ export default async function DashboardLayout({
           <Sidebar
             locale={locale}
             nav={dict.nav}
+            role={memberships[0]?.role ?? "student"}
             backToSite={dict.shell.backToSite}
           />
         </aside>

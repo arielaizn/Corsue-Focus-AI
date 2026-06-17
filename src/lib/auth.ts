@@ -98,23 +98,30 @@ export async function getUserAndAcademies(): Promise<{
 
   const memRows = memRes.data ?? [];
 
-  // Best-effort enrich with the full academies row (graceful on RLS recursion).
-  const memberships: MembershipWithAcademy[] = await Promise.all(
-    memRows.map(async (m) => {
-      let academy = stubAcademy(m.academy_id);
-      try {
-        const { data } = await supabase
+  // Best-effort enrich with the full academies row. Distinguish three cases so
+  // a soft-deleted academy doesn't ghost in the switcher/danger-zone:
+  //   - data present + deleted_at set → drop (soft-deleted)
+  //   - data present                 → use it
+  //   - error (RLS recursion/transient) → keep the stub fallback (0004 fixes the
+  //     recursion; this stays as defence-in-depth)
+  //   - clean empty (row hidden by the `deleted_at IS NULL` RLS) → drop
+  const memberships: MembershipWithAcademy[] = (
+    await Promise.all(
+      memRows.map(async (m) => {
+        const { data, error } = await supabase
           .from("academies")
           .select("*")
           .eq("id", m.academy_id)
           .maybeSingle();
-        if (data) academy = data;
-      } catch {
-        // keep the stub
-      }
-      return { role: m.role, academy };
-    }),
-  );
+        if (data) {
+          if (data.deleted_at) return null;
+          return { role: m.role, academy: data };
+        }
+        if (error) return { role: m.role, academy: stubAcademy(m.academy_id) };
+        return null;
+      }),
+    )
+  ).filter((x): x is MembershipWithAcademy => x !== null);
 
   return { user, profile: profRes.data ?? null, memberships };
 }

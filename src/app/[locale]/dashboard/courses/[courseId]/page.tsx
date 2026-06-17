@@ -8,6 +8,8 @@ import { PageHeader, Pill, EmptyState } from "@/components/dashboard/ui";
 import { ChevronIcon, AcademyIcon } from "@/components/dashboard/icons";
 import { CourseMetaForm } from "@/components/dashboard/courses/CourseMetaForm";
 import { CurriculumBuilder } from "@/components/dashboard/courses/CurriculumBuilder";
+import { ExamGeneratorPanel } from "@/components/dashboard/courses/ExamGeneratorPanel";
+import { VideoStudioPanel } from "@/components/dashboard/courses/VideoStudioPanel";
 
 export const dynamic = "force-dynamic";
 
@@ -82,6 +84,19 @@ export default async function CourseBuilderPage({
           modules={modules}
         />
       </div>
+
+      <ExamGeneratorPanel
+        locale={locale}
+        academyId={academyId}
+        courseId={course.id}
+      />
+
+      <VideoStudioPanel
+        locale={locale}
+        academyId={academyId}
+        courseId={course.id}
+        modules={modules}
+      />
     </div>
   );
 }

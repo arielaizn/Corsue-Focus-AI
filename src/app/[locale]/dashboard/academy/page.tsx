@@ -9,6 +9,7 @@ import {
   type AcademyFormValues,
 } from "@/lib/data/academies";
 import { AcademyForm } from "@/components/dashboard/academy/AcademyForm";
+import { BuildAcademyPanel } from "@/components/dashboard/academy/BuildAcademyPanel";
 import { academyDict } from "@/components/dashboard/academy/dict";
 
 export const dynamic = "force-dynamic";
@@ -89,14 +90,21 @@ export default async function AcademyPage({
         }
       />
       {canEdit ? (
-        <div className="max-w-2xl">
-          <AcademyForm
-            mode="settings"
+        <>
+          <div className="max-w-2xl">
+            <AcademyForm
+              mode="settings"
+              locale={locale}
+              academyId={full.id}
+              initialValues={initialValues}
+            />
+          </div>
+          <BuildAcademyPanel
             locale={locale}
             academyId={full.id}
-            initialValues={initialValues}
+            currency={full.currency}
           />
-        </div>
+        </>
       ) : (
         <ReadOnlyAcademy
           values={initialValues}

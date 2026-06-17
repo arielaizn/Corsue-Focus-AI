@@ -25,6 +25,8 @@ export interface AppDict {
     creating: string;
     orContinue: string;
     google: string;
+    apple: string;
+    forgotPassword: string;
     magicLink: string;
     magicLinkSent: string;
     usePassword: string;
@@ -39,6 +41,7 @@ export interface AppDict {
       generic: string;
       invalid: string;
       googleUnconfigured: string;
+      appleUnconfigured: string;
       emailRequired: string;
     };
   };
@@ -46,6 +49,8 @@ export interface AppDict {
     overview: string;
     academy: string;
     courses: string;
+    analytics: string;
+    grading: string;
     community: string;
     students: string;
     settings: string;
@@ -111,6 +116,8 @@ export const appDictionary: Record<Locale, AppDict> = {
       creating: "יוצר חשבון…",
       orContinue: "או המשך עם",
       google: "המשך עם Google",
+      apple: "המשך עם Apple",
+      forgotPassword: "שכחת סיסמה?",
       magicLink: "שלח לי קישור קסם",
       magicLinkSent: "שלחנו קישור התחברות לאימייל שלך. בדוק את תיבת הדואר.",
       usePassword: "התחברות עם סיסמה",
@@ -139,6 +146,8 @@ export const appDictionary: Record<Locale, AppDict> = {
         invalid: "אימייל או סיסמה שגויים.",
         googleUnconfigured:
           "התחברות עם Google עדיין לא מופעלת. השתמש באימייל וסיסמה או בקישור קסם.",
+        appleUnconfigured:
+          "התחברות עם Apple עדיין לא מופעלת. השתמש באימייל וסיסמה או בקישור קסם.",
         emailRequired: "נא להזין כתובת אימייל תקינה.",
       },
     },
@@ -146,6 +155,8 @@ export const appDictionary: Record<Locale, AppDict> = {
       overview: "סקירה",
       academy: "אקדמיה",
       courses: "קורסים",
+      analytics: "אנליטיקס",
+      grading: "בדיקת מטלות",
       community: "קהילה",
       students: "תלמידים",
       settings: "הגדרות",
@@ -227,6 +238,8 @@ export const appDictionary: Record<Locale, AppDict> = {
       creating: "Creating account…",
       orContinue: "or continue with",
       google: "Continue with Google",
+      apple: "Continue with Apple",
+      forgotPassword: "Forgot password?",
       magicLink: "Send me a magic link",
       magicLinkSent: "We sent a sign-in link to your email. Check your inbox.",
       usePassword: "Sign in with password",
@@ -255,6 +268,8 @@ export const appDictionary: Record<Locale, AppDict> = {
         invalid: "Invalid email or password.",
         googleUnconfigured:
           "Google sign-in isn't enabled yet. Use email + password or a magic link.",
+        appleUnconfigured:
+          "Apple sign-in isn't enabled yet. Use email + password or a magic link.",
         emailRequired: "Please enter a valid email address.",
       },
     },
@@ -262,6 +277,8 @@ export const appDictionary: Record<Locale, AppDict> = {
       overview: "Overview",
       academy: "Academy",
       courses: "Courses",
+      analytics: "Analytics",
+      grading: "Grading",
       community: "Community",
       students: "Students",
       settings: "Settings",

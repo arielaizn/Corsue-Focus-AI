@@ -7,21 +7,15 @@ import type { Locale } from "@/lib/i18n";
 import type { AppDict } from "@/lib/app-dictionary";
 import { cn } from "@/lib/cn";
 import { Logo } from "@/components/shared/Logo";
-import {
-  OverviewIcon,
-  AcademyIcon,
-  CoursesIcon,
-  CommunityIcon,
-  StudentsIcon,
-  SettingsIcon,
-  MenuIcon,
-  CloseIcon,
-} from "./icons";
+import { MenuIcon, CloseIcon } from "./icons";
+import type { Role } from "@/lib/auth";
+import { dashboardNavItems } from "./navItems";
 
 export interface MobileNavProps {
   locale: Locale;
   nav: AppDict["nav"];
   shell: AppDict["shell"];
+  role: Role;
 }
 
 /**
@@ -30,21 +24,14 @@ export interface MobileNavProps {
  * whole app is unnavigable below 1024px (the desktop <aside> is hidden lg:block).
  * Closes on Escape, on backdrop click, and on route change (pathname effect).
  */
-export function MobileNav({ locale, nav, shell }: MobileNavProps) {
+export function MobileNav({ locale, nav, shell, role }: MobileNavProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const base = `/${locale}/dashboard`;
 
-  const items = [
-    { href: base, label: nav.overview, Icon: OverviewIcon, exact: true },
-    { href: `${base}/academy`, label: nav.academy, Icon: AcademyIcon },
-    { href: `${base}/courses`, label: nav.courses, Icon: CoursesIcon },
-    { href: `${base}/community`, label: nav.community, Icon: CommunityIcon },
-    { href: `${base}/students`, label: nav.students, Icon: StudentsIcon },
-    { href: `${base}/settings`, label: nav.settings, Icon: SettingsIcon },
-  ];
+  const items = dashboardNavItems(base, nav, role);
 
   // Close on route change.
   useEffect(() => {

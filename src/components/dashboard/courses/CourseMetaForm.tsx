@@ -11,6 +11,8 @@ import {
 import { COURSE_TYPES, type Course } from "@/lib/data/courses.shared";
 import { coursesDict } from "./dictionary";
 import { auroraBtn, inputCls, labelCls, dangerText } from "./styles";
+import { MediaUpload } from "@/components/dashboard/MediaUpload";
+import { brandingPath, BUCKETS } from "@/lib/data/storage";
 
 const initial: CourseActionState = {};
 
@@ -37,6 +39,7 @@ export function CourseMetaForm({
   const [state, formAction] = useActionState(updateCourse, initial);
   const [type, setType] = useState<string>(course.course_type);
   const [published, setPublished] = useState(course.is_published);
+  const [coverUrl, setCoverUrl] = useState<string>(course.cover_url ?? "");
 
   return (
     <section className="panel-premium p-6">
@@ -51,6 +54,23 @@ export function CourseMetaForm({
         <input type="hidden" name="locale" value={locale} />
         <input type="hidden" name="academyId" value={academyId} />
         <input type="hidden" name="courseId" value={course.id} />
+        <input type="hidden" name="coverUrl" value={coverUrl} />
+
+        <div className="flex flex-col gap-1.5">
+          <span className={labelCls}>
+            {locale === "he" ? "תמונת קאבר" : "Cover image"}
+          </span>
+          <MediaUpload
+            locale={locale}
+            bucket={BUCKETS.branding}
+            buildPath={(filename) =>
+              brandingPath(academyId, "course-cover", filename)
+            }
+            currentUrl={coverUrl || null}
+            accept="image/*"
+            onUploaded={setCoverUrl}
+          />
+        </div>
 
         <label className="flex flex-col gap-1.5">
           <span className={labelCls}>{t.builder.titleLabel}</span>
