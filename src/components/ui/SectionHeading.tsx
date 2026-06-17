@@ -30,15 +30,15 @@ export function SectionHeading({
       {kicker && (
         <span
           className={cn(
-            "text-gilt inline-flex items-center gap-2",
+            "text-gilt inline-flex items-center gap-3",
             align === "center" && "justify-center",
           )}
         >
-          <span aria-hidden className="h-px w-6 bg-gold-grad opacity-70" />
+          <span aria-hidden className="h-px w-7 bg-gold-grad opacity-80" />
           {kicker}
         </span>
       )}
-      <Tag className="font-[family-name:var(--font-display)] text-balance text-[length:var(--text-h2)] font-bold leading-[1.06] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
+      <Tag className="text-balance text-[length:var(--text-h2)] font-medium leading-[1.1] text-ink [.font-he_&]:font-bold">
         {title}
       </Tag>
       {subtitle && (

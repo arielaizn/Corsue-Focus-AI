@@ -39,8 +39,8 @@ export function CourseGenerator({
   const done = step >= t.steps.length;
 
   return (
-    <section ref={ref} className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
-      <span aria-hidden className="gilt-rule block mb-16 opacity-30" />
+    <section ref={ref} className="mx-auto max-w-[1240px] px-6 py-32 sm:py-44">
+      <span aria-hidden className="gilt-rule mx-auto mb-20 block max-w-[160px] opacity-60" />
       <Reveal>
         <SectionHeading
           title={t.title}
@@ -60,13 +60,13 @@ export function CourseGenerator({
                 <span className="text-xs font-medium text-muted">
                   {t.promptLabel}
                 </span>
-                <div className="mt-2 rounded-lg bg-surface/50 p-3.5 text-sm text-ink [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.35)]">
+                <div className="mt-2 rounded-[6px] bg-surface p-3.5 text-sm text-ink ring-line">
                   {t.prompt}
                 </div>
-                <div className="mt-3 inline-flex items-center gap-2 rounded-lg bg-aurora px-3.5 py-2 text-sm font-semibold text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35),inset_0_1px_0_oklch(1_0_0_/_0.18)]">
+                <div className="mt-3 inline-flex items-center gap-2 rounded-[6px] bg-ink px-3.5 py-2 text-sm font-semibold text-bg-deep">
                   {!done && started ? (
                     <>
-                      <span className="h-3.5 w-3.5 animate-[orbit-spin_0.9s_linear_infinite] rounded-full border-2 border-ink/40 border-t-ink" />
+                      <span className="h-3.5 w-3.5 animate-[orbit-spin_0.9s_linear_infinite] rounded-full border-2 border-bg-deep/30 border-t-bg-deep" />
                       {t.generating}
                     </>
                   ) : (
@@ -88,10 +88,10 @@ export function CourseGenerator({
                           className={
                             "mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full text-[11px] transition-colors " +
                             (complete
-                              ? "bg-aurora text-ink"
+                              ? "bg-ink text-bg-deep"
                               : active
-                                ? "bg-bg text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.5)]"
-                                : "bg-bg text-muted [box-shadow:inset_0_0_0_1px_var(--color-line)]")
+                                ? "bg-bg text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.5)]"
+                                : "bg-bg text-muted ring-line")
                           }
                         >
                           {complete ? "✓" : active ? "•" : i + 1}
@@ -127,12 +127,12 @@ export function CourseGenerator({
               </div>
 
               {/* right: generated outline */}
-              <div className="bg-bg-deep/40 p-5 sm:p-6">
+              <div className="bg-bg-deep p-5 sm:p-6">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-[family-name:var(--font-display)] text-base font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+                  <h3 className="font-[family-name:var(--font-display)] text-base font-medium text-ink [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold">
                     {t.outlineTitle}
                   </h3>
-                  <span className="rounded-full bg-surface/60 px-2.5 py-1 text-[11px] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35)]">
+                  <span className="rounded-full bg-surface px-2.5 py-1 text-[11px] text-gold gilt-rim">
                     AI
                   </span>
                 </div>
@@ -146,10 +146,10 @@ export function CourseGenerator({
                         initial={reduced ? { opacity: 1 } : { opacity: 0, y: 10 }}
                         animate={reveal ? { opacity: 1, y: 0 } : { opacity: 0.25, y: 0 }}
                         transition={{ duration: 0.45, ease: easeOutExpo }}
-                        className="rounded-lg bg-surface/40 p-3 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+                        className="rounded-[6px] bg-surface p-3 ring-line"
                       >
                         <div className="flex items-center gap-2">
-                          <span className="grid h-5 w-5 place-items-center rounded-md bg-bg text-[11px] font-semibold text-primary-bright [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+                          <span className="grid h-5 w-5 place-items-center rounded-[5px] bg-bg text-[11px] font-semibold text-ink-soft ring-line">
                             {mi + 1}
                           </span>
                           <span className="text-sm font-medium text-ink">
@@ -175,7 +175,7 @@ export function CourseGenerator({
                     initial={reduced ? { opacity: 1 } : { opacity: 0, y: 10 }}
                     animate={done ? { opacity: 1, y: 0 } : { opacity: 0.25 }}
                     transition={{ duration: 0.45, ease: easeOutExpo, delay: 0.1 }}
-                    className="rounded-lg bg-surface/40 p-3 [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.3)]"
+                    className="rounded-[6px] bg-surface p-3 [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.3)]"
                   >
                     <span className="text-sm font-medium text-gold">
                       {t.quizLabel}

@@ -6,8 +6,8 @@ import type { HomeContent } from "@/content/home";
 
 function Chip({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-xl bg-surface/40 px-4 py-2.5 text-sm font-medium text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.04)]">
-      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-violet-bright" />
+    <span className="inline-flex items-center gap-2.5 rounded-[6px] bg-surface px-4 py-2.5 text-sm text-ink-soft ring-line">
+      <span aria-hidden className="h-1 w-1 rounded-full bg-muted/70" />
       {label}
     </span>
   );
@@ -15,8 +15,8 @@ function Chip({ label }: { label: string }) {
 
 function AiChip({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-xl bg-surface/40 px-4 py-2.5 text-sm font-medium text-ink-soft gilt-rim">
-      <span aria-hidden className="text-gold">✦</span>
+    <span className="inline-flex items-center gap-2.5 rounded-[6px] bg-surface px-4 py-2.5 text-sm text-ink-soft gilt-rim">
+      <span aria-hidden className="text-gold text-[0.7rem]">✦</span>
       {label}
     </span>
   );
@@ -32,13 +32,13 @@ const integrations = [
 
 export function TrustStrip({ t }: { t: HomeContent["trust"] }) {
   return (
-    <section className="relative bg-bg-deep/40 py-16">
-      <span aria-hidden className="gilt-rule absolute inset-x-0 top-0 opacity-50" />
-      <span aria-hidden className="gilt-rule absolute inset-x-0 bottom-0 opacity-50" />
-      <div className="mx-auto max-w-[1240px] px-5">
-        <p className="text-center text-xs font-medium uppercase tracking-wide text-muted">{t.eyebrow}</p>
+    <section className="relative bg-bg-deep py-20">
+      <span aria-hidden className="gilt-rule absolute inset-x-0 top-0 opacity-40" />
+      <span aria-hidden className="gilt-rule absolute inset-x-0 bottom-0 opacity-40" />
+      <div className="mx-auto max-w-[1240px] px-6">
+        <p className="text-center text-gilt opacity-90">{t.eyebrow}</p>
       </div>
-      <div className="mt-10 flex flex-col gap-4">
+      <div className="mt-12 flex flex-col gap-4">
         <Marquee
           speed={42}
           items={integrations.map((n) => (

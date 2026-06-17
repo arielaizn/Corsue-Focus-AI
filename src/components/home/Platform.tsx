@@ -18,17 +18,17 @@ export function Platform({
   locale: Locale;
 }) {
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-36">
-      <span aria-hidden className="gilt-rule block mb-16 opacity-30" />
+    <section className="mx-auto max-w-[1240px] px-6 py-32 sm:py-44">
+      <span aria-hidden className="gilt-rule mb-20 block max-w-[160px] opacity-60" />
       <Reveal>
         <SectionHeading title={t.title} subtitle={t.sub} as="h2" />
       </Reveal>
 
-      <div className="mt-14 grid gap-5 lg:grid-cols-3">
+      <div className="mt-16 grid gap-5 lg:grid-cols-3">
         {/* Marketplace — a listing stack */}
-        <Reveal y={24}>
-          <article className="panel-premium flex h-full flex-col overflow-hidden p-6">
-            <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold leading-[1.1] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
+        <Reveal y={20}>
+          <article className="panel-couture flex h-full flex-col overflow-hidden p-6">
+            <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-medium leading-[1.12] text-ink [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold">
               {t.marketplace.title}
             </h3>
             <p className="mt-2 text-sm text-ink-soft">{t.marketplace.desc}</p>
@@ -37,11 +37,11 @@ export function Platform({
               {t.marketplace.items.map((it, i) => (
                 <li
                   key={it}
-                  className="flex items-center gap-3 rounded-xl bg-bg/60 p-3 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+                  className="flex items-center gap-3 rounded-[8px] bg-bg/60 p-3 ring-line"
                 >
                   <span
                     aria-hidden
-                    className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-aurora text-sm font-semibold text-ink"
+                    className="grid h-9 w-9 shrink-0 place-items-center rounded-[7px] bg-surface-2 text-sm font-semibold text-ink ring-line"
                   >
                     {it.trim().charAt(0)}
                   </span>
@@ -67,9 +67,9 @@ export function Platform({
         </Reveal>
 
         {/* Mobile — PhoneFrame student-app mock */}
-        <Reveal y={24} delay={0.06}>
-          <article className="panel-premium flex h-full flex-col overflow-hidden p-6">
-            <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold leading-[1.1] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
+        <Reveal y={20} delay={0.06}>
+          <article className="panel-couture flex h-full flex-col overflow-hidden p-6">
+            <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-medium leading-[1.12] text-ink [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold">
               {t.mobile.title}
             </h3>
             <p className="mt-2 text-sm text-ink-soft">{t.mobile.desc}</p>
@@ -93,13 +93,13 @@ export function Platform({
 
                   {/* now-playing lesson card */}
                   <div className="px-4">
-                    <div className="overflow-hidden rounded-xl bg-surface/60 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+                    <div className="overflow-hidden rounded-[10px] bg-surface/60 ring-line">
                       <div
-                        className="relative h-24 bg-aurora"
+                        className="relative h-24 bg-surface-2"
                         aria-hidden
                       >
                         <span className="absolute inset-0 grid place-items-center">
-                          <span className="grid h-9 w-9 place-items-center rounded-full bg-bg-deep/60 text-ink">
+                          <span className="grid h-9 w-9 place-items-center rounded-full bg-bg-deep/70 text-ink ring-line">
                             ▶
                           </span>
                         </span>
@@ -157,20 +157,20 @@ export function Platform({
         </Reveal>
 
         {/* API — the ONE mono block on Home */}
-        <Reveal y={24} delay={0.12}>
-          <article className="panel-premium flex h-full flex-col overflow-hidden p-6">
-            <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold leading-[1.1] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
+        <Reveal y={20} delay={0.12}>
+          <article className="panel-couture flex h-full flex-col overflow-hidden p-6">
+            <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-medium leading-[1.12] text-ink [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold">
               {t.api.title}
             </h3>
             <p className="mt-2 text-sm text-ink-soft">{t.api.desc}</p>
 
             <div
               dir="ltr"
-              className="mt-5 flex flex-1 flex-col overflow-hidden rounded-xl bg-bg-deep [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+              className="mt-5 flex flex-1 flex-col overflow-hidden rounded-[8px] bg-bg-deep ring-line"
             >
               {/* endpoint header */}
               <div className="flex items-center gap-2 border-b border-line/70 px-3.5 py-2.5">
-                <span className="rounded-md bg-[oklch(0.62_0.2_264_/_0.18)] px-2 py-0.5 font-[family-name:var(--font-mono)] text-[11px] font-semibold text-primary-bright">
+                <span className="rounded-[5px] bg-[oklch(0.55_0.11_250_/_0.18)] px-2 py-0.5 font-[family-name:var(--font-mono)] text-[11px] font-semibold text-[oklch(0.7_0.09_250)]">
                   {t.api.method}
                 </span>
                 <span className="font-[family-name:var(--font-mono)] text-[11px] text-ink-soft">

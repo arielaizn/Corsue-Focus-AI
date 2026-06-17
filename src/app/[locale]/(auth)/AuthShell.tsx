@@ -55,7 +55,7 @@ export function AuthShell({
               <li key={p.title} className="flex gap-4">
                 <span
                   aria-hidden
-                  className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-gold [box-shadow:0_0_18px_oklch(0.83_0.13_88_/_0.7)]"
+                  className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-gold [box-shadow:0_0_0_1px_oklch(0.76_0.105_80_/_0.35)]"
                 />
                 <div>
                   <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink">

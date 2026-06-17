@@ -21,7 +21,7 @@ function Bubble({ m }: { m: Msg }) {
     if (m.kind === "file") {
       return (
         <span className="flex items-center gap-3">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-[oklch(0.82_0.135_84_/_0.15)] text-gold">
+          <span className="grid h-9 w-9 place-items-center rounded-lg bg-[oklch(0.76_0.105_80_/_0.14)] text-gold">
             <FileIcon size={18} />
           </span>
           <span className="min-w-0">
@@ -34,14 +34,14 @@ function Bubble({ m }: { m: Msg }) {
     if (m.kind === "voice") {
       return (
         <span className="flex items-center gap-2.5">
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-[oklch(0.62_0.23_330_/_0.28)] text-ink">
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-surface-3 text-ink">
             <MicIcon size={16} />
           </span>
           <span aria-hidden className="flex items-end gap-[3px]">
             {[7, 12, 9, 16, 11, 18, 8, 14, 6, 13, 9, 5].map((h, i) => (
               <span
                 key={i}
-                className="w-[3px] rounded-full bg-[oklch(0.74_0.05_270)]"
+                className="w-[3px] rounded-full bg-[oklch(0.66_0.01_75)]"
                 style={{ height: h }}
               />
             ))}
@@ -63,8 +63,8 @@ function Bubble({ m }: { m: Msg }) {
         <div
           className={
             self
-              ? "rounded-[14px] rounded-ee-md bg-[oklch(0.62_0.215_294_/_0.26)] px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.45),inset_0_1px_0_oklch(1_0_0_/_0.08)]"
-              : "rounded-[14px] rounded-es-md bg-surface-2/70 px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05)]"
+              ? "rounded-[10px] rounded-ee-sm bg-surface-3 px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.3)]"
+              : "rounded-[10px] rounded-es-sm bg-surface-2/70 px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
           }
         >
           {body}
@@ -79,11 +79,11 @@ function Bubble({ m }: { m: Msg }) {
 
 export function MessagingSection({ t }: { t: T }) {
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
+    <section className="mx-auto max-w-[1240px] px-5 py-32 sm:py-44">
       <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
-        {/* chat mock */}
+        {/* chat mock — gallery-framed, flat, no glow */}
         <Reveal y={28} className="lg:order-2">
-          <div className="glow-aurora mx-auto w-full max-w-[460px] overflow-hidden rounded-[16px] bg-bg-deep [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05),0_40px_110px_-44px_oklch(0.6_0.2_290_/_0.5)]">
+          <div className="frame mx-auto w-full max-w-[460px] overflow-hidden">
             {/* thread header */}
             <div className="flex items-center gap-3 border-b border-line bg-surface/40 px-4 py-3">
               <Avatar initials="MM" size={38} />
@@ -136,7 +136,7 @@ export function MessagingSection({ t }: { t: T }) {
               >
                 <MicIcon size={18} />
               </button>
-              <span className="bg-aurora grid h-9 w-9 place-items-center rounded-full text-ink [box-shadow:inset_0_0_0_1px_oklch(0.9_0.1_92_/_0.4),inset_0_1px_0_oklch(1_0_0_/_0.12)]">
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-ink text-bg-deep">
                 <SendIcon size={17} />
               </span>
             </div>
@@ -146,8 +146,8 @@ export function MessagingSection({ t }: { t: T }) {
         {/* copy */}
         <Reveal className="lg:order-1">
           <SectionHeading title={t.title} subtitle={t.subtitle} />
-          <span aria-hidden className="gilt-rule mt-8 max-w-[8rem] opacity-50" />
-          <ul className="mt-6 flex flex-wrap gap-2.5">
+          <span aria-hidden className="gilt-rule mt-10 max-w-[8rem] opacity-60" />
+          <ul className="mt-7 flex flex-wrap gap-2.5">
             {t.capabilities.map((c) => (
               <li
                 key={c}

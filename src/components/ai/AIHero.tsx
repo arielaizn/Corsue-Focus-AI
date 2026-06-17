@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { Button, OrbitDiagram, Tag } from "@/components/ui";
+import { Button, OrbitDiagram } from "@/components/ui";
 import type { Locale } from "@/lib/i18n";
 import { content } from "@/content/ai";
 import { easeOutExpo } from "@/lib/motion";
@@ -50,47 +50,57 @@ export function AIHero({ locale }: AIHeroProps) {
   );
 
   return (
-    <section className="relative mx-auto max-w-[1240px] px-5 pb-12 pt-28 sm:pt-32">
-      <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+    <section className="relative mx-auto max-w-[1240px] px-6 pb-16 pt-32 sm:pt-40">
+      <div className="grid items-end gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         {/* copy column */}
-        <div className="flex flex-col items-start gap-6">
+        <div className="flex flex-col items-start gap-7">
           <motion.div
-            initial={reduced ? { opacity: 1 } : { opacity: 0, y: 16 }}
+            initial={reduced ? { opacity: 1 } : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={reduced ? { duration: 0 } : { duration: 0.6, ease: easeOutExpo }}
           >
-            <Tag tone="gold">{t.badge}</Tag>
+            <span className="text-gilt">{t.badge}</span>
           </motion.div>
 
           <motion.h1
-            className="font-[family-name:var(--font-display)] text-balance text-[length:var(--text-h1)] font-bold leading-[1.06] tracking-[-0.03em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold [.font-he_&]:tracking-normal"
-            initial={reduced ? { opacity: 1 } : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={
-              reduced ? { duration: 0 } : { duration: 0.85, ease: easeOutExpo, delay: 0.05 }
-            }
-          >
-            {t.title}
-            <span aria-hidden className="mt-5 block h-px w-24 bg-gold-grad opacity-80" />
-          </motion.h1>
-
-          <motion.p
-            className="max-w-[60ch] text-pretty text-[length:var(--text-lead)] leading-relaxed text-ink-soft"
+            className="text-balance text-[length:var(--text-display)] font-medium leading-[1.05] tracking-[-0.01em] text-ink [.font-he_&]:font-bold [.font-he_&]:tracking-normal"
             initial={reduced ? { opacity: 1 } : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={
-              reduced ? { duration: 0 } : { duration: 0.8, ease: easeOutExpo, delay: 0.14 }
+              reduced ? { duration: 0 } : { duration: 0.9, ease: easeOutExpo, delay: 0.05 }
+            }
+          >
+            {t.title}
+          </motion.h1>
+
+          <motion.span
+            aria-hidden
+            className="gilt-rule max-w-[160px] opacity-70"
+            initial={reduced ? { opacity: 0.7 } : { opacity: 0, scaleX: 0.4 }}
+            animate={{ opacity: 0.7, scaleX: 1 }}
+            style={{ transformOrigin: "left" }}
+            transition={
+              reduced ? { duration: 0 } : { duration: 0.8, ease: easeOutExpo, delay: 0.2 }
+            }
+          />
+
+          <motion.p
+            className="max-w-[60ch] text-pretty text-[length:var(--text-lead)] leading-[1.65] text-ink-soft"
+            initial={reduced ? { opacity: 1 } : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={
+              reduced ? { duration: 0 } : { duration: 0.8, ease: easeOutExpo, delay: 0.16 }
             }
           >
             {t.subtitle}
           </motion.p>
 
           <motion.div
-            className="mt-1 flex flex-wrap items-center gap-3"
-            initial={reduced ? { opacity: 1 } : { opacity: 0, y: 16 }}
+            className="mt-3 flex flex-wrap items-center gap-4"
+            initial={reduced ? { opacity: 1 } : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={
-              reduced ? { duration: 0 } : { duration: 0.7, ease: easeOutExpo, delay: 0.18 }
+              reduced ? { duration: 0 } : { duration: 0.7, ease: easeOutExpo, delay: 0.22 }
             }
           >
             <Button href={`/${locale}/pricing`} size="lg" magnetic iconRight={<IconArrow width={18} height={18} />}>
@@ -102,13 +112,13 @@ export function AIHero({ locale }: AIHeroProps) {
           </motion.div>
         </div>
 
-        {/* live chat panel — sits on a soft aurora glow */}
+        {/* live chat panel — gallery-framed, no glow */}
         <motion.div
-          className="glow-aurora relative rounded-2xl"
-          initial={reduced ? { opacity: 1 } : { opacity: 0, y: 26, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          className="frame relative"
+          initial={reduced ? { opacity: 1 } : { opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={
-            reduced ? { duration: 0 } : { duration: 0.9, ease: easeOutExpo, delay: 0.18 }
+            reduced ? { duration: 0 } : { duration: 0.95, ease: easeOutExpo, delay: 0.22 }
           }
         >
           <ChatPanel
@@ -121,9 +131,9 @@ export function AIHero({ locale }: AIHeroProps) {
         </motion.div>
       </div>
 
-      {/* orbit — the signature central-AI motif */}
-      <div className="relative mt-20 sm:mt-32">
-        <span aria-hidden className="gilt-rule mx-auto mb-16 max-w-[22rem] opacity-40" />
+      {/* orbit — the signature central-AI motif, quiet gold-line diagram */}
+      <div className="relative mt-28 sm:mt-44">
+        <span aria-hidden className="gilt-rule mx-auto mb-20 max-w-[18rem] opacity-50" />
         <motion.div
           initial={reduced ? { opacity: 1 } : { opacity: 0 }}
           whileInView={{ opacity: 1 }}

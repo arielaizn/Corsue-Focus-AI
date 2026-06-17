@@ -35,13 +35,13 @@ export function Pillars({
 }) {
   const reduced = useReducedMotion();
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
-      <span aria-hidden className="gilt-rule block mb-16 opacity-30" />
-      <Reveal y={0} x={-28} duration={0.95}>
+    <section className="mx-auto max-w-[1240px] px-6 py-32 sm:py-44">
+      <span aria-hidden className="gilt-rule mb-20 block max-w-[160px] opacity-60" />
+      <Reveal y={0} x={-24} duration={0.95}>
         <SectionHeading title={t.title} subtitle={t.sub} as="h2" />
       </Reveal>
 
-      <div className="mt-14 grid auto-rows-[minmax(140px,auto)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
+      <div className="mt-16 grid auto-rows-[minmax(150px,auto)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
         {t.cards.map((c, i) => (
           <motion.div
             key={c.key}
@@ -57,17 +57,12 @@ export function Pillars({
           >
             <Link
               href={`/${locale}/${c.href}`}
-              className="group panel-premium relative flex h-full flex-col justify-between overflow-hidden p-6 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:[box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.5),inset_0_1px_0_oklch(1_0_0_/_0.06),0_18px_50px_-26px_oklch(0.6_0.2_290_/_0.6)]"
+              className="group panel-couture relative flex h-full flex-col justify-between overflow-hidden p-6 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:[box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.5),inset_0_1px_0_oklch(1_0_0_/_0.04)]"
             >
-              {/* corner glow on hover */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -top-16 -end-12 h-40 w-40 rounded-full bg-[oklch(0.62_0.23_330_/_0.16)] opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-100"
-              />
               <div className="relative flex items-start justify-between">
                 <span
                   aria-hidden
-                  className="grid h-10 w-10 place-items-center rounded-xl bg-bg text-lg text-gold gilt-rim"
+                  className="grid h-10 w-10 place-items-center rounded-[6px] bg-bg text-lg text-gold gilt-rim"
                 >
                   {glyph[c.key]}
                 </span>
@@ -75,12 +70,12 @@ export function Pillars({
                   {c.tag}
                 </span>
               </div>
-              <div className="relative mt-6">
-                <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold leading-[1.1] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
+              <div className="relative mt-8">
+                <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-medium leading-[1.12] text-ink [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold">
                   {c.title}
                 </h3>
-                <p className="mt-2 max-w-[46ch] text-sm leading-relaxed text-ink-soft">{c.desc}</p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-violet-bright">
+                <p className="mt-3 max-w-[46ch] text-sm leading-relaxed text-ink-soft">{c.desc}</p>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-gold">
                   {locale === "he" ? "גלה עוד" : "Explore"}
                   <svg
                     width="15"

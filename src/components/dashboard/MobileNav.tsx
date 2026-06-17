@@ -160,7 +160,7 @@ export function MobileNav({ locale, nav, shell }: MobileNavProps) {
                         {active && (
                           <span
                             aria-hidden
-                            className="absolute inset-y-2 start-0 w-0.5 rounded-full bg-gold [box-shadow:0_0_12px_oklch(0.83_0.13_88_/_0.7)]"
+                            className="absolute inset-y-2 start-0 w-0.5 rounded-full bg-gold"
                           />
                         )}
                         <Icon

@@ -9,21 +9,21 @@ import { IconMic } from "../icons";
 export function VoiceCoachMock({ data }: { data: AIContent["voice"] }) {
   const bars = [10, 22, 14, 30, 18, 36, 24, 16, 28, 12, 32, 20, 26, 14, 22];
   return (
-    <div className="panel-premium overflow-hidden">
+    <div className="panel-couture overflow-hidden">
       <div className="flex items-center gap-3 border-b border-line bg-bg-deep/60 px-5 py-3.5">
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-aurora text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.5)]">
+        <span className="grid h-8 w-8 place-items-center rounded-md bg-surface-2 text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.4)]">
           <IconMic width={16} height={16} />
         </span>
         <p className="text-sm font-semibold text-ink">{data.tag}</p>
       </div>
 
       <div className="p-5 sm:p-6">
-        {/* waveform */}
-        <div className="flex h-20 items-center justify-center gap-1.5 rounded-xl bg-bg-deep/50 px-4 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+        {/* waveform — thin gilt bars, no colour glow */}
+        <div className="flex h-20 items-center justify-center gap-1.5 rounded-lg bg-bg-deep/50 px-4 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
           {bars.map((b, i) => (
             <span
               key={i}
-              className="w-1.5 rounded-full bg-gradient-to-t from-[oklch(0.6_0.18_262)] to-[oklch(0.62_0.215_294)] motion-safe:animate-[float_1.6s_ease-in-out_infinite]"
+              className="w-1.5 rounded-full bg-gradient-to-t from-[oklch(0.76_0.105_80_/_0.45)] to-[oklch(0.86_0.085_85)] motion-safe:animate-[float_1.6s_ease-in-out_infinite]"
               style={{ height: `${b + 8}px`, animationDelay: `${(i % 6) * 0.12}s` }}
             />
           ))}

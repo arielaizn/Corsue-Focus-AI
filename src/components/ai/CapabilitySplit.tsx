@@ -36,12 +36,12 @@ export function CapabilitySplit({
         : "lg:grid-cols-2";
 
   return (
-    <section className={cn("mx-auto max-w-[1240px] px-5 py-16 sm:py-20", className)}>
-      <div className={cn("grid items-center gap-10 lg:gap-14", cols)}>
+    <section className={cn("mx-auto max-w-[1240px] px-6 py-24 sm:py-32", className)}>
+      <div className={cn("grid items-center gap-12 lg:gap-20", cols)}>
         <Reveal className={cn(visualFirst && "lg:order-2")}>
           <CapabilityIntro section={section} />
         </Reveal>
-        <Reveal y={28} delay={0.05} className={cn(visualFirst && "lg:order-1")}>
+        <Reveal y={20} delay={0.06} className={cn(visualFirst && "lg:order-1")}>
           {visual}
         </Reveal>
       </div>

@@ -13,7 +13,7 @@ export function GrainOverlay() {
     <div
       aria-hidden
       className="pointer-events-none fixed inset-0 z-[var(--z-base)] overflow-hidden"
-      style={{ mixBlendMode: "overlay", opacity: 0.04 }}
+      style={{ mixBlendMode: "overlay", opacity: 0.03 }}
     >
       <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
         <filter id="cf-grain">

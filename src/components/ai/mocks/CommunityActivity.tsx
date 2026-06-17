@@ -7,17 +7,17 @@ import { IconCommunity, IconSpark } from "../icons";
  */
 export function CommunityActivity({ data }: { data: AIContent["community"] }) {
   return (
-    <div className="panel-premium overflow-hidden">
+    <div className="panel-couture overflow-hidden">
       <div className="flex items-center gap-3 border-b border-line bg-bg-deep/60 px-5 py-3.5">
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-aurora text-ink">
+        <span className="grid h-8 w-8 place-items-center rounded-md bg-surface-2 text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.4)]">
           <IconCommunity width={16} height={16} />
         </span>
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold text-ink">{data.tag}</p>
           <p className="truncate text-xs text-muted">CourseFocus AI</p>
         </div>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-[oklch(0.72_0.15_150_/_0.14)] px-2.5 py-1 text-[11px] font-medium text-[oklch(0.8_0.16_150)] [box-shadow:inset_0_0_0_1px_oklch(0.72_0.15_150_/_0.3)]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.8_0.16_150)]" />
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-[oklch(0.72_0.12_150_/_0.12)] px-2.5 py-1 text-[11px] font-medium text-[oklch(0.8_0.13_150)] [box-shadow:inset_0_0_0_1px_oklch(0.72_0.12_150_/_0.28)]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.8_0.13_150)]" />
           Active
         </span>
       </div>
@@ -28,7 +28,7 @@ export function CommunityActivity({ data }: { data: AIContent["community"] }) {
             key={i}
             className="flex items-start gap-3 border-b border-line/60 px-5 py-3.5 last:border-b-0"
           >
-            <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-[oklch(0.83_0.13_88_/_0.12)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.25)]">
+            <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-md bg-[oklch(0.76_0.105_80_/_0.1)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.28)]">
               <IconSpark width={13} height={13} />
             </span>
             <div className="min-w-0">

@@ -38,8 +38,8 @@ export function QRMark({ size = 64, className }: { size?: number; className?: st
         gridTemplateColumns: `repeat(${n}, 1fr)`,
         gap: 1,
         padding: 4,
-        borderRadius: 8,
-        background: "oklch(0.97 0.012 250)",
+        borderRadius: 6,
+        background: "oklch(0.945 0.012 80)",
       }}
       aria-hidden
     >
@@ -47,7 +47,7 @@ export function QRMark({ size = 64, className }: { size?: number; className?: st
         <span
           key={i}
           style={{
-            background: on ? "oklch(0.13 0.04 264)" : "transparent",
+            background: on ? "oklch(0.13 0 0)" : "transparent",
             borderRadius: 1,
           }}
         />

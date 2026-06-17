@@ -13,21 +13,21 @@ export function CurriculumPath({
 }) {
   const levels = data.levels;
   return (
-    <div className="panel-premium p-5 sm:p-7">
+    <div className="panel-couture p-6 sm:p-9">
       <ol className="flex flex-col gap-0">
         {levels.map((lvl, i) => {
           const last = i === levels.length - 1;
-          // each stage's aurora fill deepens toward "expert"
-          const fill = 0.12 + (i / (levels.length - 1)) * 0.32;
+          // each stage warms from neutral charcoal toward the gilt "expert" node
+          const fill = 0.06 + (i / (levels.length - 1)) * 0.14;
           return (
             <li key={lvl.name} className="relative flex gap-4 ps-2">
               {/* spine + node */}
               <div className="relative flex flex-col items-center">
                 <span
-                  className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-sm font-semibold text-ink"
+                  className="grid h-10 w-10 shrink-0 place-items-center rounded-lg text-sm font-semibold text-ink"
                   style={{
-                    backgroundColor: `oklch(0.6 0.18 262 / ${fill})`,
-                    boxShadow: `inset 0 0 0 1px oklch(0.6 0.18 262 / ${fill + 0.3})`,
+                    backgroundColor: `oklch(0.76 0.105 80 / ${fill})`,
+                    boxShadow: `inset 0 0 0 1px oklch(0.76 0.105 80 / ${fill + 0.28})`,
                   }}
                 >
                   {i + 1}
@@ -35,7 +35,7 @@ export function CurriculumPath({
                 {!last && (
                   <span
                     aria-hidden
-                    className="my-1 w-px flex-1 bg-gradient-to-b from-[oklch(0.6_0.18_262_/_0.6)] to-[oklch(0.62_0.215_294_/_0.3)]"
+                    className="my-1 w-px flex-1 bg-gradient-to-b from-[oklch(0.76_0.105_80_/_0.4)] to-[oklch(0.76_0.105_80_/_0.12)]"
                   />
                 )}
               </div>
@@ -44,7 +44,7 @@ export function CurriculumPath({
               <div className={last ? "pb-0" : "pb-6"}>
                 <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
                   <h3 className="text-base font-semibold text-ink">{lvl.name}</h3>
-                  <span className="rounded-full bg-bg-deep/60 px-2 py-0.5 text-[11px] font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.3)]">
+                  <span className="rounded-full bg-bg-deep/60 px-2 py-0.5 text-[11px] font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.3)]">
                     {lvl.tag}
                   </span>
                 </div>

@@ -12,15 +12,17 @@ export interface ModelSelectorProps {
   locale: Locale;
 }
 
+// couture-neutral: every engine routes through the same gilt-on-charcoal
+// treatment — no colour-coding, the selection itself is the signal.
 const TONE_FILL: Record<string, string> = {
-  violet: "oklch(0.62 0.215 294 / 0.16)",
-  primary: "oklch(0.6 0.18 262 / 0.16)",
-  gold: "oklch(0.83 0.13 88 / 0.13)",
+  violet: "var(--color-surface-2)",
+  primary: "var(--color-surface-2)",
+  gold: "oklch(0.76 0.105 80 / 0.1)",
 };
 const TONE_RIM: Record<string, string> = {
-  violet: "oklch(0.62 0.215 294 / 0.42)",
-  primary: "oklch(0.6 0.18 262 / 0.42)",
-  gold: "oklch(0.83 0.13 88 / 0.44)",
+  violet: "oklch(0.76 0.105 80 / 0.4)",
+  primary: "oklch(0.76 0.105 80 / 0.4)",
+  gold: "oklch(0.76 0.105 80 / 0.5)",
 };
 
 /**
@@ -35,7 +37,7 @@ export function ModelSelector({ locale }: ModelSelectorProps) {
   const model = data.models[active];
 
   return (
-    <div className="panel-premium glow-aurora p-5 sm:p-7">
+    <div className="panel-couture grain p-6 sm:p-9">
       {/* engine picker */}
       <div className="flex flex-wrap gap-2" role="tablist" aria-label={data.tag}>
         {data.models.map((m, i) => {
@@ -47,7 +49,7 @@ export function ModelSelector({ locale }: ModelSelectorProps) {
               type="button"
               aria-selected={selected}
               onClick={() => setActive(i)}
-              className="rounded-xl px-3.5 py-2 text-sm font-medium transition-[background-color,color,box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="rounded-md px-3.5 py-2 text-sm font-medium transition-[background-color,color,box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{
                 color: selected ? "var(--color-ink)" : "var(--color-ink-soft)",
                 backgroundColor: selected ? TONE_FILL[m.tone] : "transparent",
@@ -61,13 +63,13 @@ export function ModelSelector({ locale }: ModelSelectorProps) {
       </div>
 
       {/* routed interface preview */}
-      <div className="mt-5 grid gap-4 md:grid-cols-[1fr_1.1fr]">
+      <div className="mt-6 grid gap-4 md:grid-cols-[1fr_1.1fr]">
         {/* active model detail */}
         <div
-          className="rounded-xl p-4"
+          className="rounded-lg p-5"
           style={{
             backgroundColor: TONE_FILL[model.tone],
-            boxShadow: `inset 0 0 0 1px ${TONE_RIM[model.tone]}, inset 0 1px 0 oklch(1 0 0 / 0.06)`,
+            boxShadow: `inset 0 0 0 1px ${TONE_RIM[model.tone]}, inset 0 1px 0 oklch(1 0 0 / 0.04)`,
           }}
         >
           <div className="text-gilt flex items-center gap-2">
@@ -82,16 +84,16 @@ export function ModelSelector({ locale }: ModelSelectorProps) {
               exit={reduced ? { opacity: 1 } : { opacity: 0, y: -8 }}
               transition={reduced ? { duration: 0 } : { duration: 0.32, ease: easeOutExpo }}
             >
-              <p className="mt-3 font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold tracking-[-0.02em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold [.font-he_&]:tracking-normal">
+              <p className="mt-4 text-[length:var(--text-h3)] font-medium tracking-[-0.005em] text-ink [.font-he_&]:font-bold [.font-he_&]:tracking-normal">
                 {model.name}
               </p>
-              <p className="mt-1 text-sm text-ink-soft">{model.trait}</p>
+              <p className="mt-1.5 text-sm text-ink-soft">{model.trait}</p>
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* mock prompt routed to the engine */}
-        <div className="rounded-xl bg-bg-deep/50 p-4 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+        <div className="rounded-lg bg-bg-deep/50 p-5 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
           <div className="flex items-center justify-between gap-2 border-b border-line/60 pb-2.5">
             <span className="flex items-center gap-1.5 text-xs text-muted">
               <IconLayers width={13} height={13} />

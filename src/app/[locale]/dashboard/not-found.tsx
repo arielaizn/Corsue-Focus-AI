@@ -41,7 +41,7 @@ export default async function DashboardNotFound() {
         <p className="text-sm text-ink-soft">{t.body}</p>
         <Link
           href={`/${locale}/dashboard/courses`}
-          className="bg-aurora text-ink mt-1 inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold tracking-[-0.01em] transition-transform duration-300 [box-shadow:inset_0_1px_0_oklch(1_0_0_/_0.18),0_18px_48px_-18px_oklch(0.6_0.2_290_/_0.6)] hover:-translate-y-0.5"
+          className="bg-ink text-bg-deep mt-1 inline-flex items-center justify-center gap-2 rounded-[6px] px-5 py-2.5 text-sm font-semibold tracking-[0.01em] transition-[transform,background-color] duration-300 [box-shadow:inset_0_1px_0_oklch(1_0_0_/_0.3)] hover:bg-ink-soft hover:-translate-y-px"
         >
           {t.cta}
         </Link>

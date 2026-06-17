@@ -16,8 +16,8 @@ export function CourseOutlineMock({
     <BrowserFrame url="app.coursefocus.ai/build">
       <div className="p-5 sm:p-6">
         {/* prompt row */}
-        <div className="flex items-center gap-2.5 rounded-xl bg-surface/50 px-3.5 py-3 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
-          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-aurora text-ink">
+        <div className="flex items-center gap-2.5 rounded-lg bg-surface/50 px-3.5 py-3 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-surface-2 text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.4)]">
             <IconSpark width={14} height={14} />
           </span>
           <p className="min-w-0 flex-1 truncate text-sm text-ink">{data.prompt}</p>
@@ -36,10 +36,10 @@ export function CourseOutlineMock({
           {data.modules.map((m, i) => (
             <li
               key={m.title}
-              className="rounded-xl bg-bg-deep/50 p-3.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+              className="rounded-lg bg-bg-deep/50 p-3.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
             >
               <div className="flex items-center gap-2.5">
-                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-[oklch(0.6_0.18_262_/_0.18)] text-xs font-semibold text-ink-soft">
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-[4px] bg-surface-2 text-xs font-semibold text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]">
                   {i + 1}
                 </span>
                 <p className="min-w-0 flex-1 truncate text-sm font-medium text-ink">
@@ -64,7 +64,7 @@ export function CourseOutlineMock({
           ))}
         </ol>
 
-        <div className="mt-4 flex items-center gap-2 rounded-xl bg-[oklch(0.83_0.13_88_/_0.1)] px-3.5 py-2.5 text-sm text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.3)]">
+        <div className="mt-4 flex items-center gap-2 rounded-lg bg-[oklch(0.76_0.105_80_/_0.08)] px-3.5 py-2.5 text-sm text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.3)]">
           <IconCheck width={15} height={15} />
           <span className="font-medium">{data.quizLabel}</span>
         </div>

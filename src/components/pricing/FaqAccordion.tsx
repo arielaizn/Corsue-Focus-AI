@@ -15,7 +15,7 @@ export function FaqAccordion({ items }: Props) {
   const reduced = useReducedMotion();
 
   return (
-    <div className="panel-premium divide-y divide-[oklch(0.4_0.04_268_/_0.45)] overflow-hidden">
+    <div className="panel-couture divide-y divide-[oklch(0.32_0.004_70_/_0.5)] overflow-hidden">
       {items.map((item, i) => {
         const isOpen = open === i;
         const panelId = `faq-panel-${i}`;
@@ -37,7 +37,7 @@ export function FaqAccordion({ items }: Props) {
                   className={cn(
                     "grid size-8 shrink-0 place-items-center rounded-full transition-[transform,color,box-shadow] duration-300",
                     isOpen
-                      ? "rotate-45 text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.4)]"
+                      ? "rotate-45 text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.4)]"
                       : "text-ink-soft ring-line",
                   )}
                 >

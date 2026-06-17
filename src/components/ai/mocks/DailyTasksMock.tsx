@@ -35,14 +35,14 @@ function Agenda({
   tone?: "aurora" | "gold";
 }) {
   return (
-    <div className="panel-premium p-5">
+    <div className="panel-couture p-5">
       <div className="mb-4 flex items-center gap-2.5">
         <span
           className={
-            "grid h-8 w-8 place-items-center rounded-lg " +
+            "grid h-8 w-8 place-items-center rounded-md [box-shadow:inset_0_0_0_1px_var(--color-line)] " +
             (tone === "gold"
-              ? "bg-[oklch(0.83_0.13_88_/_0.14)] text-gold"
-              : "bg-[oklch(0.6_0.18_262_/_0.18)] text-ink-soft")
+              ? "bg-[oklch(0.76_0.105_80_/_0.12)] text-gold"
+              : "bg-surface-2 text-ink-soft")
           }
         >
           {icon}
@@ -53,9 +53,9 @@ function Agenda({
         {tasks.map((task) => (
           <li
             key={task}
-            className="flex items-start gap-2.5 rounded-xl bg-bg-deep/50 px-3 py-2.5 text-sm text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+            className="flex items-start gap-2.5 rounded-lg bg-bg-deep/50 px-3 py-2.5 text-sm text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]"
           >
-            <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md border border-line text-transparent">
+            <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-[4px] border border-line text-transparent">
               <IconCheck width={11} height={11} />
             </span>
             <span>{task}</span>

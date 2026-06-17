@@ -36,7 +36,7 @@ function PriceDisplay({
   const reduced = useReducedMotion();
   if (tier.priceMonthly === null) {
     return (
-      <span className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold tracking-[-0.03em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
+      <span className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-medium tracking-[-0.01em] text-ink [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold">
         {tier.customLabel}
       </span>
     );
@@ -53,7 +53,7 @@ function PriceDisplay({
           exit={reduced ? { opacity: 0 } : { opacity: 0, y: -8 }}
           transition={{ duration: 0.28, ease: easeOutExpo }}
           className={cn(
-            "font-[family-name:var(--font-display)] text-[length:var(--text-h2)] font-bold leading-none tracking-[-0.03em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold",
+            "font-[family-name:var(--font-display)] text-[length:var(--text-h2)] font-medium leading-none tracking-[-0.01em] text-ink [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold",
             emphasis && "text-[calc(var(--text-h2)*1.12)]",
           )}
         >
@@ -93,7 +93,7 @@ export function PricingPlans({ locale, t }: Props) {
           role="radiogroup"
           aria-label={locale === "he" ? "מחזור חיוב" : "Billing cycle"}
           onKeyDown={onRadioKeyDown}
-          className="relative inline-flex items-center rounded-full bg-surface p-1 [box-shadow:inset_0_0_0_1px_oklch(0.4_0.04_268_/_0.7),inset_0_1px_0_oklch(1_0_0_/_0.05)]"
+          className="relative inline-flex items-center rounded-full bg-surface p-1 ring-line"
         >
           {(["monthly", "annual"] as const).map((c, ci) => {
             const selected = cycle === c;
@@ -121,7 +121,7 @@ export function PricingPlans({ locale, t }: Props) {
                         ? { duration: 0 }
                         : { type: "spring", stiffness: 380, damping: 32 }
                     }
-                    className="absolute inset-0 -z-[1] rounded-full bg-surface-2 [box-shadow:inset_0_0_0_1px_oklch(0.82_0.135_84_/_0.35)]"
+                    className="absolute inset-0 -z-[1] rounded-full bg-surface-2 [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.35)]"
                   />
                 )}
                 {c === "monthly" ? t.toggle.monthly : t.toggle.annual}
@@ -156,26 +156,20 @@ export function PricingPlans({ locale, t }: Props) {
                 delay: reduced ? 0 : i * 0.08,
               }}
               className={cn(
-                "relative flex flex-col rounded-[16px] p-7",
+                "relative flex flex-col rounded-[8px] p-7",
                 isPro
-                  ? "bg-surface gilt-rim glow-gold xl:-translate-y-4"
-                  : "panel-premium",
+                  ? "bg-surface gilt-rim xl:-translate-y-4"
+                  : "panel-couture",
               )}
             >
-              {isPro && (
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-x-6 -bottom-2 h-24 rounded-full bg-[oklch(0.62_0.215_294_/_0.18)] blur-3xl"
-                />
-              )}
               {tier.ribbon && (
-                <span className="absolute -top-3 start-6 inline-flex items-center rounded-full bg-gold-grad px-3 py-1 text-xs font-semibold text-bg-deep shadow-[0_6px_20px_-6px_oklch(0.82_0.135_84_/_0.6)]">
+                <span className="absolute -top-3 start-6 inline-flex items-center rounded-full bg-bg-deep px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.55)]">
                   {tier.ribbon}
                 </span>
               )}
 
               <div className="flex items-baseline justify-between gap-2">
-                <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold tracking-[-0.02em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
+                <h3 className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-medium tracking-[-0.01em] text-ink [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold">
                   {tier.name}
                 </h3>
               </div>
@@ -202,7 +196,7 @@ export function PricingPlans({ locale, t }: Props) {
                 </p>
               </div>
 
-              <div className="mt-5 pt-5 [border-top:1px_solid_oklch(0.4_0.04_268_/_0.6)]">
+              <div className="mt-5 pt-5 [border-top:1px_solid_var(--color-line)]">
                 <p className="text-gilt">{tier.meta}</p>
               </div>
 
@@ -212,7 +206,7 @@ export function PricingPlans({ locale, t }: Props) {
                     <span
                       className={cn(
                         "mt-0.5 grid size-4 shrink-0 place-items-center rounded-full",
-                        isPro ? "text-gold" : "text-primary-bright",
+                        isPro ? "text-gold" : "text-ink-soft",
                       )}
                     >
                       <CheckIcon className="size-3.5" />

@@ -12,15 +12,16 @@ export function C5Community({ locale }: { locale: Locale }) {
     <Section className="py-24 sm:py-32">
       <Reveal className="max-w-2xl">
         <SectionHeading title={t.title} subtitle={t.subtitle} />
+        <span aria-hidden className="gilt-rule mt-8 max-w-[140px] opacity-60" />
       </Reveal>
 
       <div className="mt-14 grid gap-6 lg:grid-cols-[1.25fr_1fr]">
         {/* Feed */}
-        <Reveal y={26}>
-          <div className="panel-premium overflow-hidden">
+        <Reveal y={24}>
+          <div className="panel-couture overflow-hidden">
             <div className="flex items-center justify-between border-b border-line px-5 py-3.5">
-              <div className="text-sm font-semibold text-ink">{t.feedTitle}</div>
-              <span className="h-2 w-2 rounded-full bg-[oklch(0.72_0.15_150)]" aria-hidden />
+              <div className="text-sm font-medium text-ink">{t.feedTitle}</div>
+              <span className="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden />
             </div>
 
             <div className="divide-y divide-line">
@@ -32,7 +33,7 @@ export function C5Community({ locale }: { locale: Locale }) {
                       <span className="text-sm font-medium text-ink">{post.author}</span>
                       <span className="text-xs text-muted">· {post.time}</span>
                       {post.tag && (
-                        <span className="ms-auto rounded-full bg-[oklch(0.62_0.215_294_/_0.14)] px-2 py-0.5 text-[11px] font-medium text-violet-bright">
+                        <span className="ms-auto rounded-full px-2 py-0.5 text-[11px] font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.4)]">
                           {post.tag}
                         </span>
                       )}
@@ -54,7 +55,7 @@ export function C5Community({ locale }: { locale: Locale }) {
             </div>
 
             {/* AI community manager note */}
-            <div className="m-4 mt-0 rounded-xl bg-bg-deep/60 p-3.5 [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.22)]">
+            <div className="m-4 mt-0 rounded-[8px] bg-bg-deep/60 p-3.5 [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.22)]">
               <p className="text-xs leading-relaxed text-ink-soft">
                 <span className="font-semibold text-gold">AI · </span>
                 {t.aiManagerNote}
@@ -64,14 +65,14 @@ export function C5Community({ locale }: { locale: Locale }) {
         </Reveal>
 
         {/* Chat */}
-        <Reveal y={26} delay={0.08}>
-          <div className="panel-premium flex h-full flex-col overflow-hidden">
+        <Reveal y={24} delay={0.08}>
+          <div className="panel-couture flex h-full flex-col overflow-hidden">
             <div className="flex items-center gap-3 border-b border-line px-5 py-3.5">
               <Avatar name={t.messages[0]?.from === "them" ? "M" : "?"} small />
               <div>
                 <div className="text-sm font-medium text-ink">{t.chatTitle}</div>
                 <div className="flex items-center gap-1.5 text-[11px] text-muted">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.72_0.15_150)]" aria-hidden />
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden />
                   {t.chatStatus}
                 </div>
               </div>
@@ -84,16 +85,16 @@ export function C5Community({ locale }: { locale: Locale }) {
                   className={`flex ${m.from === "me" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[78%] rounded-2xl px-3.5 py-2.5 text-sm ${
+                    className={`max-w-[78%] rounded-[10px] px-3.5 py-2.5 text-sm ${
                       m.from === "me"
-                        ? "bg-aurora text-ink [box-shadow:inset_0_1px_0_oklch(1_0_0_/_0.08),0_8px_24px_-12px_oklch(0.62_0.23_330_/_0.6)]"
+                        ? "bg-ink text-bg-deep [box-shadow:inset_0_1px_0_oklch(1_0_0_/_0.25)]"
                         : "bg-bg-deep text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]"
                     }`}
                   >
                     {m.text}
                     <span
                       className={`ms-2 align-baseline text-[10px] ${
-                        m.from === "me" ? "text-ink/70" : "text-muted"
+                        m.from === "me" ? "text-bg-deep/60" : "text-muted"
                       }`}
                     >
                       {m.time}
@@ -103,9 +104,9 @@ export function C5Community({ locale }: { locale: Locale }) {
               ))}
             </div>
 
-            <div className="m-4 mt-0 flex items-center gap-2 rounded-xl bg-bg-deep px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+            <div className="m-4 mt-0 flex items-center gap-2 rounded-[8px] bg-bg-deep px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
               <span className="flex-1 text-sm text-muted">{t.composer}</span>
-              <span className="grid h-7 w-7 place-items-center rounded-lg bg-aurora text-ink">
+              <span className="grid h-7 w-7 place-items-center rounded-[6px] bg-ink text-bg-deep">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
                   <path d="M4 12l16-8-6 16-3-6-7-2z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" className="rtl:scale-x-[-1]" />
                 </svg>

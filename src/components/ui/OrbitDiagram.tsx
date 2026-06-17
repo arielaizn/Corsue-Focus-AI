@@ -39,7 +39,7 @@ export function OrbitDiagram({
     <div className={cn("w-full", className)}>
       {/* Orbit view — md and up */}
       <div className="relative mx-auto hidden aspect-square w-full max-w-[560px] md:block">
-        {/* faint orbit rings — subtle gilt tint */}
+        {/* thin gold orbit rings — 1px foil hairline, NO glow */}
         {ringRadii.map((r, i) => (
           <div
             key={`ring-${i}`}
@@ -49,16 +49,15 @@ export function OrbitDiagram({
               width: `${r * 2}%`,
               height: `${r * 2}%`,
               transform: "translate(-50%, -50%)",
-              boxShadow:
-                "inset 0 0 0 1px oklch(0.83 0.13 88 / 0.14), 0 0 40px -20px oklch(0.62 0.215 294 / 0.4)",
+              boxShadow: "inset 0 0 0 1px oklch(0.76 0.105 80 / 0.22)",
             }}
           />
         ))}
 
-        {/* center AI core — aurora fill, gilt rim, soft aurora glow */}
+        {/* center core — flat surface disc, thin gilt rim, no glow */}
         <div className="absolute left-1/2 top-1/2 z-[2] -translate-x-1/2 -translate-y-1/2">
-          <div className="bg-aurora grid h-28 w-28 place-items-center rounded-full text-center [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.55),inset_0_1px_0_oklch(1_0_0_/_0.2),0_0_70px_-4px_oklch(0.6_0.2_290_/_0.7)]">
-            <span className="px-2 text-sm font-bold leading-tight text-ink">
+          <div className="grid h-28 w-28 place-items-center rounded-full bg-surface text-center [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.5),inset_0_1px_0_oklch(1_0_0_/_0.06)]">
+            <span className="px-2 text-sm font-semibold leading-tight text-ink">
               {centerLabel}
             </span>
           </div>
@@ -111,8 +110,8 @@ export function OrbitDiagram({
       {/* Collapsed grid — mobile */}
       <div className="md:hidden">
         <div className="mx-auto mb-6 grid w-fit place-items-center">
-          <div className="bg-aurora grid h-24 w-24 place-items-center rounded-full text-center [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.55),inset_0_1px_0_oklch(1_0_0_/_0.2),0_0_60px_-8px_oklch(0.6_0.2_290_/_0.65)]">
-            <span className="px-2 text-sm font-bold leading-tight text-ink">
+          <div className="grid h-24 w-24 place-items-center rounded-full bg-surface text-center [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.5),inset_0_1px_0_oklch(1_0_0_/_0.06)]">
+            <span className="px-2 text-sm font-semibold leading-tight text-ink">
               {centerLabel}
             </span>
           </div>
@@ -131,7 +130,7 @@ function OrbitNode({ item, block }: { item: OrbitItem; block?: boolean }) {
   return (
     <div
       className={cn(
-        "flex items-center gap-2 rounded-xl bg-surface/85 px-3 py-2 text-xs font-medium text-ink backdrop-blur [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05)]",
+        "flex items-center gap-2 rounded-[6px] bg-surface px-3 py-2 text-xs font-medium text-ink [box-shadow:inset_0_0_0_1px_var(--color-line)]",
         block ? "w-full justify-center" : "whitespace-nowrap",
       )}
     >

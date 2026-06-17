@@ -8,9 +8,9 @@ import { IconCheck, IconReview, IconSpark } from "../icons";
  */
 export function ReviewerCard({ data }: { data: AIContent["reviewer"] }) {
   return (
-    <div className="panel-premium overflow-hidden">
+    <div className="panel-couture overflow-hidden">
       <div className="flex items-center gap-3 border-b border-line bg-bg-deep/60 px-5 py-3.5">
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-[oklch(0.6_0.18_262_/_0.18)] text-ink-soft">
+        <span className="grid h-8 w-8 place-items-center rounded-md bg-surface-2 text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]">
           <IconReview width={16} height={16} />
         </span>
         <p className="min-w-0 flex-1 truncate text-sm font-medium text-ink">
@@ -24,7 +24,7 @@ export function ReviewerCard({ data }: { data: AIContent["reviewer"] }) {
           <div>
             <p className="text-xs text-muted">{data.tag}</p>
             <p className="mt-1">
-              <span className="font-[family-name:var(--font-display)] text-[length:var(--text-h2)] font-bold leading-none tracking-[-0.02em] text-gold [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
+              <span className="font-[family-name:var(--font-display)] text-[length:var(--text-h2)] font-medium leading-none tracking-[-0.01em] text-gold [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold">
                 {data.grade}
               </span>
               <span className="text-lg text-muted"> / 100</span>
@@ -37,14 +37,14 @@ export function ReviewerCard({ data }: { data: AIContent["reviewer"] }) {
           {data.rubric.map((r) => (
             <li
               key={r.label}
-              className="flex items-center gap-3 rounded-xl bg-bg-deep/50 px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+              className="flex items-center gap-3 rounded-lg bg-bg-deep/50 px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
             >
               <span
                 className={
-                  "grid h-6 w-6 shrink-0 place-items-center rounded-md " +
+                  "grid h-6 w-6 shrink-0 place-items-center rounded-[4px] " +
                   (r.ok
-                    ? "bg-[oklch(0.72_0.15_150_/_0.16)] text-[oklch(0.78_0.16_150)]"
-                    : "bg-[oklch(0.78_0.13_70_/_0.16)] text-gold")
+                    ? "bg-[oklch(0.72_0.12_150_/_0.14)] text-[oklch(0.78_0.13_150)]"
+                    : "bg-[oklch(0.76_0.105_80_/_0.14)] text-gold")
                 }
               >
                 {r.ok ? (
@@ -69,7 +69,7 @@ export function ReviewerCard({ data }: { data: AIContent["reviewer"] }) {
         </ul>
 
         {/* feedback */}
-        <div className="mt-5 rounded-xl bg-[oklch(0.6_0.18_262_/_0.1)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.6_0.18_262_/_0.3)]">
+        <div className="mt-5 rounded-lg bg-[oklch(0.55_0.11_250_/_0.08)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.55_0.11_250_/_0.26)]">
           <p className="text-gilt mb-2 flex items-center gap-1.5">
             <IconSpark width={12} height={12} />
             {data.tag}

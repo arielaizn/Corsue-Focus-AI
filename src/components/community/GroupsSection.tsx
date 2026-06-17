@@ -10,15 +10,15 @@ type Card = T["cards"][number];
 const typeMeta = {
   public: {
     Icon: GlobeIcon,
-    chip: "text-[oklch(0.8_0.1_200)] [box-shadow:inset_0_0_0_1px_oklch(0.62_0.12_200_/_0.4)]",
+    chip: "text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]",
   },
   private: {
     Icon: LockIcon,
-    chip: "text-violet-bright [box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.45)]",
+    chip: "text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]",
   },
   vip: {
     Icon: CrownIcon,
-    chip: "text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.5)] bg-[oklch(0.83_0.13_88_/_0.1)]",
+    chip: "text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.45)]",
   },
 } as const;
 
@@ -29,18 +29,12 @@ function GroupTile({ card, t, featured }: { card: Card; t: T; featured?: boolean
 
   return (
     <div
-      className={`group relative flex h-full flex-col overflow-hidden rounded-[16px] p-5 sm:p-6 ${
+      className={`group relative flex h-full flex-col overflow-hidden rounded-[8px] p-5 sm:p-6 ${
         card.type === "vip"
-          ? "bg-surface glow-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.4),inset_0_1px_0_oklch(1_0_0_/_0.06),0_36px_110px_-42px_oklch(0.83_0.13_88_/_0.45)]"
-          : "panel-premium"
-      } ${featured && card.type !== "vip" ? "glow-aurora" : ""}`}
+          ? "bg-surface [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.4),inset_0_1px_0_oklch(1_0_0_/_0.04)]"
+          : "panel-couture"
+      }`}
     >
-      {card.type === "vip" && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[oklch(0.83_0.13_88_/_0.12)] blur-3xl"
-        />
-      )}
       <div className="relative flex items-center justify-between gap-3">
         <span
           className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ${meta.chip}`}
@@ -87,12 +81,13 @@ function GroupTile({ card, t, featured }: { card: Card; t: T; featured?: boolean
 export function GroupsSection({ t }: { t: T }) {
   const [first, ...rest] = t.cards;
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-20 sm:py-28">
+    <section className="mx-auto max-w-[1240px] px-5 py-32 sm:py-44">
       <Reveal>
         <SectionHeading title={t.title} subtitle={t.subtitle} />
+        <span aria-hidden className="gilt-rule mt-10 max-w-[8rem] opacity-60" />
       </Reveal>
 
-      <div className="mt-12 grid gap-4 md:grid-cols-2 md:gap-5">
+      <div className="mt-14 grid gap-4 md:grid-cols-2 md:gap-5">
         <Reveal className="md:row-span-2" y={26}>
           <GroupTile card={first} t={t} featured />
         </Reveal>

@@ -15,17 +15,17 @@ export function StatBand({ locale }: StatBandProps) {
   const t = content[locale].band;
 
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-12">
+    <section className="mx-auto max-w-[1240px] px-6 py-16 sm:py-20">
       <Reveal>
-        <div className="panel-premium px-6 py-8 sm:px-9 sm:py-9">
-          <p className="max-w-[62ch] text-pretty text-[length:var(--text-lead)] leading-relaxed text-ink-soft">
+        <div className="panel-couture grain px-7 py-10 sm:px-12 sm:py-12">
+          <p className="max-w-[62ch] text-pretty text-[length:var(--text-lead)] leading-[1.65] text-ink-soft">
             {t.intro}
           </p>
-          <span aria-hidden className="gilt-rule my-7 opacity-35" />
-          <dl className="grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-4">
+          <span aria-hidden className="gilt-rule my-9 opacity-45" />
+          <dl className="grid grid-cols-2 gap-x-8 gap-y-9 sm:grid-cols-4">
             {t.stats.map((s) => (
-              <div key={s.label} className="flex flex-col gap-1.5">
-                <dd className="font-[family-name:var(--font-display)] text-[length:var(--text-h3)] font-bold leading-none tracking-[-0.02em] text-gold [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold">
+              <div key={s.label} className="flex flex-col gap-2">
+                <dd className="font-[family-name:var(--font-display)] text-[length:var(--text-h2)] font-medium leading-none tracking-[-0.01em] text-gold [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold">
                   <Counter
                     to={s.value}
                     prefix={s.prefix ?? ""}

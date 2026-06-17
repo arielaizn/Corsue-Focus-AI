@@ -32,13 +32,13 @@ export function ChatPanel({
   return (
     <div
       className={cn(
-        "panel-premium flex flex-col overflow-hidden",
+        "panel-couture flex flex-col overflow-hidden",
         className,
       )}
     >
       {/* header */}
       <div className="flex items-center gap-3 border-b border-line/70 bg-bg-deep/50 px-4 py-3.5">
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-aurora text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.5),inset_0_1px_0_oklch(1_0_0_/_0.2)]">
+        <span className="grid h-8 w-8 place-items-center rounded-md bg-surface-2 text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.4)]">
           <IconSpark width={16} height={16} />
         </span>
         <div className="min-w-0 flex-1">
@@ -55,7 +55,7 @@ export function ChatPanel({
         {turns.map((turn, i) =>
           turn.from === "user" ? (
             <div key={i} className="flex justify-end">
-              <p className="max-w-[82%] rounded-2xl rounded-ee-md bg-surface-2 px-3.5 py-2.5 text-sm text-ink [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+              <p className="max-w-[82%] rounded-lg rounded-ee-sm bg-surface-2 px-3.5 py-2.5 text-sm text-ink [box-shadow:inset_0_0_0_1px_var(--color-line)]">
                 {turn.text}
               </p>
             </div>
@@ -63,12 +63,12 @@ export function ChatPanel({
             <div key={i} className="flex justify-start">
               <div className="max-w-[88%]">
                 {turn.note && (
-                  <span className="mb-1.5 inline-flex items-center gap-1.5 rounded-full bg-bg-deep/70 px-2 py-0.5 text-[11px] font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.34)]">
+                  <span className="mb-1.5 inline-flex items-center gap-1.5 rounded-full bg-bg-deep/70 px-2 py-0.5 text-[11px] font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.34)]">
                     <IconSpark width={11} height={11} />
                     {turn.note}
                   </span>
                 )}
-                <p className="rounded-2xl rounded-ss-md bg-[oklch(0.6_0.18_262_/_0.14)] px-3.5 py-2.5 text-sm text-ink [box-shadow:inset_0_0_0_1px_oklch(0.6_0.18_262_/_0.34)]">
+                <p className="rounded-lg rounded-ss-sm bg-[oklch(0.55_0.11_250_/_0.12)] px-3.5 py-2.5 text-sm text-ink [box-shadow:inset_0_0_0_1px_oklch(0.55_0.11_250_/_0.3)]">
                   {turn.text}
                 </p>
               </div>
@@ -94,11 +94,11 @@ export function ChatPanel({
       {/* composer */}
       {placeholder !== "" && (
         <div className="mt-auto px-4 pb-4 pt-4 sm:px-5">
-          <div className="flex items-center gap-2 rounded-xl bg-bg-deep/70 px-3 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+          <div className="flex items-center gap-2 rounded-lg bg-bg-deep/70 px-3 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
             <span className="flex-1 truncate text-sm text-muted">
               {placeholder ?? "Ask the AI…"}
             </span>
-            <span className="grid h-7 w-7 place-items-center rounded-lg bg-aurora text-ink">
+            <span className="grid h-7 w-7 place-items-center rounded-md bg-surface-2 text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.4)]">
               <svg
                 width="14"
                 height="14"

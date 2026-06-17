@@ -33,26 +33,29 @@ export function CapabilityIntro({
         className,
       )}
     >
-      <div className={cn("flex flex-wrap items-center gap-2.5", align === "center" && "justify-center")}>
+      <div className={cn("flex flex-wrap items-center gap-3", align === "center" && "justify-center")}>
         {gilt ? (
           <span className="text-gilt">{section.tag}</span>
         ) : (
-          <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-            {section.tag}
-          </span>
+          <span className="text-gilt opacity-90">{section.tag}</span>
         )}
         {showRef && (
           <span className="text-xs font-medium text-muted">{section.ref}</span>
         )}
       </div>
 
-      <h2 className="font-[family-name:var(--font-display)] text-balance text-[length:var(--text-h2)] font-bold leading-[1.08] tracking-[-0.03em] text-ink [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold [.font-he_&]:tracking-normal">
+      <h2 className="text-balance text-[length:var(--text-h2)] font-medium leading-[1.1] tracking-[-0.005em] text-ink [.font-he_&]:font-bold [.font-he_&]:tracking-normal">
         {section.title}
       </h2>
 
+      <span
+        aria-hidden
+        className={cn("gilt-rule max-w-[150px] opacity-60", align === "center" && "mx-auto")}
+      />
+
       <p
         className={cn(
-          "max-w-[58ch] text-pretty text-[length:var(--text-lead)] leading-relaxed text-ink-soft",
+          "max-w-[58ch] text-pretty text-[length:var(--text-lead)] leading-[1.65] text-ink-soft",
           align === "center" && "mx-auto",
         )}
       >
@@ -61,14 +64,14 @@ export function CapabilityIntro({
 
       <ul
         className={cn(
-          "mt-1 flex flex-col gap-3",
+          "mt-2 flex flex-col gap-3.5",
           align === "center" && "items-center",
         )}
       >
         {section.points.map((point) => (
-          <li key={point} className="flex items-start gap-2.5 text-[0.95rem] text-ink-soft">
-            <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md bg-[oklch(0.83_0.13_88_/_0.13)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.34)]">
-              <IconCheck width={12} height={12} />
+          <li key={point} className="flex items-start gap-3 text-[0.95rem] leading-relaxed text-ink-soft">
+            <span className="mt-1 grid h-4 w-4 shrink-0 place-items-center rounded-[3px] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.4)]">
+              <IconCheck width={11} height={11} />
             </span>
             <span>{point}</span>
           </li>

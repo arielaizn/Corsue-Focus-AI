@@ -42,8 +42,8 @@ export function Analytics({
   const area = `${line} L${W - 4},${H - 4} L4,${H - 4} Z`;
 
   return (
-    <section ref={ref} className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
-      <span aria-hidden className="gilt-rule block mb-16 opacity-30" />
+    <section ref={ref} className="mx-auto max-w-[1240px] px-6 py-32 sm:py-44">
+      <span aria-hidden className="gilt-rule mb-20 block max-w-[160px] opacity-60" />
       <Reveal>
         <SectionHeading
           kicker={
@@ -55,10 +55,10 @@ export function Analytics({
         />
       </Reveal>
 
-      <Reveal y={28} delay={0.08}>
-        <div className="mt-12 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
-          {/* dashboard: stats + chart */}
-          <div className="panel-premium overflow-hidden p-5 sm:p-6">
+      <Reveal y={20} delay={0.08}>
+        <div className="mt-16 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
+          {/* dashboard: stats + chart — a framed product mock */}
+          <div className="frame overflow-hidden p-5 sm:p-6">
             {/* stat tiles */}
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {t.metrics.map((m, i) => (
@@ -71,10 +71,10 @@ export function Analytics({
                     ease: easeOutExpo,
                     delay: reduced ? 0 : i * 0.06,
                   }}
-                  className="rounded-xl bg-bg/60 p-3.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+                  className="rounded-[8px] bg-bg/60 p-3.5 ring-line"
                 >
                   <p className="text-xs text-muted">{m.label}</p>
-                  <p className="mt-1.5 font-[family-name:var(--font-display)] text-xl font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+                  <p className="mt-1.5 font-[family-name:var(--font-display)] text-xl font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he-display)]">
                     <Counter
                       to={m.value}
                       prefix={m.prefix}
@@ -97,7 +97,7 @@ export function Analytics({
             </div>
 
             {/* chart */}
-            <div className="mt-5 rounded-xl bg-bg/60 p-4 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+            <div className="mt-5 rounded-[8px] bg-bg/60 p-4 ring-line">
               <div className="mb-3 flex items-center justify-between">
                 <span className="text-xs font-medium text-ink-soft">
                   {t.chartLabel}
@@ -105,7 +105,7 @@ export function Analytics({
                 <span className="inline-flex items-center gap-1.5 text-[11px] text-muted">
                   <span
                     aria-hidden
-                    className="h-2 w-2 rounded-full bg-primary-bright"
+                    className="h-2 w-2 rounded-full bg-[oklch(0.55_0.11_250)]"
                   />
                   {locale === "he" ? "הכנסה חוזרת" : "Recurring"}
                 </span>
@@ -121,11 +121,11 @@ export function Analytics({
                   <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
                     <stop
                       offset="0%"
-                      stopColor="oklch(0.6 0.25 300 / 0.35)"
+                      stopColor="oklch(0.55 0.11 250 / 0.22)"
                     />
                     <stop
                       offset="100%"
-                      stopColor="oklch(0.6 0.25 300 / 0)"
+                      stopColor="oklch(0.55 0.11 250 / 0)"
                     />
                   </linearGradient>
                 </defs>
@@ -155,7 +155,7 @@ export function Analytics({
                 <motion.path
                   d={line}
                   fill="none"
-                  stroke="oklch(0.7 0.18 290)"
+                  stroke="oklch(0.55 0.11 250)"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -184,15 +184,11 @@ export function Analytics({
           </div>
 
           {/* AI Business Advisor panel */}
-          <div className="gilt-rim glow-gold relative flex flex-col overflow-hidden rounded-[16px] bg-surface p-6 sm:p-7">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -top-20 -end-16 h-48 w-48 rounded-full bg-[oklch(0.83_0.13_88_/_0.12)] blur-3xl"
-            />
+          <div className="gilt-rim relative flex flex-col overflow-hidden rounded-[8px] bg-surface p-6 sm:p-7">
             <div className="relative flex items-center gap-3">
               <span
                 aria-hidden
-                className="grid h-9 w-9 place-items-center rounded-xl bg-gold-grad text-bg-deep"
+                className="grid h-9 w-9 place-items-center rounded-[8px] bg-gold-grad text-bg-deep"
               >
                 ✦
               </span>
@@ -210,7 +206,7 @@ export function Analytics({
               initial={reduced ? { opacity: 1 } : { opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
               transition={{ duration: 0.6, ease: easeOutExpo, delay: 0.5 }}
-              className="relative mt-5 rounded-xl rounded-ss-sm bg-bg/70 p-4 text-sm leading-relaxed text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+              className="relative mt-5 rounded-[8px] rounded-ss-sm bg-bg/70 p-4 text-sm leading-relaxed text-ink-soft ring-line"
             >
               {t.advisorMessage}
             </motion.div>
@@ -220,7 +216,7 @@ export function Analytics({
               initial={reduced ? { opacity: 1 } : { opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
               transition={{ duration: 0.6, ease: easeOutExpo, delay: 0.7 }}
-              className="relative mt-4 inline-flex h-10 w-fit items-center gap-2 self-start rounded-xl bg-aurora px-4 text-sm font-semibold text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35),inset_0_1px_0_oklch(1_0_0_/_0.18)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:[box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.7),0_12px_40px_-8px_oklch(0.6_0.2_290_/_0.6)]"
+              className="relative mt-4 inline-flex h-10 w-fit items-center gap-2 self-start rounded-[6px] bg-ink px-4 text-sm font-semibold text-bg-deep transition-transform hover:-translate-y-0.5"
             >
               {t.advisorAction}
               <svg

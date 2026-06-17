@@ -16,7 +16,7 @@ function FeedPostCard({ post, t }: { post: T["posts"][number]; t: T }) {
   const likeCount = post.likes + (liked ? 1 : 0);
 
   return (
-    <article className="panel-premium p-4 sm:p-5">
+    <article className="panel-couture p-4 sm:p-5">
       {post.pinned && (
         <div className="mb-3 inline-flex items-center gap-1.5 text-xs font-medium text-gold">
           <PinIcon size={13} />
@@ -42,7 +42,7 @@ function FeedPostCard({ post, t }: { post: T["posts"][number]; t: T }) {
         {post.hashtags.map((h) => (
           <span
             key={h}
-            className="rounded-md bg-[oklch(0.62_0.215_294_/_0.14)] px-2 py-0.5 text-xs font-medium text-violet-bright [box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.28)]"
+            className="rounded-md px-2 py-0.5 text-xs font-medium text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]"
           >
             {h}
           </span>
@@ -77,7 +77,7 @@ function FeedPostCard({ post, t }: { post: T["posts"][number]; t: T }) {
       </div>
 
       {/* top comment */}
-      <div className="mt-3 flex items-start gap-2.5 rounded-lg bg-bg-deep/70 p-3 [box-shadow:inset_0_0_0_1px_oklch(0.4_0.04_268_/_0.45)]">
+      <div className="mt-3 flex items-start gap-2.5 rounded-lg bg-bg-deep/70 p-3 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
         <Avatar initials={post.topComment.initials} size={30} />
         <div className="min-w-0">
           <span className="text-xs font-semibold text-ink">{post.topComment.author}</span>
@@ -90,11 +90,11 @@ function FeedPostCard({ post, t }: { post: T["posts"][number]; t: T }) {
 
 export function FeedSection({ t }: { t: T }) {
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
+    <section className="mx-auto max-w-[1240px] px-5 py-32 sm:py-44">
       <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16">
         <Reveal className="lg:sticky lg:top-28">
           <SectionHeading title={t.title} subtitle={t.subtitle} />
-          <span aria-hidden className="gilt-rule mt-8 max-w-[8rem] opacity-50" />
+          <span aria-hidden className="gilt-rule mt-10 max-w-[8rem] opacity-60" />
         </Reveal>
 
         <Reveal y={28}>
@@ -117,7 +117,7 @@ export function FeedSection({ t }: { t: T }) {
                       {h}
                     </span>
                   ))}
-                  <span className="bg-aurora ms-auto rounded-lg px-3.5 py-1.5 text-xs font-semibold text-ink [box-shadow:inset_0_0_0_1px_oklch(0.9_0.1_92_/_0.4),inset_0_1px_0_oklch(1_0_0_/_0.12)]">
+                  <span className="ms-auto rounded-md bg-ink px-3.5 py-1.5 text-xs font-semibold text-bg-deep">
                     {t.composerPost}
                   </span>
                 </div>

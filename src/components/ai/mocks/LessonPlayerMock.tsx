@@ -16,23 +16,18 @@ export function LessonPlayerMock({
   return (
     <div className="flex flex-col gap-3">
       <BrowserFrame url="app.coursefocus.ai/learn">
-        {/* video stage */}
-        <div className="relative aspect-video w-full bg-[radial-gradient(130%_130%_at_50%_-10%,oklch(0.34_0.06_267),oklch(0.11_0.035_268))]">
-          {/* faint aurora wash for cinematic depth */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 opacity-50 [background:radial-gradient(60%_70%_at_72%_18%,oklch(0.62_0.215_294_/_0.28),transparent_60%),radial-gradient(55%_60%_at_22%_85%,oklch(0.6_0.18_262_/_0.22),transparent_55%)]"
-          />
+        {/* video stage — flat true-black, gilt play button, no glow */}
+        <div className="relative aspect-video w-full bg-bg-deep [background-image:linear-gradient(180deg,oklch(0.16_0_0),oklch(0.11_0_0))]">
           <div className="absolute inset-0 grid place-items-center">
-            <span className="grid h-14 w-14 place-items-center rounded-full bg-aurora text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.5),inset_0_1px_0_oklch(1_0_0_/_0.2),0_0_50px_-6px_oklch(0.62_0.215_294_/_0.75)]">
+            <span className="grid h-14 w-14 place-items-center rounded-full bg-surface text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.45),inset_0_1px_0_oklch(1_0_0_/_0.05)]">
               <IconPlay width={22} height={22} />
             </span>
           </div>
           {/* chapter ticks */}
           <div className="absolute inset-x-4 bottom-4">
-            <div className="relative h-1.5 rounded-full bg-bg-deep/70">
+            <div className="relative h-1 rounded-full bg-bg-deep/80 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
               <div className="h-full w-[42%] rounded-full bg-gold-grad" />
-              <span className="absolute -top-0.5 left-[42%] h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-gold [box-shadow:0_0_0_3px_oklch(0.11_0.035_268),0_0_10px_oklch(0.83_0.13_88_/_0.6)]" />
+              <span className="absolute -top-0.5 left-[42%] h-2 w-2 -translate-x-1/2 rounded-full bg-gold [box-shadow:0_0_0_3px_oklch(0.11_0_0)]" />
             </div>
             <div className="mt-2 flex items-center justify-between text-[11px] text-muted">
               <span>04:12</span>

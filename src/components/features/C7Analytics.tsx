@@ -20,17 +20,17 @@ function RevenueChart() {
     <svg viewBox={`0 0 ${w} ${h}`} className="w-full" preserveAspectRatio="none" aria-hidden role="img">
       <defs>
         <linearGradient id="cf-rev" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="oklch(0.62 0.215 294 / 0.5)" />
-          <stop offset="100%" stopColor="oklch(0.6 0.18 262 / 0)" />
+          <stop offset="0%" stopColor="oklch(0.76 0.105 80 / 0.22)" />
+          <stop offset="100%" stopColor="oklch(0.76 0.105 80 / 0)" />
         </linearGradient>
         <linearGradient id="cf-rev-line" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="oklch(0.6 0.18 262)" />
-          <stop offset="52%" stopColor="oklch(0.62 0.215 294)" />
-          <stop offset="100%" stopColor="oklch(0.62 0.23 330)" />
+          <stop offset="0%" stopColor="oklch(0.64 0.1 72)" />
+          <stop offset="55%" stopColor="oklch(0.86 0.085 85)" />
+          <stop offset="100%" stopColor="oklch(0.64 0.1 72)" />
         </linearGradient>
       </defs>
       <path d={area} fill="url(#cf-rev)" />
-      <path d={line} fill="none" stroke="url(#cf-rev-line)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+      <path d={line} fill="none" stroke="url(#cf-rev-line)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
     </svg>
   );
 }
@@ -43,13 +43,14 @@ export function C7Analytics({ locale }: { locale: Locale }) {
     <Section className="py-24 sm:py-32">
       <Reveal className="max-w-2xl">
         <SectionHeading title={t.title} subtitle={t.subtitle} />
+        <span aria-hidden className="gilt-rule mt-8 max-w-[140px] opacity-60" />
       </Reveal>
 
       <div className="mt-14 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
         {/* Owner dashboard */}
-        <Reveal y={26}>
-          <div className="panel-premium p-6 sm:p-8">
-            <div className="flex items-center gap-2 text-sm font-semibold text-ink">
+        <Reveal y={24}>
+          <div className="panel-couture p-6 sm:p-8">
+            <div className="flex items-center gap-2 text-sm font-medium text-ink">
               <span className="text-gold">
                 <IconChart size={16} />
               </span>
@@ -58,9 +59,9 @@ export function C7Analytics({ locale }: { locale: Locale }) {
 
             <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {t.ownerMetrics.map((m) => (
-                <div key={m.label} className="rounded-xl bg-bg-deep/70 p-3.5 [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.04)]">
+                <div key={m.label} className="rounded-[8px] bg-bg-deep/70 p-3.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
                   <div className="text-xs text-muted">{m.label}</div>
-                  <div className="mt-1 font-[family-name:var(--font-display)] text-lg font-semibold text-ink">
+                  <div className="mt-1 font-[family-name:var(--font-display)] text-lg font-medium text-ink [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold">
                     {m.value}
                   </div>
                   <div
@@ -76,15 +77,15 @@ export function C7Analytics({ locale }: { locale: Locale }) {
             </div>
 
             {/* revenue chart */}
-            <div className="mt-5 rounded-xl bg-bg-deep/70 p-4 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+            <div className="mt-5 rounded-[8px] bg-bg-deep/70 p-4 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
               <div className="mb-3 text-xs font-semibold text-muted">{t.revenueLabel}</div>
               <RevenueChart />
             </div>
 
             {/* AI advisor */}
-            <div className="mt-5 rounded-xl bg-[oklch(0.6_0.18_262_/_0.1)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35)]">
+            <div className="mt-5 rounded-[8px] bg-bg-deep/60 p-4 [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.3)]">
               <div className="flex items-center gap-2 text-xs font-semibold text-gold">
-                <span className="grid h-5 w-5 place-items-center rounded-md bg-aurora text-ink">
+                <span className="grid h-5 w-5 place-items-center rounded-md bg-surface text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.35)]">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
                     <path d="M12 3v18M3 12h18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
                   </svg>
@@ -97,15 +98,15 @@ export function C7Analytics({ locale }: { locale: Locale }) {
         </Reveal>
 
         {/* Student dashboard */}
-        <Reveal y={26} delay={0.08}>
-          <div className="panel-premium flex h-full flex-col p-6 sm:p-8">
-            <div className="text-sm font-semibold text-ink">{t.studentLabel}</div>
+        <Reveal y={24} delay={0.08}>
+          <div className="panel-couture flex h-full flex-col p-6 sm:p-8">
+            <div className="text-sm font-medium text-ink">{t.studentLabel}</div>
 
             <div className="mt-5 grid grid-cols-2 gap-3">
               {t.studentMetrics.map((m) => (
-                <div key={m.label} className="rounded-xl bg-bg-deep/70 p-3.5 [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.04)]">
+                <div key={m.label} className="rounded-[8px] bg-bg-deep/70 p-3.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]">
                   <div className="text-xs text-muted">{m.label}</div>
-                  <div className="mt-1 font-[family-name:var(--font-display)] text-xl font-semibold text-gold">
+                  <div className="mt-1 font-[family-name:var(--font-display)] text-xl font-medium text-gold [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold">
                     {m.value}
                   </div>
                 </div>

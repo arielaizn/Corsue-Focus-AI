@@ -16,10 +16,10 @@ function XPCard({ xp }: { xp: T["xp"] }) {
   const reduced = useReducedMotion();
   const pct = Math.round((xp.current / xp.next) * 100);
   return (
-    <div className="panel-premium relative overflow-hidden p-6">
+    <div className="panel-couture relative overflow-hidden p-6">
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <span className="bg-aurora grid h-12 w-12 place-items-center rounded-2xl text-lg font-bold tabular-nums text-ink [box-shadow:inset_0_0_0_1px_oklch(0.9_0.1_92_/_0.45),inset_0_1px_0_oklch(1_0_0_/_0.12),0_0_36px_-6px_oklch(0.62_0.23_330_/_0.6)]">
+          <span className="grid h-12 w-12 place-items-center rounded-xl bg-surface-2 text-lg font-medium tabular-nums text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.4)]">
             {xp.level}
           </span>
           <div>
@@ -49,7 +49,7 @@ function XPCard({ xp }: { xp: T["xp"] }) {
           width tweens — only this guard does. Mirror it on every future animated bar.
         */}
         <motion.div
-          className="bg-aurora h-full rounded-full"
+          className="bg-gold-grad h-full rounded-full"
           initial={reduced ? { width: `${pct}%` } : { width: 0 }}
           whileInView={{ width: `${pct}%` }}
           viewport={{ once: true, margin: "0px 0px -10% 0px" }}
@@ -66,13 +66,9 @@ function XPCard({ xp }: { xp: T["xp"] }) {
 /* ---------- Streak card ---------- */
 function StreakCard({ streak }: { streak: T["streak"] }) {
   return (
-    <div className="panel-premium relative overflow-hidden p-6">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[oklch(0.83_0.13_88_/_0.14)] blur-3xl"
-      />
+    <div className="panel-couture relative overflow-hidden p-6">
       <div className="relative flex items-center gap-3">
-        <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[oklch(0.83_0.13_88_/_0.16)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.32)]">
+        <span className="grid h-12 w-12 place-items-center rounded-xl bg-[oklch(0.76_0.105_80_/_0.14)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.32)]">
           <FlameIcon size={24} />
         </span>
         <div>
@@ -88,9 +84,9 @@ function StreakCard({ streak }: { streak: T["streak"] }) {
           return (
             <div key={i} className="flex flex-1 flex-col items-center gap-1.5">
               <span
-                className={`grid h-8 w-full place-items-center rounded-lg text-[11px] font-semibold ${
+                className={`grid h-8 w-full place-items-center rounded-md text-[11px] font-semibold ${
                   active
-                    ? "bg-[oklch(0.83_0.13_88_/_0.18)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.4),inset_0_1px_0_oklch(1_0_0_/_0.08)]"
+                    ? "bg-[oklch(0.76_0.105_80_/_0.16)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.38)]"
                     : "bg-bg-deep text-muted [box-shadow:inset_0_0_0_1px_var(--color-line)]"
                 }`}
               >
@@ -108,7 +104,7 @@ function StreakCard({ streak }: { streak: T["streak"] }) {
 /* ---------- Levels milestone path ---------- */
 function LevelsCard({ levels }: { levels: T["levels"] }) {
   return (
-    <div className="panel-premium p-6">
+    <div className="panel-couture p-6">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h3 className="text-base font-semibold text-ink">{levels.rangeLabel}</h3>
         <span className="text-xs text-muted">{levels.note}</span>
@@ -129,7 +125,7 @@ function LevelsCard({ levels }: { levels: T["levels"] }) {
                 <span
                   className={`grid h-4 w-4 place-items-center rounded-full ${
                     reached
-                      ? "bg-gold [box-shadow:0_0_0_4px_oklch(0.82_0.135_84_/_0.15)]"
+                      ? "bg-gold [box-shadow:0_0_0_3px_oklch(0.76_0.105_80_/_0.14)]"
                       : "bg-bg [box-shadow:inset_0_0_0_1.5px_var(--color-line)]"
                   }`}
                 />
@@ -151,7 +147,7 @@ function LevelsCard({ levels }: { levels: T["levels"] }) {
 /* ---------- Badge wall ---------- */
 function BadgesCard({ badges }: { badges: T["badges"] }) {
   return (
-    <div className="panel-premium p-6">
+    <div className="panel-couture p-6">
       <div className="flex items-center justify-between gap-3">
         <h3 className="text-base font-semibold text-ink">{badges.title}</h3>
         <span className="text-xs tabular-nums text-muted">
@@ -162,9 +158,9 @@ function BadgesCard({ badges }: { badges: T["badges"] }) {
         {badges.items.map((b) => (
           <li
             key={b.name}
-            className={`group/badge flex flex-col items-center gap-2 rounded-xl p-3 text-center ${
+            className={`group/badge flex flex-col items-center gap-2 rounded-lg p-3 text-center ${
               b.earned
-                ? "bg-[oklch(0.83_0.13_88_/_0.08)] [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.32),inset_0_1px_0_oklch(1_0_0_/_0.06)]"
+                ? "bg-[oklch(0.76_0.105_80_/_0.07)] [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.32)]"
                 : "bg-bg-deep/60 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
             }`}
             title={`${b.name} — ${b.desc}`}
@@ -172,8 +168,8 @@ function BadgesCard({ badges }: { badges: T["badges"] }) {
             <span
               className={`grid h-11 w-11 place-items-center rounded-full ${
                 b.earned
-                  ? "bg-[oklch(0.83_0.13_88_/_0.15)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.3)]"
-                  : "bg-surface text-[oklch(0.55_0.02_265)]"
+                  ? "bg-[oklch(0.76_0.105_80_/_0.13)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.3)]"
+                  : "bg-surface text-muted"
               }`}
             >
               <BadgeGlyph glyph={b.glyph} size={22} />
@@ -206,7 +202,7 @@ function LeaderboardCard({ lb }: { lb: T["leaderboard"] }) {
     .map((r, i) => ({ ...r, rank: i + 1 }));
 
   return (
-    <div className="panel-premium p-6">
+    <div className="panel-couture p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h3 className="text-base font-semibold text-ink">{lb.title}</h3>
         <div
@@ -242,16 +238,16 @@ function LeaderboardCard({ lb }: { lb: T["leaderboard"] }) {
           return (
             <li
               key={r.name}
-              className={`flex items-center gap-3 rounded-xl px-3 py-2.5 ${
+              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 ${
                 r.you
-                  ? "bg-[oklch(0.62_0.215_294_/_0.16)] [box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.42),inset_0_1px_0_oklch(1_0_0_/_0.06)]"
+                  ? "bg-[oklch(0.76_0.105_80_/_0.1)] [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.4)]"
                   : "bg-bg-deep/40"
               }`}
             >
               <span
-                className={`grid h-7 w-7 shrink-0 place-items-center rounded-lg text-xs font-bold tabular-nums ${
+                className={`grid h-7 w-7 shrink-0 place-items-center rounded-md text-xs font-bold tabular-nums ${
                   podium
-                    ? "bg-[oklch(0.83_0.13_88_/_0.16)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.28)]"
+                    ? "bg-[oklch(0.76_0.105_80_/_0.14)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.28)]"
                     : "text-muted"
                 }`}
               >
@@ -278,14 +274,14 @@ function LeaderboardCard({ lb }: { lb: T["leaderboard"] }) {
 function ChallengesCard({ challenges }: { challenges: T["challenges"] }) {
   const reduced = useReducedMotion();
   return (
-    <div className="panel-premium p-6">
+    <div className="panel-couture p-6">
       <h3 className="text-base font-semibold text-ink">{challenges.title}</h3>
       <ul className="mt-5 space-y-4">
         {challenges.items.map((c) => (
           <li key={c.title}>
             <div className="flex items-baseline justify-between gap-3">
               <span className="text-sm font-medium text-ink-soft">{c.title}</span>
-              <span className="shrink-0 rounded-md bg-[oklch(0.83_0.13_88_/_0.13)] px-2 py-0.5 text-[11px] font-semibold text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.28)]">
+              <span className="shrink-0 rounded-md bg-[oklch(0.76_0.105_80_/_0.12)] px-2 py-0.5 text-[11px] font-semibold text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.28)]">
                 {c.reward}
               </span>
             </div>
@@ -300,7 +296,7 @@ function ChallengesCard({ challenges }: { challenges: T["challenges"] }) {
                 aria-label={c.title}
               >
                 <motion.div
-                  className="bg-aurora h-full rounded-full"
+                  className="bg-gold-grad h-full rounded-full"
                   initial={reduced ? { width: `${c.progress}%` } : { width: 0 }}
                   whileInView={{ width: `${c.progress}%` }}
                   viewport={{ once: true, margin: "0px 0px -10% 0px" }}
@@ -320,9 +316,9 @@ function ChallengesCard({ challenges }: { challenges: T["challenges"] }) {
 function DailyCard({ daily }: { daily: T["daily"] }) {
   const total = daily.tasks.reduce((s, t) => s + t.xp, 0);
   return (
-    <div className="panel-premium p-6">
+    <div className="panel-couture p-6">
       <div className="flex items-center gap-2.5">
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-[oklch(0.62_0.215_294_/_0.2)] text-violet-bright [box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.3)]">
+        <span className="grid h-8 w-8 place-items-center rounded-lg bg-[oklch(0.76_0.105_80_/_0.14)] text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.3)]">
           <SparkIcon size={16} />
         </span>
         <div>
@@ -334,7 +330,7 @@ function DailyCard({ daily }: { daily: T["daily"] }) {
         {daily.tasks.map((task) => (
           <li
             key={task.text}
-            className="flex items-center gap-3 rounded-xl bg-bg-deep/50 px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_oklch(0.4_0.04_268_/_0.4)]"
+            className="flex items-center gap-3 rounded-lg bg-bg-deep/50 px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
           >
             <span
               className={`grid h-5 w-5 shrink-0 place-items-center rounded-md ${
@@ -366,14 +362,14 @@ function DailyCard({ daily }: { daily: T["daily"] }) {
 
 export function GamificationSection({ t }: { t: T }) {
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-36">
+    <section className="mx-auto max-w-[1240px] px-5 py-32 sm:py-44">
       <Reveal>
         <SectionHeading title={t.title} subtitle={t.subtitle} align="center" className="max-w-2xl" />
-        <span aria-hidden className="gilt-rule mx-auto mt-8 max-w-[10rem] opacity-50" />
+        <span aria-hidden className="gilt-rule mx-auto mt-10 max-w-[10rem] opacity-60" />
       </Reveal>
 
       {/* Bento: distinct spans, not a uniform grid */}
-      <div className="mt-14 grid gap-5 lg:grid-cols-12">
+      <div className="mt-16 grid gap-5 lg:grid-cols-12">
         <Reveal className="lg:col-span-7" y={24}>
           <XPCard xp={t.xp} />
         </Reveal>

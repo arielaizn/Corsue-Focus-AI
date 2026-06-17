@@ -59,7 +59,7 @@ export function Logo({
 
 function Wordtext() {
   return (
-    <span className="font-[family-name:var(--font-display)] text-lg font-bold tracking-[-0.03em] text-ink">
+    <span className="font-[family-name:var(--font-display)] text-[1.35rem] font-medium tracking-[0] text-ink [.font-he_&]:font-[family-name:var(--font-he-display)]">
       CourseFocus<span className="text-gold"> AI</span>
     </span>
   );
@@ -79,45 +79,42 @@ function WordmarkSVG({ height }: { height: number }) {
       <g transform="translate(2,4)">
         <path
           d="M20 4 2 13l18 9 18-9-18-9Z"
-          fill="oklch(0.21 0.05 265)"
-          stroke="oklch(0.82 0.135 84)"
-          strokeWidth="2"
+          fill="oklch(0.11 0 0)"
+          stroke="oklch(0.76 0.105 80)"
+          strokeWidth="1.4"
           strokeLinejoin="round"
         />
         <path
           d="M10 19v8c0 0 4 4 10 4s10-4 10-4v-8"
-          stroke="oklch(0.82 0.135 84)"
-          strokeWidth="2"
+          stroke="oklch(0.76 0.105 80)"
+          strokeWidth="1.4"
           strokeLinecap="round"
         />
         <path
           d="M38 13v9"
-          stroke="oklch(0.82 0.135 84)"
-          strokeWidth="2"
+          stroke="oklch(0.76 0.105 80)"
+          strokeWidth="1.4"
           strokeLinecap="round"
         />
-        <path
-          d="m38 24 1.4 3.2L42.8 28l-2.6 2.3.7 3.5-2.9-1.7-2.9 1.7.7-3.5L34 28l3.4-.8L38 24Z"
-          fill="oklch(0.88 0.09 88)"
-        />
+        <circle cx="38" cy="24" r="1.8" fill="oklch(0.76 0.105 80)" />
       </g>
       <text
         x="56"
         y="31"
-        fontFamily="'Clash Display', system-ui, sans-serif"
+        fontFamily="Georgia, 'Times New Roman', serif"
         fontSize="20"
-        fontWeight="600"
-        fill="oklch(0.97 0.012 250)"
+        fontWeight="500"
+        fill="oklch(0.945 0.012 80)"
       >
         CourseFocus
       </text>
       <text
         x="184"
         y="31"
-        fontFamily="'Clash Display', system-ui, sans-serif"
+        fontFamily="Georgia, 'Times New Roman', serif"
         fontSize="20"
-        fontWeight="600"
-        fill="oklch(0.82 0.135 84)"
+        fontWeight="500"
+        fill="oklch(0.76 0.105 80)"
       >
         AI
       </text>

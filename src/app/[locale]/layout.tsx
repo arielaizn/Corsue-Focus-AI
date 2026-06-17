@@ -1,7 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
-import { Rubik, Geist_Mono } from "next/font/google";
+import {
+  Bodoni_Moda,
+  Hanken_Grotesk,
+  Frank_Ruhl_Libre,
+  Assistant,
+  Geist_Mono,
+} from "next/font/google";
 import { locales, dir, isLocale, type Locale } from "@/lib/i18n";
 import { SmoothScroll } from "@/components/shared/SmoothScroll";
 import { NebulaBackground } from "@/components/shared/NebulaBackground";
@@ -9,13 +15,40 @@ import { GrainOverlay } from "@/components/shared/GrainOverlay";
 import { Nav } from "@/components/shared/Nav";
 import { Footer } from "@/components/shared/Footer";
 
-const rubik = Rubik({
-  subsets: ["latin", "hebrew"],
-  weight: ["400", "500", "700", "800", "900"],
-  variable: "--font-rubik",
+// EN display — Bodoni Moda, high-contrast fashion serif (headlines only)
+const bodoni = Bodoni_Moda({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-bodoni",
   display: "swap",
 });
 
+// EN body/UI — Hanken Grotesk, clean modern grotesque
+const hanken = Hanken_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-hanken",
+  display: "swap",
+});
+
+// HE display — Frank Ruhl Libre, elegant high-contrast Hebrew serif
+const frank = Frank_Ruhl_Libre({
+  subsets: ["hebrew", "latin"],
+  weight: ["500", "700", "900"],
+  variable: "--font-frank",
+  display: "swap",
+});
+
+// HE body — Assistant, clean Hebrew grotesque
+const assistant = Assistant({
+  subsets: ["hebrew", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-assistant",
+  display: "swap",
+});
+
+// Mono (API section only)
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
@@ -66,7 +99,7 @@ export async function generateMetadata({
 }
 
 export const viewport: Viewport = {
-  themeColor: "#1a1d33",
+  themeColor: "#0B0B0C",
   colorScheme: "dark",
 };
 
@@ -94,15 +127,9 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={dir(locale)}
-      className={`${rubik.variable} ${geistMono.variable}`}
+      className={`${bodoni.variable} ${hanken.variable} ${frank.variable} ${assistant.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600&display=swap"
-        />
-      </head>
       <body className={locale === "he" ? "font-he" : "font-en"}>
         {isAppShell ? (
           children

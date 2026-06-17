@@ -1,10 +1,12 @@
 import { cn } from "@/lib/cn";
 
+/* Couture: tonal bone/charcoal initials with a single restrained gilt variant.
+   No blue/violet/magenta — avatars are part of page chrome. */
 const palettes = [
-  "bg-[oklch(0.62_0.2_264_/_0.22)] text-[oklch(0.82_0.12_262)]",
-  "bg-[oklch(0.6_0.25_300_/_0.22)] text-[oklch(0.82_0.15_300)]",
-  "bg-[oklch(0.82_0.135_84_/_0.18)] text-[oklch(0.86_0.1_86)]",
-  "bg-[oklch(0.62_0.12_200_/_0.2)] text-[oklch(0.82_0.1_200)]",
+  "bg-[oklch(0.24_0.003_60)] text-[oklch(0.86_0.008_75)]",
+  "bg-[oklch(0.30_0.004_60)] text-[oklch(0.90_0.01_78)]",
+  "bg-[oklch(0.76_0.105_80_/_0.16)] text-[oklch(0.86_0.085_85)]",
+  "bg-[oklch(0.19_0.002_60)] text-[oklch(0.82_0.012_75)]",
 ];
 
 function pick(seed: string) {

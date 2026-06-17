@@ -11,7 +11,7 @@ export function PhoneFrame({ children, className }: PhoneFrameProps) {
   return (
     <div
       className={cn(
-        "relative mx-auto w-full max-w-[300px] rounded-[2.25rem] bg-bg-deep p-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.06),0_44px_110px_-44px_oklch(0.6_0.2_290_/_0.5)]",
+        "relative mx-auto w-full max-w-[300px] rounded-[2rem] bg-bg-deep p-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05),0_10px_30px_-18px_oklch(0_0_0_/_0.9)]",
         className,
       )}
     >

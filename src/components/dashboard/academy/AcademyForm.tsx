@@ -102,7 +102,7 @@ function SubmitButton({ label, pendingLabel }: { label: string; pendingLabel: st
     <button
       type="submit"
       disabled={pending}
-      className="bg-aurora text-ink relative inline-flex items-center justify-center overflow-hidden rounded-xl px-7 py-3 text-sm font-semibold tracking-[-0.01em] transition-[transform,box-shadow] duration-300 [box-shadow:inset_0_1px_0_oklch(1_0_0_/_0.18),0_18px_48px_-18px_oklch(0.6_0.2_290_/_0.6)] hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+      className="bg-ink text-bg-deep relative inline-flex items-center justify-center overflow-hidden rounded-[6px] px-7 py-3 text-sm font-semibold tracking-[0.01em] transition-[transform,background-color] duration-300 [box-shadow:inset_0_1px_0_oklch(1_0_0_/_0.3)] hover:bg-ink-soft hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-60"
     >
       {pending ? pendingLabel : label}
     </button>

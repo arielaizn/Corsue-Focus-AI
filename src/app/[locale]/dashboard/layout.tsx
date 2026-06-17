@@ -42,7 +42,7 @@ export default async function DashboardLayout({
         {dict.shell.skipToContent}
       </a>
 
-      {/* Calm static backdrop — nebula tint + film grain, no marketing chrome */}
+      {/* Flat true-black backdrop + film grain. No nebula, no glow (couture). */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 z-0 opacity-60"

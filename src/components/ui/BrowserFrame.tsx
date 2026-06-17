@@ -17,15 +17,15 @@ export function BrowserFrame({
     <div
       dir="ltr"
       className={cn(
-        "overflow-hidden rounded-[16px] bg-bg-deep [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05),0_40px_110px_-44px_oklch(0.6_0.2_290_/_0.5)]",
+        "overflow-hidden rounded-[8px] bg-bg-deep [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05),0_8px_24px_-16px_oklch(0_0_0_/_0.9)]",
         className,
       )}
     >
-      <div className="flex items-center gap-3 border-b border-line bg-surface/50 px-4 py-3">
+      <div className="flex items-center gap-3 border-b border-line bg-surface px-4 py-3">
         <div className="flex gap-1.5">
-          <span className="h-3 w-3 rounded-full bg-[oklch(0.6_0.13_25)]" />
-          <span className="h-3 w-3 rounded-full bg-[oklch(0.78_0.13_85)]" />
-          <span className="h-3 w-3 rounded-full bg-[oklch(0.72_0.15_150)]" />
+          <span className="h-2.5 w-2.5 rounded-full [box-shadow:inset_0_0_0_1px_var(--color-line)]" />
+          <span className="h-2.5 w-2.5 rounded-full [box-shadow:inset_0_0_0_1px_var(--color-line)]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.76_0.105_80_/_0.7)]" />
         </div>
         <div className="mx-auto flex max-w-[60%] flex-1 items-center justify-center gap-2 rounded-md bg-bg px-3 py-1.5 text-xs text-muted [box-shadow:inset_0_0_0_1px_var(--color-line)]">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>

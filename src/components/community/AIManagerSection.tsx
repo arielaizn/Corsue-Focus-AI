@@ -7,9 +7,10 @@ type T = (typeof content)[Locale]["aiManager"];
 
 export function AIManagerSection({ t }: { t: T }) {
   return (
-    <section className="relative mx-auto max-w-[1240px] px-5 py-24 sm:py-36">
+    <section className="relative mx-auto max-w-[1240px] px-5 py-32 sm:py-44">
       <Reveal>
         <SectionHeading kicker={t.botName} title={t.title} subtitle={t.subtitle} />
+        <span aria-hidden className="gilt-rule mt-10 max-w-[8rem] opacity-60" />
       </Reveal>
 
       <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_0.92fr] lg:items-stretch lg:gap-8">
@@ -19,9 +20,9 @@ export function AIManagerSection({ t }: { t: T }) {
             {t.duties.map((d, i) => (
               <li
                 key={d.title}
-                className="panel-premium flex gap-4 p-5"
+                className="panel-couture flex gap-4 p-5"
               >
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[oklch(0.62_0.215_294_/_0.2)] text-sm font-bold tabular-nums text-violet-bright [box-shadow:inset_0_0_0_1px_oklch(0.62_0.215_294_/_0.3)]">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-surface-2 text-sm font-medium tabular-nums text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.3)]">
                   {i + 1}
                 </span>
                 <div>
@@ -33,11 +34,11 @@ export function AIManagerSection({ t }: { t: T }) {
           </ol>
         </Reveal>
 
-        {/* live AI activity log — the ONE sanctioned glass panel */}
+        {/* live AI activity log — a flat gilt-rimmed couture panel */}
         <Reveal y={26} delay={0.08}>
-          <GlowCard tone="aurora" className="h-full">
+          <GlowCard tone="gold" className="h-full">
             <div className="flex items-center gap-3">
-              <span className="bg-aurora glow-aurora grid h-10 w-10 place-items-center rounded-xl text-ink">
+              <span className="grid h-10 w-10 place-items-center rounded-lg bg-surface-2 text-gold [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.35)]">
                 <SparkIcon size={20} />
               </span>
               <div>

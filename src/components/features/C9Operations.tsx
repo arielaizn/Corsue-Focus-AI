@@ -6,9 +6,9 @@ import { Avatar } from "./bits";
 import { IconCalendar } from "./icons";
 
 const TONE: Record<"live" | "task" | "drop", string> = {
-  live: "bg-aurora text-ink",
-  task: "bg-[oklch(0.72_0.13_78_/_0.25)] text-gold",
-  drop: "bg-[oklch(0.62_0.215_294_/_0.22)] text-violet-bright",
+  live: "bg-ink text-bg-deep",
+  task: "bg-[oklch(0.76_0.105_80_/_0.22)] text-gold",
+  drop: "bg-surface-2 text-ink-soft",
 };
 
 /** C9 — Operations. A month calendar with tagged events, beside a live-class mock. */
@@ -28,14 +28,15 @@ export function C9Operations({ locale }: { locale: Locale }) {
     <Section className="py-24 sm:py-32">
       <Reveal className="max-w-2xl">
         <SectionHeading title={t.title} subtitle={t.subtitle} />
+        <span aria-hidden className="gilt-rule mt-8 max-w-[140px] opacity-60" />
       </Reveal>
 
       <div className="mt-14 grid gap-6 lg:grid-cols-[1.25fr_1fr]">
         {/* Calendar */}
-        <Reveal y={26}>
-          <div className="panel-premium p-6">
+        <Reveal y={24}>
+          <div className="panel-couture p-6">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-sm font-semibold text-ink">
+              <div className="flex items-center gap-2 text-sm font-medium text-ink">
                 <span className="text-gold"><IconCalendar size={16} /></span>
                 {t.calendarTitle}
               </div>
@@ -44,12 +45,12 @@ export function C9Operations({ locale }: { locale: Locale }) {
                   <span key={k} className="inline-flex items-center gap-1.5">
                     <span
                       aria-hidden
-                      className={`h-2 w-2 rounded-full ${
+                      className={`h-1.5 w-1.5 rounded-full ${
                         k === "live"
-                          ? "bg-[oklch(0.62_0.215_294)]"
+                          ? "bg-ink"
                           : k === "task"
                             ? "bg-gold"
-                            : "bg-violet-bright"
+                            : "bg-muted"
                       }`}
                     />
                     {t.events.find((e) => e.tone === k)?.label}
@@ -93,16 +94,16 @@ export function C9Operations({ locale }: { locale: Locale }) {
         </Reveal>
 
         {/* Live class */}
-        <Reveal y={26} delay={0.08}>
-          <div className="flex h-full flex-col overflow-hidden rounded-[16px] bg-bg-deep [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05),0_28px_80px_-48px_oklch(0.08_0.03_268_/_0.9)]">
-            {/* stage */}
+        <Reveal y={24} delay={0.08}>
+          <div className="flex h-full flex-col overflow-hidden rounded-[8px] bg-bg-deep [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.04),0_8px_24px_-16px_oklch(0_0_0_/_0.9)]">
+            {/* stage — flat charcoal poster, single soft top vignette */}
             <div className="relative aspect-video">
               <div
                 aria-hidden
                 className="absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(110% 90% at 25% 0%, oklch(0.62 0.215 294 / 0.3), transparent 55%), radial-gradient(110% 90% at 80% 100%, oklch(0.62 0.23 330 / 0.22), transparent 55%)",
+                    "radial-gradient(120% 100% at 50% 0%, oklch(0.24 0.003 60), oklch(0.11 0 0) 70%)",
                 }}
               />
               <div className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-md bg-[oklch(0.6_0.13_25)] px-2.5 py-1 text-xs font-semibold text-ink">
@@ -126,14 +127,14 @@ export function C9Operations({ locale }: { locale: Locale }) {
 
               <div className="mt-4 flex flex-wrap gap-2">
                 {t.livePlatforms.map((p) => (
-                  <span key={p} className="rounded-md bg-surface-2 px-2.5 py-1 text-xs text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+                  <span key={p} className="rounded-[6px] bg-surface-2 px-2.5 py-1 text-xs text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]">
                     {p}
                   </span>
                 ))}
               </div>
 
               <div className="mt-auto pt-5">
-                <div className="rounded-xl bg-aurora px-4 py-2.5 text-center text-sm font-semibold text-ink gilt-rim">
+                <div className="rounded-[6px] bg-ink px-4 py-2.5 text-center text-sm font-semibold text-bg-deep">
                   {t.liveCtaJoin}
                 </div>
               </div>

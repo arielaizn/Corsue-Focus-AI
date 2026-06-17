@@ -7,9 +7,9 @@ import { IconExam } from "../icons";
  */
 export function ExamCard({ data }: { data: AIContent["exam"] }) {
   return (
-    <div className="panel-premium overflow-hidden">
+    <div className="panel-couture overflow-hidden">
       <div className="flex items-center gap-3 border-b border-line bg-bg-deep/60 px-5 py-3.5">
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-[oklch(0.6_0.18_262_/_0.18)] text-ink-soft">
+        <span className="grid h-8 w-8 place-items-center rounded-md bg-surface-2 text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]">
           <IconExam width={16} height={16} />
         </span>
         <p className="text-sm font-semibold text-ink">{data.settingsTitle}</p>
@@ -21,7 +21,7 @@ export function ExamCard({ data }: { data: AIContent["exam"] }) {
           {data.settings.map((s) => (
             <div
               key={s.label}
-              className="rounded-xl bg-bg-deep/50 px-3 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+              className="rounded-lg bg-bg-deep/50 px-3 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
             >
               <p className="text-[11px] text-muted">{s.label}</p>
               <p className="mt-0.5 truncate text-sm font-medium text-ink">{s.value}</p>
@@ -34,9 +34,9 @@ export function ExamCard({ data }: { data: AIContent["exam"] }) {
           {data.questions.map((q, i) => (
             <li
               key={q.q}
-              className="flex items-start gap-3 rounded-xl bg-surface/40 px-3.5 py-3 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+              className="flex items-start gap-3 rounded-lg bg-surface/40 px-3.5 py-3 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
             >
-              <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-md bg-[oklch(0.83_0.13_88_/_0.14)] text-xs font-semibold text-gold">
+              <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-[4px] bg-[oklch(0.76_0.105_80_/_0.13)] text-xs font-semibold text-gold">
                 {i + 1}
               </span>
               <div className="min-w-0 flex-1">

@@ -79,10 +79,8 @@ export function Nav({ locale }: NavProps) {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-[var(--z-nav)] transition-[background-color,backdrop-filter,padding] duration-300",
-        scrolled
-          ? "bg-bg-deep/72 py-2 backdrop-blur-xl"
-          : "py-4",
+        "fixed inset-x-0 top-0 z-[var(--z-nav)] transition-[background-color,padding] duration-300",
+        scrolled ? "bg-bg/95 py-2.5" : "py-5",
       )}
     >
       {/* gilt hairline — only once scrolled, the gold edge of the floating bar */}
@@ -90,7 +88,7 @@ export function Nav({ locale }: NavProps) {
         aria-hidden
         className={cn(
           "gilt-rule pointer-events-none absolute inset-x-0 bottom-0 transition-opacity duration-300",
-          scrolled ? "opacity-60" : "opacity-0",
+          scrolled ? "opacity-50" : "opacity-0",
         )}
       />
       <nav className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 px-5">
@@ -105,10 +103,10 @@ export function Nav({ locale }: NavProps) {
                   href={hrefFor(link.href)}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors",
+                    "rounded-[4px] px-3.5 py-2 text-sm font-medium transition-colors",
                     active
                       ? "text-ink"
-                      : "text-ink-soft hover:text-ink hover:bg-surface/50",
+                      : "text-ink-soft hover:text-ink",
                   )}
                 >
                   {link.label}
@@ -133,7 +131,7 @@ export function Nav({ locale }: NavProps) {
           aria-controls="mobile-menu"
           aria-label={open ? t.close : t.menu}
           onClick={() => setOpen((v) => !v)}
-          className="grid h-10 w-10 place-items-center rounded-lg text-ink [box-shadow:inset_0_0_0_1px_var(--color-line)] lg:hidden"
+          className="grid h-10 w-10 place-items-center rounded-[4px] text-ink [box-shadow:inset_0_0_0_1px_var(--color-line)] lg:hidden"
         >
           <span className="relative block h-3.5 w-5">
             <span
@@ -164,7 +162,7 @@ export function Nav({ locale }: NavProps) {
         ref={panelRef}
         hidden={!open}
         className={cn(
-          "lg:hidden overflow-hidden border-t border-line bg-bg-deep/95 backdrop-blur-xl transition-[max-height,opacity] duration-300",
+          "lg:hidden overflow-hidden border-t border-line bg-bg transition-[max-height,opacity] duration-300",
           open ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0",
         )}
       >
@@ -174,10 +172,10 @@ export function Nav({ locale }: NavProps) {
               <Link
                 href={hrefFor(link.href)}
                 className={cn(
-                  "block rounded-lg px-4 py-3 text-base font-medium",
+                  "block rounded-[4px] px-4 py-3 text-base font-medium",
                   isActive(link.href)
-                    ? "bg-surface/60 text-ink"
-                    : "text-ink-soft hover:bg-surface/50 hover:text-ink",
+                    ? "bg-surface text-ink"
+                    : "text-ink-soft hover:bg-surface hover:text-ink",
                 )}
               >
                 {link.label}

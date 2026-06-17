@@ -23,17 +23,9 @@ export function OrbitSection({
   }));
 
   return (
-    <section className="relative overflow-hidden py-28 sm:py-40">
-      {/* radial spotlight behind the orbit — aurora into magenta */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(46% 52% at 50% 50%, oklch(0.62 0.215 294 / 0.18), transparent 68%), radial-gradient(34% 40% at 62% 42%, oklch(0.62 0.23 330 / 0.12), transparent 70%)",
-        }}
-      />
-      <div className="mx-auto max-w-[1240px] px-5">
+    <section className="relative py-32 sm:py-44">
+      <div className="mx-auto max-w-[1240px] px-6">
+        <span aria-hidden className="gilt-rule mx-auto mb-20 block max-w-[160px] opacity-60" />
         <Reveal>
           <SectionHeading
             kicker="Academy OS"
@@ -44,8 +36,8 @@ export function OrbitSection({
             className="mx-auto max-w-2xl"
           />
         </Reveal>
-        <Reveal y={28} delay={0.1}>
-          <div className="mt-14">
+        <Reveal y={20} delay={0.1}>
+          <div className="mt-16">
             <OrbitDiagram centerLabel={t.centerLabel} items={items} />
           </div>
         </Reveal>

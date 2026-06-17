@@ -39,7 +39,7 @@ function Cell({
       <span className="inline-grid place-items-center">
         <span className="sr-only">{yes}</span>
         <CheckIcon
-          className={cn("size-4", highlight ? "text-gold-bright" : "text-primary-bright")}
+          className={cn("size-4", highlight ? "text-gold" : "text-ink-soft")}
         />
       </span>
     );
@@ -56,7 +56,7 @@ export function ComparisonTable({ locale, t }: Props) {
   const proIndex = 1; // Pro column highlighted
   return (
     <div
-      className="panel-premium overflow-x-auto overflow-y-clip [mask-image:linear-gradient(to_right,#000_calc(100%-2.5rem),transparent)] sm:[mask-image:none]"
+      className="panel-couture overflow-x-auto overflow-y-clip [mask-image:linear-gradient(to_right,#000_calc(100%-2.5rem),transparent)] sm:[mask-image:none]"
       tabIndex={0}
       role="region"
       aria-label={
@@ -82,9 +82,9 @@ export function ComparisonTable({ locale, t }: Props) {
                 key={c}
                 scope="col"
                 className={cn(
-                  "px-5 py-5 text-center font-[family-name:var(--font-display)] text-base font-bold tracking-[-0.02em] [.font-he_&]:font-[family-name:var(--font-he)] [.font-he_&]:font-extrabold",
+                  "px-5 py-5 text-center font-[family-name:var(--font-display)] text-base font-medium tracking-[-0.01em] [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold",
                   i === proIndex
-                    ? "text-gold bg-[oklch(0.83_0.13_88_/_0.07)] [box-shadow:inset_0_1px_0_0_oklch(0.83_0.13_88_/_0.5)]"
+                    ? "text-gold bg-[oklch(0.76_0.105_80_/_0.06)] [box-shadow:inset_0_1px_0_0_oklch(0.76_0.105_80_/_0.5)]"
                     : "bg-surface-2 text-ink",
                 )}
               >
@@ -108,7 +108,7 @@ export function ComparisonTable({ locale, t }: Props) {
               {g.rows.map((row) => (
                 <tr
                   key={row.label}
-                  className="[border-top:1px_solid_oklch(0.4_0.04_268_/_0.45)] transition-colors hover:bg-surface/50"
+                  className="[border-top:1px_solid_oklch(0.32_0.004_70_/_0.5)] transition-colors hover:bg-surface/50"
                 >
                   <th
                     scope="row"
@@ -121,7 +121,7 @@ export function ComparisonTable({ locale, t }: Props) {
                       key={i}
                       className={cn(
                         "px-5 py-4 text-center",
-                        i === proIndex && "bg-[oklch(0.83_0.13_88_/_0.06)]",
+                        i === proIndex && "bg-[oklch(0.76_0.105_80_/_0.05)]",
                       )}
                     >
                       <Cell

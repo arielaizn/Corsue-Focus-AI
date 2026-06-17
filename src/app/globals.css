@@ -1,113 +1,101 @@
 @import "tailwindcss";
 
 /* ============================================================
-   CourseFocus AI — design tokens · "Midnight Atelier"
-   Drenched-dark planetarium elevated to luxury: deep-navy void
-   ramp (lightness = elevation), aurora blue→violet→magenta the
-   living signature, gold the rare jewel (~10%). OKLCH, literal.
+   CourseFocus AI — design tokens · "Obsidian Couture"
+   True neutral black. Warm bone ink. A single thread of gold
+   foil. Editorial typography, vast restraint. NO nebula, NO
+   glow, NO aurora, NO gradient text. Luxury = space + type +
+   foil + material, never effects. OKLCH, literal.
+   References: Saint Laurent · A24 · MUBI · couture print.
    ============================================================ */
 
 @theme {
-  /* Surfaces — deep-navy void ramp (lightness = elevation) */
-  --color-bg: oklch(0.15 0.04 268);
-  --color-bg-deep: oklch(0.11 0.035 268);
-  --color-surface: oklch(0.22 0.05 268);
-  --color-surface-2: oklch(0.28 0.058 268);
-  --color-surface-3: oklch(0.34 0.06 267);
-  --color-line: oklch(0.4 0.04 268);
+  /* Surfaces — true neutral black, depth via lightness only (chroma ~0) */
+  --color-bg: oklch(0.145 0 0); /* page — true black, no hue */
+  --color-bg-deep: oklch(0.11 0 0); /* footer / pockets */
+  --color-surface: oklch(0.19 0.002 60); /* raised panel — barely-warm charcoal */
+  --color-surface-2: oklch(0.24 0.003 60); /* nested / hover */
+  --color-surface-3: oklch(0.3 0.004 60); /* top elevation */
+  --color-line: oklch(0.32 0.004 70); /* neutral hairline */
 
-  /* Ink — warm cream (matches logo lettering) */
-  --color-ink: oklch(0.96 0.012 92);
-  --color-ink-soft: oklch(0.88 0.016 250);
-  --color-muted: oklch(0.745 0.03 268);
+  /* Ink — warm bone (NOT pure white; couture warmth) */
+  --color-ink: oklch(0.945 0.012 80); /* primary, ~16:1 on bg */
+  --color-ink-soft: oklch(0.82 0.012 75); /* secondary, ~9:1 */
+  --color-muted: oklch(0.66 0.01 75); /* labels/captions only, ~4.6:1 */
 
-  /* Aurora — the living signature (blue → violet → magenta) */
-  --color-primary: oklch(0.6 0.18 262);
-  --color-primary-bright: oklch(0.68 0.16 262);
-  --color-blue: oklch(0.6 0.18 262);
-  --color-blue-bright: oklch(0.68 0.16 262);
-  --color-violet: oklch(0.62 0.215 294);
-  --color-violet-bright: oklch(0.66 0.235 300);
-  --color-magenta: oklch(0.62 0.23 330);
+  /* Gold — the single precious accent. Thin foil. RARE (~5%). */
+  --color-gold: oklch(0.76 0.105 80);
+  --color-gold-bright: oklch(0.86 0.085 85);
+  --color-gold-soft: oklch(0.82 0.07 82);
+  --color-gold-deep: oklch(0.64 0.1 72);
 
-  /* Gold — the precious accent (~10% max). The jewel. */
-  --color-gold: oklch(0.83 0.13 88);
-  --color-gold-bright: oklch(0.9 0.1 92);
-  --color-gold-soft: oklch(0.88 0.09 88);
-  --color-gold-deep: oklch(0.72 0.13 78);
+  /* Ink-blue — product-UI mockup accent ONLY (never page chrome). */
+  --color-ink-blue: oklch(0.55 0.11 250);
 
-  /* Status — tuned into the Midnight Atelier system (not raw web green/red).
-     pos biased toward the aurora's cool teal-green; neg toward the magenta end;
-     status-online a calm branded green pulse. Kept ≥0.72 L for AA on dark. */
-  --color-pos: oklch(0.78 0.13 165);
-  --color-neg: oklch(0.66 0.2 12);
-  --color-status-online: oklch(0.74 0.13 162);
+  /* --------------------------------------------------------
+     Back-compat alias tokens (kept so page-agent files that
+     reference primary/blue/violet/magenta still resolve, but
+     every value is now neutralized toward bone/gold/ink-blue —
+     no aurora anywhere on chrome).
+     -------------------------------------------------------- */
+  --color-primary: oklch(0.76 0.105 80); /* -> gold foil */
+  --color-primary-bright: oklch(0.86 0.085 85);
+  --color-blue: oklch(0.55 0.11 250); /* -> ink-blue (mockups) */
+  --color-blue-bright: oklch(0.62 0.1 250);
+  --color-violet: oklch(0.76 0.105 80); /* -> gold (no violet) */
+  --color-violet-bright: oklch(0.86 0.085 85);
+  --color-magenta: oklch(0.76 0.105 80); /* -> gold (no magenta) */
 
-  /* Fonts */
-  --font-display: "Clash Display", system-ui, sans-serif;
-  --font-en: "General Sans", system-ui, sans-serif;
-  --font-he: var(--font-rubik), system-ui, sans-serif;
+  /* Status — restrained, neutral-leaning, AA on true black */
+  --color-pos: oklch(0.78 0.1 165);
+  --color-neg: oklch(0.66 0.16 25);
+  --color-status-online: oklch(0.76 0.1 162);
+
+  /* Fonts — editorial couture pairing (set per-locale on body) */
+  --font-display: var(--font-bodoni), Georgia, "Times New Roman", serif;
+  --font-en: var(--font-hanken), system-ui, sans-serif;
+  --font-he: var(--font-assistant), system-ui, sans-serif;
+  --font-he-display: var(--font-frank), Georgia, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* Brand gradients — MULTI-STOP & RICH (fills/borders/glow, NEVER text) */
-  --grad-aurora: linear-gradient(
-    125deg,
-    oklch(0.6 0.18 262),
-    oklch(0.62 0.215 294) 52%,
-    oklch(0.62 0.23 330)
-  );
+  /* Foil sheen — for 1px gilt RULES ONLY (never text, never fills) */
   --grad-gold: linear-gradient(
     100deg,
-    oklch(0.72 0.13 78),
-    oklch(0.83 0.13 88) 38%,
-    oklch(0.92 0.09 93) 60%,
-    oklch(0.74 0.13 80)
+    oklch(0.64 0.1 72),
+    oklch(0.8 0.1 82) 45%,
+    oklch(0.9 0.07 88) 60%,
+    oklch(0.64 0.1 72)
   );
+  /* Back-compat: anything that asked for "aurora" now gets the gilt foil */
+  --grad-aurora: var(--grad-gold);
 
-  /* Fluid type scale — dramatic clamp jumps (display ceiling ≤ 6rem) */
-  --text-display: clamp(2.75rem, 1.6rem + 5.75vw, 6rem);
-  --text-h1: clamp(2.25rem, 1.45rem + 4vw, 4rem);
-  --text-h2: clamp(1.75rem, 1.2rem + 2.75vw, 3rem);
-  --text-h3: clamp(1.35rem, 1.05rem + 1.5vw, 2rem);
-  --text-lead: clamp(1.05rem, 0.95rem + 0.5vw, 1.375rem);
+  /* Editorial type scale — dramatic serif-display jumps (≤ ~5.5rem) */
+  --text-display: clamp(2.5rem, 1.5rem + 4.6vw, 5.25rem);
+  --text-h1: clamp(2.1rem, 1.4rem + 3.4vw, 3.75rem);
+  --text-h2: clamp(1.65rem, 1.2rem + 2.2vw, 2.75rem);
+  --text-h3: clamp(1.3rem, 1.05rem + 1.3vw, 1.85rem);
+  --text-lead: clamp(1.05rem, 0.97rem + 0.45vw, 1.3rem);
 }
 
-/* Non-color CSS vars (z-scale, gradients, glows reused in raw CSS) */
+/* Non-color CSS vars + back-compat gradient aliases (now foil/flat) */
 :root {
-  --grad-aurora: linear-gradient(
-    125deg,
-    oklch(0.6 0.18 262),
-    oklch(0.62 0.215 294) 52%,
-    oklch(0.62 0.23 330)
-  );
   --grad-gold: linear-gradient(
     100deg,
-    oklch(0.72 0.13 78),
-    oklch(0.83 0.13 88) 38%,
-    oklch(0.92 0.09 93) 60%,
-    oklch(0.74 0.13 80)
+    oklch(0.64 0.1 72),
+    oklch(0.8 0.1 82) 45%,
+    oklch(0.9 0.07 88) 60%,
+    oklch(0.64 0.1 72)
   );
+  /* aurora / nebula aliases neutralized — flat, no color, near-invisible.
+     Existing component references resolve to a quiet couture treatment. */
+  --grad-aurora: var(--grad-gold);
   --grad-aurora-soft: linear-gradient(
-    125deg,
-    oklch(0.6 0.18 262 / 0.16),
-    oklch(0.62 0.215 294 / 0.16) 52%,
-    oklch(0.62 0.23 330 / 0.16)
+    100deg,
+    oklch(0.76 0.105 80 / 0.1),
+    oklch(0.86 0.085 85 / 0.12) 55%,
+    oklch(0.76 0.105 80 / 0.1)
   );
-  --grad-nebula: radial-gradient(
-      120% 90% at 70% 18%,
-      oklch(0.3 0.12 300 / 0.55),
-      transparent 60%
-    ),
-    radial-gradient(
-      90% 80% at 18% 8%,
-      oklch(0.28 0.12 262 / 0.45),
-      transparent 55%
-    ),
-    radial-gradient(
-      80% 70% at 88% 38%,
-      oklch(0.3 0.13 330 / 0.3),
-      transparent 58%
-    );
+  --grad-nebula: none;
 
   /* Semantic z-index scale — no 9999 */
   --z-base: 0;
@@ -138,26 +126,40 @@ body {
   background-color: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-en);
+  font-kerning: normal;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* +0.06 line-height for light-on-dark legibility */
-  line-height: 1.66;
+  /* +0.06 line-height compensation for light-on-dark legibility */
+  line-height: 1.7;
+  letter-spacing: 0.005em;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
 body.font-he {
   font-family: var(--font-he);
+  letter-spacing: 0;
 }
 
+/* Display headings = serif. Grotesque body carries everything else.
+   Serifs don't want negative tracking — keep near 0. */
 h1,
 h2,
 h3,
 h4 {
   text-wrap: balance;
-  line-height: 1.08;
-  /* display tracking floor −0.04em; tight grotesque default */
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  font-family: var(--font-display);
+}
+
+.font-he h1,
+.font-he h2,
+.font-he h3,
+.font-he h4 {
+  font-family: var(--font-he-display);
+  letter-spacing: 0;
 }
 
 p {
@@ -165,15 +167,15 @@ p {
 }
 
 ::selection {
-  background-color: oklch(0.83 0.13 88 / 0.85);
-  color: oklch(0.15 0.04 268);
+  background-color: oklch(0.76 0.105 80 / 0.85);
+  color: oklch(0.11 0 0);
 }
 
-/* Focus ring — refined gold, smooth */
+/* Focus ring — refined gold foil */
 :focus-visible {
   outline: 2px solid var(--color-gold);
   outline-offset: 3px;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 /* Thin custom scrollbar */
@@ -186,7 +188,7 @@ p {
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-line);
-  border-radius: 8px;
+  border-radius: 6px;
   border: 2px solid var(--color-bg-deep);
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -198,7 +200,10 @@ html {
 }
 
 /* ============================================================
-   Premium utility classes — the luxury material layer
+   Obsidian Couture utility layer — foil, frames, flat panels.
+   Old glow/aurora utility NAMES are kept but redefined to the
+   couture material (no glow, no glass, no color) so existing
+   page-agent markup degrades gracefully into the new look.
    ============================================================ */
 
 @layer utilities {
@@ -209,15 +214,7 @@ html {
     text-wrap: pretty;
   }
 
-  /* aurora / gold fills for panels, rings, bars (NEVER text) */
-  .bg-aurora {
-    background-image: var(--grad-aurora);
-  }
-  .bg-gold-grad {
-    background-image: var(--grad-gold);
-  }
-
-  /* gilt-rule — 1px solid gold gradient divider (the gilt edge) */
+  /* ---- gilt-rule — the signature 1px gold-foil divider ---- */
   .gilt-rule {
     height: 1px;
     width: 100%;
@@ -225,81 +222,124 @@ html {
     background-image: linear-gradient(
       to right,
       transparent,
-      oklch(0.83 0.13 88 / 0.55) 18%,
-      oklch(0.92 0.09 93 / 0.8) 50%,
-      oklch(0.83 0.13 88 / 0.55) 82%,
+      oklch(0.7 0.1 80 / 0.45) 16%,
+      oklch(0.88 0.08 86 / 0.75) 50%,
+      oklch(0.7 0.1 80 / 0.45) 84%,
       transparent
     );
   }
 
-  /* text-gilt — SOLID gold small-caps label (NOT gradient text) */
+  /* ---- text-gilt — SOLID gold small-caps label (NOT gradient text) ---- */
   .text-gilt {
     color: var(--color-gold);
-    font-size: 0.75rem;
+    font-family: var(--font-en);
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     line-height: 1.2;
   }
   .font-he .text-gilt {
-    letter-spacing: 0.08em;
+    font-family: var(--font-he);
+    letter-spacing: 0.1em;
   }
 
-  /* glow-aurora — large soft colored depth shadow (single material) */
-  .glow-aurora {
-    box-shadow: 0 40px 120px -40px oklch(0.6 0.2 290 / 0.5);
+  /* ---- frame — thin gallery frame for mockups (1px line/gilt, ≤8px shadow, NO glow) ---- */
+  .frame {
+    border-radius: 8px;
+    background-color: var(--color-bg-deep);
+    box-shadow:
+      inset 0 0 0 1px var(--color-line),
+      inset 0 1px 0 oklch(1 0 0 / 0.04),
+      0 8px 24px -16px oklch(0 0 0 / 0.9);
   }
-  /* glow-gold — rare precious depth glow */
-  .glow-gold {
-    box-shadow: 0 36px 110px -42px oklch(0.83 0.13 88 / 0.45);
+  /* gilt-edged frame variant — a precious thin gold rim */
+  .frame-gilt {
+    border-radius: 8px;
+    background-color: var(--color-bg-deep);
+    box-shadow:
+      inset 0 0 0 1px oklch(0.76 0.105 80 / 0.45),
+      inset 0 1px 0 oklch(1 0 0 / 0.05),
+      0 8px 24px -16px oklch(0 0 0 / 0.9);
+  }
+
+  /* ---- panel-couture — the DEFAULT card: flat surface + neutral hairline ---- */
+  .panel-couture {
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    box-shadow:
+      inset 0 0 0 1px var(--color-line),
+      inset 0 1px 0 oklch(1 0 0 / 0.03);
   }
 
   /* lit-edge — top inner hairline highlight on raised panels */
   .lit-edge {
-    box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.06);
-  }
-
-  /* panel-premium — the DEFAULT premium card:
-     surface + indigo hairline + soft depth + lit edge (no ghost-card) */
-  .panel-premium {
-    background-color: var(--color-surface);
-    border-radius: 16px;
-    box-shadow:
-      inset 0 0 0 1px oklch(0.4 0.04 268 / 0.7),
-      inset 0 1px 0 oklch(1 0 0 / 0.05),
-      0 28px 80px -48px oklch(0.08 0.03 268 / 0.9);
+    box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.05);
   }
 
   /* gilt-rim — a thin gold rim-light (1px) for precious panels */
   .gilt-rim {
     box-shadow:
-      inset 0 0 0 1px oklch(0.83 0.13 88 / 0.4),
-      inset 0 1px 0 oklch(1 0 0 / 0.06);
+      inset 0 0 0 1px oklch(0.76 0.105 80 / 0.4),
+      inset 0 1px 0 oklch(1 0 0 / 0.05);
   }
 
   .ring-line {
     box-shadow: inset 0 0 0 1px var(--color-line);
   }
+
+  /* ---- film-grain — ultra-subtle (≤3%) couture texture, flat ---- */
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ========================================================
+     BACK-COMPAT — old loud utilities, now couture-neutralized
+     ======================================================== */
+
+  /* fills that used to be aurora/gold → flat surface or solid foil */
+  .bg-aurora {
+    background-color: var(--color-surface-2);
+    background-image: none;
+  }
+  .bg-gold-grad {
+    background-image: var(--grad-gold);
+  }
+
+  /* glows → NO glow. Collapse to a quiet hairline + faint depth. */
+  .glow-aurora {
+    box-shadow:
+      inset 0 0 0 1px var(--color-line),
+      0 8px 24px -18px oklch(0 0 0 / 0.85);
+  }
+  .glow-gold {
+    box-shadow:
+      inset 0 0 0 1px oklch(0.76 0.105 80 / 0.4),
+      0 8px 24px -18px oklch(0 0 0 / 0.85);
+  }
+
+  /* panel-premium (old default card) → the couture flat panel */
+  .panel-premium {
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    box-shadow:
+      inset 0 0 0 1px var(--color-line),
+      inset 0 1px 0 oklch(1 0 0 / 0.03);
+  }
 }
 
 /* ============================================================
-   Keyframes (reused across components)
+   Keyframes (kept for marquee + counter; aurora drift removed)
    ============================================================ */
-
-@keyframes aurora-drift {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.7;
-  }
-  50% {
-    transform: translate3d(2%, -2%, 0) scale(1.06);
-    opacity: 1;
-  }
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.7;
-  }
-}
 
 @keyframes float {
   0%,
@@ -307,7 +347,7 @@ html {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
 }
 
@@ -317,16 +357,6 @@ html {
   }
   100% {
     background-position: 200% 0;
-  }
-}
-
-/* gilt shimmer sweep — restrained gold gleam across primary CTAs */
-@keyframes gilt-sweep {
-  0% {
-    transform: translateX(-120%);
-  }
-  100% {
-    transform: translateX(220%);
   }
 }
 
@@ -348,11 +378,8 @@ html {
   }
 }
 
-.animate-aurora {
-  animation: aurora-drift 16s ease-in-out infinite;
-}
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 7s ease-in-out infinite;
 }
 
 /* ============================================================

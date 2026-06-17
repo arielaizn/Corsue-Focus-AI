@@ -12,7 +12,7 @@ const STATUS_STYLE = (status: string) => {
     };
   if (/מעבד|process/i.test(s))
     return {
-      cls: "text-gold bg-[oklch(0.83_0.13_88_/_0.14)] [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.3)]",
+      cls: "text-gold bg-[oklch(0.76_0.105_80_/_0.13)] [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.3)]",
       dot: true,
       done: false,
     };
@@ -33,10 +33,10 @@ export function KnowledgeBaseMock({
   data: AIContent["knowledge"];
 }) {
   return (
-    <div className="panel-premium p-5 sm:p-6">
+    <div className="panel-couture p-5 sm:p-6">
       {/* dropzone */}
-      <div className="flex items-center gap-3 rounded-xl border border-dashed border-line bg-bg-deep/40 px-4 py-4">
-        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[oklch(0.6_0.18_262_/_0.18)] text-ink-soft">
+      <div className="flex items-center gap-3 rounded-lg border border-dashed border-line bg-bg-deep/40 px-4 py-4">
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-surface-2 text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]">
           <IconUpload width={17} height={17} />
         </span>
         <p className="text-sm text-ink-soft">PDF · Word · PowerPoint · Site</p>
@@ -49,9 +49,9 @@ export function KnowledgeBaseMock({
           return (
             <li
               key={src.name}
-              className="flex items-center gap-3 rounded-xl bg-bg-deep/50 px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
+              className="flex items-center gap-3 rounded-lg bg-bg-deep/50 px-3.5 py-2.5 [box-shadow:inset_0_0_0_1px_var(--color-line)]"
             >
-              <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-surface/60 text-muted">
+              <span className="grid h-7 w-7 shrink-0 place-items-center rounded-[4px] bg-surface/60 text-muted">
                 <IconDoc width={14} height={14} />
               </span>
               <div className="min-w-0 flex-1">
@@ -76,7 +76,7 @@ export function KnowledgeBaseMock({
       </ul>
 
       {/* learned */}
-      <div className="mt-4 rounded-xl bg-[oklch(0.83_0.13_88_/_0.08)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.25)]">
+      <div className="mt-4 rounded-lg bg-[oklch(0.76_0.105_80_/_0.08)] p-4 [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.26)]">
         <p className="text-gilt mb-3">{data.learnedLabel}</p>
         <ul className="flex flex-col gap-2">
           {data.learned.map((l) => (

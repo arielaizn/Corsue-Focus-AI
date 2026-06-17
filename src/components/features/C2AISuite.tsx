@@ -22,14 +22,15 @@ export function C2AISuite({ locale }: { locale: Locale }) {
 
         <div>
           <Reveal>
-            <SectionHeading kicker={t.kicker} title={t.title} subtitle={t.subtitle} />
+            <SectionHeading title={t.title} subtitle={t.subtitle} />
           </Reveal>
+          <span aria-hidden className="gilt-rule mt-8 max-w-[140px] opacity-60" />
 
           <Reveal delay={0.08} className="mt-8 flex flex-wrap gap-2">
             {t.items.map((it) => (
               <span
                 key={it.n}
-                className="inline-flex items-center gap-1.5 rounded-full bg-surface-2 px-3 py-1.5 text-xs font-medium text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line),inset_0_1px_0_oklch(1_0_0_/_0.05)]"
+                className="inline-flex items-center gap-1.5 rounded-full bg-surface px-3 py-1.5 text-xs font-medium text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]"
               >
                 <span className="text-gold">
                   <IconSpark size={12} />

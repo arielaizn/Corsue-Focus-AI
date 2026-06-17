@@ -50,11 +50,12 @@ export function AcademyBuilder({
   const reduced = useReducedMotion();
   const [state, setState] = useState<"idle" | "building" | "ready">("idle");
   const p = t.panel;
+  // restrained brand swatches — ink-blue is allowed INSIDE the product mock only
   const swatches = [
-    "oklch(0.62 0.2 264)",
-    "oklch(0.6 0.25 300)",
-    "oklch(0.83 0.13 88)",
-    "oklch(0.7 0.16 160)",
+    "oklch(0.55 0.11 250)",
+    "oklch(0.76 0.105 80)",
+    "oklch(0.66 0.01 75)",
+    "oklch(0.5 0.06 220)",
   ];
   const [brand, setBrand] = useState(0);
 
@@ -69,8 +70,9 @@ export function AcademyBuilder({
   }
 
   return (
-    <section className="mx-auto max-w-[1240px] px-5 py-24 sm:py-32">
-      <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+    <section className="mx-auto max-w-[1240px] px-6 py-32 sm:py-44">
+      <span aria-hidden className="gilt-rule mb-24 block max-w-[160px] opacity-60" />
+      <div className="grid items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
         {/* copy */}
         <Reveal>
           <SectionHeading
@@ -78,10 +80,10 @@ export function AcademyBuilder({
             subtitle={t.sub}
             as="h2"
           />
-          <ul className="mt-8 space-y-3">
+          <ul className="mt-10 space-y-4">
             {t.bullets.map((b) => (
               <li key={b} className="flex items-start gap-3 text-ink-soft">
-                <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md bg-aurora text-ink">
+                <span className="mt-1 text-gold" aria-hidden>
                   <Check />
                 </span>
                 <span className="text-pretty">{b}</span>
@@ -90,9 +92,9 @@ export function AcademyBuilder({
           </ul>
         </Reveal>
 
-        {/* live create panel — a real mock UI */}
-        <Reveal y={28} delay={0.05}>
-          <div className="panel-premium glow-aurora relative overflow-hidden p-5 sm:p-6">
+        {/* live create panel — a framed product mock */}
+        <Reveal y={20} delay={0.05}>
+          <div className="frame relative overflow-hidden p-5 sm:p-6">
             <div className="mb-5 flex items-center justify-between">
               <span className="text-sm font-semibold text-ink">{p.title}</span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-bg px-2.5 py-1 text-[11px] text-muted [box-shadow:inset_0_0_0_1px_var(--color-line)]">
@@ -164,7 +166,7 @@ export function AcademyBuilder({
                 type="button"
                 onClick={run}
                 disabled={state === "building"}
-                className="relative mt-1 flex h-11 items-center justify-center gap-2 overflow-hidden rounded-xl bg-aurora text-sm font-semibold text-ink [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35),inset_0_1px_0_oklch(1_0_0_/_0.18)] transition-[box-shadow,transform] hover:-translate-y-0.5 hover:[box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.7),0_12px_40px_-8px_oklch(0.6_0.2_290_/_0.6)] disabled:opacity-80"
+                className="relative mt-1 flex h-11 items-center justify-center gap-2 overflow-hidden rounded-[6px] bg-ink text-sm font-semibold text-bg-deep transition-transform hover:-translate-y-0.5 disabled:opacity-80"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {state === "idle" && (
@@ -185,7 +187,7 @@ export function AcademyBuilder({
                       exit={{ opacity: 0 }}
                       className="flex items-center gap-2"
                     >
-                      <span className="h-3.5 w-3.5 animate-[orbit-spin_0.9s_linear_infinite] rounded-full border-2 border-ink/40 border-t-ink" />
+                      <span className="h-3.5 w-3.5 animate-[orbit-spin_0.9s_linear_infinite] rounded-full border-2 border-bg-deep/30 border-t-bg-deep" />
                       {p.building}
                     </motion.span>
                   )}
@@ -203,7 +205,7 @@ export function AcademyBuilder({
               </button>
             </div>
 
-            {/* success rim glow */}
+            {/* success — a quiet gilt rim, no glow */}
             <AnimatePresence>
               {state === "ready" && (
                 <motion.div
@@ -212,7 +214,7 @@ export function AcademyBuilder({
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.6, ease: easeOutExpo }}
-                  className="pointer-events-none absolute inset-0 rounded-[16px] [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.6),0_0_60px_-10px_oklch(0.83_0.13_88_/_0.45)]"
+                  className="pointer-events-none absolute inset-0 rounded-[8px] [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.55)]"
                 />
               )}
             </AnimatePresence>

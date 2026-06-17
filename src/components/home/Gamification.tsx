@@ -35,29 +35,18 @@ export function Gamification({
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden py-24 sm:py-32"
+      className="relative py-32 sm:py-44"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(55% 50% at 80% 30%, oklch(0.83 0.13 88 / 0.08), transparent 70%)",
-        }}
-      />
-      <div className="mx-auto max-w-[1240px] px-5">
+      <div className="mx-auto max-w-[1240px] px-6">
+        <span aria-hidden className="gilt-rule mb-20 block max-w-[160px] opacity-60" />
         <Reveal>
           <SectionHeading title={t.title} subtitle={t.sub} as="h2" />
         </Reveal>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="mt-16 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Level + XP ring panel */}
-          <Reveal y={26}>
-            <div className="panel-premium relative flex h-full flex-col justify-between overflow-hidden p-6 sm:p-7">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -top-20 -end-16 h-48 w-48 rounded-full bg-[oklch(0.6_0.25_300_/_0.18)] blur-3xl"
-              />
+          <Reveal y={20}>
+            <div className="panel-couture relative flex h-full flex-col justify-between overflow-hidden p-6 sm:p-7">
               <div className="relative flex items-center gap-6">
                 {/* ring */}
                 <div className="relative grid h-[136px] w-[136px] shrink-0 place-items-center">
@@ -79,7 +68,7 @@ export function Gamification({
                       cy="68"
                       r={R}
                       fill="none"
-                      stroke="url(#xpgrad)"
+                      stroke="oklch(0.76 0.105 80)"
                       strokeWidth="8"
                       strokeLinecap="round"
                       strokeDasharray={C}
@@ -92,19 +81,12 @@ export function Gamification({
                         ease: easeOutExpo,
                       }}
                     />
-                    <defs>
-                      <linearGradient id="xpgrad" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stopColor="oklch(0.6 0.18 262)" />
-                        <stop offset="52%" stopColor="oklch(0.62 0.215 294)" />
-                        <stop offset="100%" stopColor="oklch(0.62 0.23 330)" />
-                      </linearGradient>
-                    </defs>
                   </svg>
                   <div className="absolute flex flex-col items-center">
                     <span className="text-[11px] font-medium text-muted">
                       {t.levelLabel}
                     </span>
-                    <span className="font-[family-name:var(--font-display)] text-4xl font-semibold leading-none text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+                    <span className="font-[family-name:var(--font-display)] text-4xl font-semibold leading-none text-ink [.font-he_&]:font-[family-name:var(--font-he-display)]">
                       {t.level}
                     </span>
                   </div>
@@ -115,7 +97,7 @@ export function Gamification({
                     <Counter
                       to={t.xpCurrent}
                       duration={1.4}
-                      className="font-[family-name:var(--font-display)] text-2xl font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]"
+                      className="font-[family-name:var(--font-display)] text-2xl font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he-display)]"
                     />
                     <span className="text-sm text-muted">
                       / {t.xpNext.toLocaleString()} {t.xpUnit}
@@ -126,7 +108,7 @@ export function Gamification({
                   </p>
 
                   {/* streak chip */}
-                  <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-bg px-3 py-1.5 text-xs font-medium text-gold [box-shadow:inset_0_0_0_1px_oklch(0.83_0.13_88_/_0.35)]">
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-bg px-3 py-1.5 text-xs font-medium text-gold gilt-rim">
                     <span aria-hidden>✦</span>
                     <span className="text-muted">{t.streakLabel}:</span>
                     <span className="text-ink">{t.streakValue}</span>
@@ -136,9 +118,9 @@ export function Gamification({
 
               {/* XP progress bar */}
               <div className="relative mt-7">
-                <div className="h-2.5 w-full overflow-hidden rounded-full bg-bg [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+                <div className="h-2.5 w-full overflow-hidden rounded-full bg-bg ring-line">
                   <motion.div
-                    className="h-full rounded-full bg-aurora"
+                    className="h-full rounded-full bg-gold-grad"
                     initial={{ width: reduced ? `${pct}%` : 0 }}
                     animate={{ width: inView ? `${pct}%` : 0 }}
                     transition={{
@@ -189,13 +171,13 @@ export function Gamification({
           </Reveal>
 
           {/* Leaderboard panel */}
-          <Reveal y={26} delay={0.08}>
-            <div className="panel-premium h-full overflow-hidden p-6 sm:p-7">
+          <Reveal y={20} delay={0.08}>
+            <div className="panel-couture h-full overflow-hidden p-6 sm:p-7">
               <div className="mb-5 flex items-center justify-between">
-                <h3 className="font-[family-name:var(--font-display)] text-base font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+                <h3 className="font-[family-name:var(--font-display)] text-base font-medium text-ink [.font-he_&]:font-[family-name:var(--font-he-display)] [.font-he_&]:font-bold">
                   {t.leaderboardLabel}
                 </h3>
-                <span className="rounded-full bg-bg px-2.5 py-1 text-[11px] text-muted [box-shadow:inset_0_0_0_1px_var(--color-line)]">
+                <span className="rounded-full bg-bg px-2.5 py-1 text-[11px] text-muted ring-line">
                   XP
                 </span>
               </div>
@@ -219,10 +201,10 @@ export function Gamification({
                         delay: reduced ? 0 : 0.15 + i * 0.08,
                       }}
                       className={
-                        "relative flex items-center gap-3 overflow-hidden rounded-xl px-3.5 py-3 " +
+                        "relative flex items-center gap-3 overflow-hidden rounded-[8px] px-3.5 py-3 " +
                         (isYou
-                          ? "bg-bg [box-shadow:inset_0_0_0_1px_oklch(0.62_0.2_264_/_0.5)]"
-                          : "bg-bg/50 [box-shadow:inset_0_0_0_1px_var(--color-line)]")
+                          ? "bg-bg [box-shadow:inset_0_0_0_1px_oklch(0.76_0.105_80_/_0.5)]"
+                          : "bg-bg/50 ring-line")
                       }
                     >
                       {/* progress fill behind */}
@@ -231,8 +213,8 @@ export function Gamification({
                         className={
                           "pointer-events-none absolute inset-y-0 start-0 " +
                           (isYou
-                            ? "bg-[oklch(0.62_0.2_264_/_0.16)]"
-                            : "bg-[oklch(0.62_0.2_264_/_0.07)]")
+                            ? "bg-[oklch(0.76_0.105_80_/_0.12)]"
+                            : "bg-[oklch(1_0_0_/_0.04)]")
                         }
                         initial={{ width: reduced ? `${barPct}%` : 0 }}
                         animate={{ width: inView ? `${barPct}%` : 0 }}
@@ -244,12 +226,12 @@ export function Gamification({
                       />
                       <span
                         className={
-                          "relative grid h-7 w-7 shrink-0 place-items-center rounded-lg text-xs font-semibold " +
+                          "relative grid h-7 w-7 shrink-0 place-items-center rounded-[7px] text-xs font-semibold " +
                           (i === 0
                             ? "bg-gold-grad text-bg-deep"
                             : isYou
-                              ? "bg-aurora text-ink"
-                              : "bg-surface text-ink-soft [box-shadow:inset_0_0_0_1px_var(--color-line)]")
+                              ? "bg-ink text-bg-deep"
+                              : "bg-surface text-ink-soft ring-line")
                         }
                       >
                         {i + 1}
@@ -262,12 +244,12 @@ export function Gamification({
                       >
                         {l.name}
                         {isYou && (
-                          <span className="ms-2 rounded-full bg-aurora px-2 py-0.5 align-middle text-[10px] font-medium text-ink">
+                          <span className="ms-2 rounded-full bg-ink px-2 py-0.5 align-middle text-[10px] font-medium text-bg-deep">
                             {t.youLabel}
                           </span>
                         )}
                       </span>
-                      <span className="relative font-[family-name:var(--font-display)] text-sm font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he)]">
+                      <span className="relative font-[family-name:var(--font-display)] text-sm font-semibold text-ink [.font-he_&]:font-[family-name:var(--font-he-display)]">
                         {l.xp.toLocaleString()}
                       </span>
                     </motion.li>

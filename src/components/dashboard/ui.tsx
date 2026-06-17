@@ -128,7 +128,7 @@ export function EmptyState({
       {cta && (
         <Link
           href={cta.href}
-          className="bg-aurora text-ink mt-1 inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold tracking-[-0.01em] transition-transform duration-300 [box-shadow:inset_0_1px_0_oklch(1_0_0_/_0.18),0_18px_48px_-18px_oklch(0.6_0.2_290_/_0.6)] hover:-translate-y-0.5"
+          className="bg-ink text-bg-deep mt-1 inline-flex items-center justify-center rounded-[6px] px-6 py-3 text-sm font-semibold tracking-[0.01em] transition-[transform,background-color] duration-300 [box-shadow:inset_0_1px_0_oklch(1_0_0_/_0.3)] hover:bg-ink-soft hover:-translate-y-px"
         >
           {cta.label}
         </Link>

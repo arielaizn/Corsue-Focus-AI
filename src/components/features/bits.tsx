@@ -5,7 +5,7 @@ import { cn } from "@/lib/cn";
  * Deterministic (SSR-safe) — no randomness.
  */
 
-/** Initial-based avatar with a deterministic aurora/gold tint from the name. */
+/** Initial-based avatar — flat charcoal disc, neutral hairline, bone initials. */
 export function Avatar({
   name,
   small = false,
@@ -23,21 +23,16 @@ export function Avatar({
     .join("")
     .toUpperCase();
 
-  // deterministic hue pick from char codes
+  // deterministic surface-step pick from char codes (neutral, no colour)
   const sum = name.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
-  const tints = [
-    "bg-[oklch(0.6_0.18_262_/_0.9)]",
-    "bg-[oklch(0.62_0.215_294_/_0.9)]",
-    "bg-[oklch(0.72_0.13_78_/_0.9)]",
-    "bg-[oklch(0.62_0.23_330_/_0.9)]",
-  ];
+  const tints = ["bg-surface", "bg-surface-2", "bg-surface-3", "bg-bg-deep"];
   const tint = tints[sum % tints.length];
 
   return (
     <span
       aria-hidden
       className={cn(
-        "grid shrink-0 place-items-center rounded-full font-semibold text-ink ring-line",
+        "grid shrink-0 place-items-center rounded-full font-medium text-ink-soft ring-line",
         small ? "h-8 w-8 text-[11px]" : "h-10 w-10 text-xs",
         tint,
         className,
@@ -72,7 +67,11 @@ export function IconHeartChat({ kind }: { kind: "heart" | "comment" }) {
   );
 }
 
-/** A thin labelled progress bar (aurora fill). value is 0–100. */
+/**
+ * A thin labelled progress bar. Track = neutral surface; fill = solid bone by
+ * default, thin gold foil when `tone="gold"`. No colour, no glow.
+ * `tone` keeps the legacy "aurora" value for API compatibility (maps to bone).
+ */
 export function ProgressBar({
   value,
   className,
@@ -86,7 +85,7 @@ export function ProgressBar({
   return (
     <div
       className={cn(
-        "h-2 w-full overflow-hidden rounded-full bg-[oklch(0.34_0.06_267_/_0.6)]",
+        "h-1.5 w-full overflow-hidden rounded-full bg-surface-2",
         className,
       )}
       role="progressbar"
@@ -95,7 +94,7 @@ export function ProgressBar({
       aria-valuemax={100}
     >
       <div
-        className={cn("h-full rounded-full", tone === "aurora" ? "bg-aurora" : "bg-gold-grad")}
+        className={cn("h-full rounded-full", tone === "gold" ? "bg-gold-grad" : "bg-ink-soft")}
         style={{ width: `${v}%` }}
       />
     </div>
