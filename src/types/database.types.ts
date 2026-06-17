@@ -4062,6 +4062,15 @@ export type Database = {
       is_platform_admin:
         | { Args: never; Returns: boolean }
         | { Args: { p_user_id: string }; Returns: boolean }
+      platform_revenue_by_academy: {
+        Args: never
+        Returns: {
+          academy_id: string
+          currency: string
+          revenue: number
+        }[]
+      }
+      platform_total_revenue: { Args: never; Returns: number }
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
     }
